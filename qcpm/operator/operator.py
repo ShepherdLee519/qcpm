@@ -1,18 +1,6 @@
-from functools import wraps
+from qcpm.common.decorator import countDecorator
 
 _reject_type = {'qreg', 'creg'}
-
-def countDecorator(func):
-    index = 0
-
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        nonlocal index
-        r = func(*args, index = index, **kwargs)
-        index += 1
-
-        return r
-    return wrapper
 
 
 class Operator:

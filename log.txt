@@ -1,0 +1,38 @@
+Pattern  1
+cx [0, 1]
+cx [1, 2]
+cx [0, 1]
+ => 
+cx [0, 2]
+cx [1, 2]
+Pattern  2
+x [1]
+cx [0, 1]
+x [1]
+ => 
+cx [0, 1]
+
+Pattern:  1
+
+pos:  73
+No: 73, cx [4, 1]
+No: 74, cx [1, 2]
+No: 75, cx [4, 1]
+
+pos:  75
+No: 75, cx [4, 1]
+No: 76, cx [1, 2]
+No: 77, cx [4, 1]
+
+Candidate: 
+ [73, 75]
+
+Pattern:  2
+
+pos:  223
+No: 223, x [0]
+No: 224, cx [1, 0]
+No: 225, x [0]
+
+Candidate: 
+ [223]
