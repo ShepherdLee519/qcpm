@@ -1,3 +1,4 @@
+Start Timer:  init mapper
 Pattern  1
 cx [0, 1]
 cx [1, 2]
@@ -11,6 +12,10 @@ cx [0, 1]
 x [1]
  => 
 cx [0, 1]
+End Timer [init mapper]:  0.0009980201721191406
+Start Timer:  init circuit
+End Timer [init circuit]:  0.0019931793212890625
+Start Timer:  execute mapper
 
 Pattern:  1
 
@@ -36,3 +41,4 @@ No: 225, x [0]
 
 Candidate: 
  [223]
+End Timer [execute mapper]:  0.0009980201721191406
