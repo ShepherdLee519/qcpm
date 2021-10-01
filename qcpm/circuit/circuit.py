@@ -1,6 +1,6 @@
-from qcpm.preprocess.preprocess import preprocess
-from qcpm.operator.convert import convert_type
-
+from qcpm.preprocess import preprocess
+from qcpm.operator import convert_type
+from qcpm.common import timerDecorator
 
 class Circuit:
     """
@@ -8,9 +8,11 @@ class Circuit:
             => operators: [Operator, Operator ...] (eg. Operator: cx [4,1])
             => draft: ctth...(cx => c)
     """
+    @timerDecorator(description='Init Circuit')
     def __init__(self, path):
         self.operators = []
         self.draft = ''
+
         self._load_circuit(path)
 
     def _load_circuit(self, path):

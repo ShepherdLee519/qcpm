@@ -1,44 +1,212 @@
-Start Timer:  init mapper
-Pattern  1
-cx [0, 1]
-cx [1, 2]
-cx [0, 1]
- => 
-cx [0, 2]
-cx [1, 2]
-Pattern  2
-x [1]
-cx [0, 1]
-x [1]
- => 
-cx [0, 1]
-End Timer [init mapper]:  0.0009980201721191406
-Start Timer:  init circuit
-End Timer [init circuit]:  0.0019931793212890625
-Start Timer:  execute mapper
+Start Timer: [Init Mapper]
+Search Strategy: KMP
+End Timer [Init Mapper]:  0.000997304916381836
 
-Pattern:  1
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.0029916763305664062
 
-pos:  73
-No: 73, cx [4, 1]
-No: 74, cx [1, 2]
-No: 75, cx [4, 1]
+Start Timer: [Execute Mapping]
 
-pos:  75
-No: 75, cx [4, 1]
-No: 76, cx [1, 2]
-No: 77, cx [4, 1]
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+Start Timer: [Find Candidates]
 
-Candidate: 
- [73, 75]
+------------1------------
+Pattern: 1
+	cx [0, 1]
+	cx [1, 2]
+	cx [0, 1]
+	 => 
+	cx [0, 2]
+	cx [1, 2]
 
-Pattern:  2
+pos:  76
+No: 76, cx [4, 1]
+No: 77, cx [1, 2]
+No: 78, cx [4, 1]
 
-pos:  223
-No: 223, x [0]
-No: 224, cx [1, 0]
-No: 225, x [0]
+pos:  78
+No: 78, cx [4, 1]
+No: 79, cx [1, 2]
+No: 80, cx [4, 1]
 
-Candidate: 
- [223]
-End Timer [execute mapper]:  0.0009980201721191406
+pos:  131
+No: 131, cx [5, 3]
+No: 132, cx [3, 2]
+No: 133, cx [5, 3]
+
+Candidates: 
+ [76, 78, 131]
+
+------------2------------
+Pattern: 2
+	cx [0, 1]
+	cx [1, 2]
+	 => 
+	cx [0, 2]
+
+pos:  76
+No: 76, cx [4, 1]
+No: 77, cx [1, 2]
+
+pos:  78
+No: 78, cx [4, 1]
+No: 79, cx [1, 2]
+
+pos:  131
+No: 131, cx [5, 3]
+No: 132, cx [3, 2]
+
+pos:  194
+No: 194, cx [2, 3]
+No: 195, cx [3, 5]
+
+pos:  195
+No: 195, cx [3, 5]
+No: 196, cx [5, 2]
+
+Candidates: 
+ [76, 78, 131, 194, 195]
+
+------------3------------
+Pattern: 3
+	x [1]
+	cx [0, 1]
+	x [1]
+	 => 
+	cx [0, 1]
+
+pos:  55
+No: 55, x [0]
+No: 56, cx [5, 0]
+No: 57, x [0]
+
+pos:  230
+No: 230, x [0]
+No: 231, cx [1, 0]
+No: 232, x [0]
+
+Candidates: 
+ [55, 230]
+
+------------4------------
+Pattern: 4
+	cx [0, 1]
+	cx [0, 1]
+	 => 
+	I
+
+pos:  130
+No: 130, cx [5, 3]
+No: 131, cx [5, 3]
+
+pos:  133
+No: 133, cx [5, 3]
+No: 134, cx [5, 3]
+
+Candidates: 
+ [130, 133]
+
+------------5------------
+Pattern: 5
+	x [0]
+	x [0]
+	 => 
+	I
+
+pos:  54
+No: 54, x [0]
+No: 55, x [0]
+
+Candidates: 
+ [54]
+End Timer [Find Candidates]:  0.005984783172607422
+
+Start Timer: [Filter Candidates]
+
+***********************
+*                     *
+*   Candidate Plans   *
+*                     *
+***********************
+
+Plan: 1
+[Pos: 54 xx => I,
+ Pos: 76 cc => c,
+ Pos: 78 cc => c,
+ Pos: 130 cc => I,
+ Pos: 133 cc => I,
+ Pos: 194 cc => c,
+ Pos: 230 xcx => c]
+Change: 7, Saving: 18
+
+Plan: 2
+[Pos: 54 xx => I,
+ Pos: 76 cc => c,
+ Pos: 78 cc => c,
+ Pos: 130 cc => I,
+ Pos: 133 cc => I,
+ Pos: 195 cc => c,
+ Pos: 230 xcx => c]
+Change: 7, Saving: 18
+
+Plan: 7
+[Pos: 54 xx => I,
+ Pos: 76 cc => c,
+ Pos: 78 ccc => cc,
+ Pos: 130 cc => I,
+ Pos: 133 cc => I,
+ Pos: 194 cc => c,
+ Pos: 230 xcx => c]
+Change: 7, Saving: 18
+
+Plan: 8
+[Pos: 54 xx => I,
+ Pos: 76 cc => c,
+ Pos: 78 ccc => cc,
+ Pos: 130 cc => I,
+ Pos: 133 cc => I,
+ Pos: 195 cc => c,
+ Pos: 230 xcx => c]
+Change: 7, Saving: 18
+
+Plan: 19
+[Pos: 55 xcx => c,
+ Pos: 76 cc => c,
+ Pos: 78 cc => c,
+ Pos: 130 cc => I,
+ Pos: 133 cc => I,
+ Pos: 194 cc => c,
+ Pos: 230 xcx => c]
+Change: 7, Saving: 18
+
+Plan: 20
+[Pos: 55 xcx => c,
+ Pos: 76 cc => c,
+ Pos: 78 cc => c,
+ Pos: 130 cc => I,
+ Pos: 133 cc => I,
+ Pos: 195 cc => c,
+ Pos: 230 xcx => c]
+Change: 7, Saving: 18
+
+Plan: 25
+[Pos: 55 xcx => c,
+ Pos: 76 cc => c,
+ Pos: 78 ccc => cc,
+ Pos: 130 cc => I,
+ Pos: 133 cc => I,
+ Pos: 194 cc => c,
+ Pos: 230 xcx => c]
+Change: 7, Saving: 18
+
+..........
+
+Total Plans: 36
+End Timer [Filter Candidates]:  0.00103759765625
+
+End Timer [Execute Mapping]:  0.007022380828857422
+

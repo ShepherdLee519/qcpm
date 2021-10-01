@@ -1,6 +1,6 @@
 import os
 
-from qcpm.operator.operator import Operator
+from qcpm.operator import Operator
 
 
 def preprocess(path, ext='.qasm'):

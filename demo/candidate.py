@@ -2,7 +2,7 @@ import sys
 sys.path.append('..')
 
 
-# from qcpm.preprocess.preprocess import preprocess
+from qcpm.preprocess.preprocess import preprocess
 from qcpm.pattern.mapper import Mapper
 from qcpm.circuit.circuit import Circuit
 

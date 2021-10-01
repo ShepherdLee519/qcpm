@@ -8,3 +8,7 @@ class Searcher(metaclass=ABCMeta):
     @abstractmethod
     def apply(self, haystack, needle):
         pass
+
+    @abstractmethod
+    def __repr__(self):
+        pass

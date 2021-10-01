@@ -1,4 +1,4 @@
-from qcpm.common.decorator import countDecorator
+from qcpm.common import countDecorator
 
 _reject_type = {'qreg', 'creg'}
 

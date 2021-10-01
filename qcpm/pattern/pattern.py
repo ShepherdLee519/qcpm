@@ -1,7 +1,7 @@
 import string
 
-from qcpm.operator.convert import convert_type
-from qcpm.common.decorator import countDecorator
+from qcpm.operator import convert_type
+from qcpm.common import countDecorator
 
 
 @countDecorator
@@ -11,13 +11,14 @@ class Pattern:
         self.index = index
         self.src = self._solve_pattern(src)
         self.dst = self._solve_pattern(dst)
-        self.description = '\n'.join([op[0] + ' ' + str(op[1]) for op in src]) \
-                            + "\n => \n" \
-                            + '\n'.join([op[0] + ' ' + str(op[1]) for op in dst]) 
-
-        print("Pattern ", self.index + 1)
-        print(self.description)
+        self.description = self._description(src, dst)
     
+    def _description(self, src, dst):
+        return 'Pattern: ' + str(self.index + 1) + '\n' \
+                + '\n'.join(['\t' + op[0] + ' ' + str(op[1]) for op in src]) \
+                + "\n\t => \n" \
+                + ('\n'.join(['\t' + op[0] + ' ' + str(op[1]) for op in dst]) or '\tI')
+
     def _solve_pattern(self, target):
         # eg. target:
         # {
@@ -32,3 +33,6 @@ class Pattern:
             "operator": ''.join(operator_pattern),
             "operands": ''.join(operands_pattern)
         }
+
+    def delta(self):
+        return len(self.src['operands']) - len(self.dst['operands'])

@@ -60,3 +60,6 @@ class KMP(Searcher):
                 yield ans
             else:
                 return
+    
+    def __repr__(self):
+        return 'Search Strategy: KMP'
