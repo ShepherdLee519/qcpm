@@ -1,9 +1,9 @@
 Start Timer: [Init Mapper]
 Search Strategy: KMP
-End Timer [Init Mapper]:  0.000997304916381836
+End Timer [Init Mapper]:  0.0009982585906982422
 
 Start Timer: [Init Circuit]
-End Timer [Init Circuit]:  0.0029916763305664062
+End Timer [Init Circuit]:  0.0030243396759033203
 
 Start Timer: [Execute Mapping]
 
@@ -12,7 +12,7 @@ Start Timer: [Execute Mapping]
 *   Pattern & Candidates   *
 *                          *
 ****************************
-Start Timer: [Find Candidates]
+----Start Timer: [Find Candidates]
 
 ------------1------------
 Pattern: 1
@@ -123,9 +123,9 @@ No: 55, x [0]
 
 Candidates: 
  [54]
-End Timer [Find Candidates]:  0.005984783172607422
+----End Timer [Find Candidates]:  0.0039904117584228516
 
-Start Timer: [Filter Candidates]
+----Start Timer: [Filter Candidates]
 
 ***********************
 *                     *
@@ -133,6 +133,7 @@ Start Timer: [Filter Candidates]
 *                     *
 ***********************
 
+Rank: 1
 Plan: 1
 [Pos: 54 xx => I,
  Pos: 76 cc => c,
@@ -143,6 +144,7 @@ Plan: 1
  Pos: 230 xcx => c]
 Change: 7, Saving: 18
 
+Rank: 2
 Plan: 2
 [Pos: 54 xx => I,
  Pos: 76 cc => c,
@@ -153,6 +155,7 @@ Plan: 2
  Pos: 230 xcx => c]
 Change: 7, Saving: 18
 
+Rank: 3
 Plan: 7
 [Pos: 54 xx => I,
  Pos: 76 cc => c,
@@ -163,6 +166,7 @@ Plan: 7
  Pos: 230 xcx => c]
 Change: 7, Saving: 18
 
+Rank: 4
 Plan: 8
 [Pos: 54 xx => I,
  Pos: 76 cc => c,
@@ -173,6 +177,7 @@ Plan: 8
  Pos: 230 xcx => c]
 Change: 7, Saving: 18
 
+Rank: 5
 Plan: 19
 [Pos: 55 xcx => c,
  Pos: 76 cc => c,
@@ -183,6 +188,7 @@ Plan: 19
  Pos: 230 xcx => c]
 Change: 7, Saving: 18
 
+Rank: 6
 Plan: 20
 [Pos: 55 xcx => c,
  Pos: 76 cc => c,
@@ -193,6 +199,7 @@ Plan: 20
  Pos: 230 xcx => c]
 Change: 7, Saving: 18
 
+Rank: 7
 Plan: 25
 [Pos: 55 xcx => c,
  Pos: 76 cc => c,
@@ -203,10 +210,43 @@ Plan: 25
  Pos: 230 xcx => c]
 Change: 7, Saving: 18
 
+Rank: 8
+Plan: 26
+[Pos: 55 xcx => c,
+ Pos: 76 cc => c,
+ Pos: 78 ccc => cc,
+ Pos: 130 cc => I,
+ Pos: 133 cc => I,
+ Pos: 195 cc => c,
+ Pos: 230 xcx => c]
+Change: 7, Saving: 18
+
+Rank: 9
+Plan: 3
+[Pos: 54 xx => I,
+ Pos: 76 cc => c,
+ Pos: 78 cc => c,
+ Pos: 131 cc => c,
+ Pos: 133 cc => I,
+ Pos: 194 cc => c,
+ Pos: 230 xcx => c]
+Change: 7, Saving: 16
+
+Rank: 10
+Plan: 4
+[Pos: 54 xx => I,
+ Pos: 76 cc => c,
+ Pos: 78 cc => c,
+ Pos: 131 cc => c,
+ Pos: 133 cc => I,
+ Pos: 195 cc => c,
+ Pos: 230 xcx => c]
+Change: 7, Saving: 16
+
 ..........
 
 Total Plans: 36
-End Timer [Filter Candidates]:  0.00103759765625
+----End Timer [Filter Candidates]:  0.0009627342224121094
 
-End Timer [Execute Mapping]:  0.007022380828857422
+End Timer [Execute Mapping]:  0.005950450897216797
 

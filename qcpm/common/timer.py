@@ -1,6 +1,9 @@
 from time import *
 
 class Timer:
+
+    indent = 0
+
     """
         call:
         1.  with Timer(description):
@@ -17,11 +20,16 @@ class Timer:
         if description != "":
             self.description = description
 
-        print('Start Timer: [{}]'.format(self.description))
+        print('-' * (self.__class__.indent * 4) + \
+            'Start Timer: [{}]'.format(self.description))
         self.start_time = time()
 
+        self.__class__.indent += 1
+
     def end(self):
-        print('End Timer [{}]:  {}\n'.format(self.description, time() - self.start_time))
+        self.__class__.indent -= 1
+        print('-' * (self.__class__.indent * 4) + \
+            'End Timer [{}]:  {}\n'.format(self.description, time() - self.start_time))
 
     # context management protocol
     # __enter__ and __exit__ 

@@ -22,11 +22,11 @@ class Plans:
         self.plans = sorted(plans, key=attrgetter('saving'), reverse=True)
 
     def __repr__(self):
-        LIMIT = 7
+        LIMIT = 10
 
         s = ''
-        for plan in self.plans[:LIMIT]:
-            s += str(plan) + '\n'
+        for i, plan in enumerate( self.plans[:LIMIT] ):
+            s += f'Rank: {i + 1}\n' + str(plan) + '\n'
 
         return s + '.' * 10 \
             + "\n\nTotal Plans: %s" % len(self.plans)
