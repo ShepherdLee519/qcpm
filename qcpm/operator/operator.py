@@ -22,5 +22,12 @@ class Operator:
         return [int(''.join( operand.split('[')[1][:-1] ) )
                     for operand in operands]
 
+    def change(self, new_type, new_operands=None):
+        self.type = new_type
+        if new_operands != None:
+            self.operands = new_operands
+        
+        return self
+
     def __repr__(self):
         return "No: {}, {} {}".format(self.index, self.type, self.operands)

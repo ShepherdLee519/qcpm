@@ -1,6 +1,7 @@
 _op_type_map = {
     'cx': 'c',
-    'tdg': 'T'
+    'tdg': 'T',
+    'sdg': 'S',
 }
 
 def convert_type(op_type):

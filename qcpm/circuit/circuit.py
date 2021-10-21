@@ -1,6 +1,7 @@
 from qcpm.preprocess import preprocess
 from qcpm.operator import convert_type
 from qcpm.common import timerDecorator
+from qcpm.reduction import reduction
 
 class Circuit:
     """
@@ -18,7 +19,8 @@ class Circuit:
     def _load_circuit(self, path):
         op_types = []
 
-        for operator in preprocess(path):
+        # for operator in preprocess(path):
+        for operator in reduction(preprocess(path)):
             self.operators.append(operator)
             op_types.append( convert_type(operator.type) )
         
