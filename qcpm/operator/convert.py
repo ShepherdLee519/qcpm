@@ -1,4 +1,5 @@
 _op_type_map = {
+    'id': 'I',
     'cx': 'c',
     'tdg': 'T',
     'sdg': 'S',

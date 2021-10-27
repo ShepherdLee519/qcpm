@@ -10,10 +10,12 @@ config['test'] = True
 
 # pattern_path = './data/pattern.json'
 # circuit_path = './data/example'
-circuit_path = './data/example_reduction'
+# circuit_path = './data/example_reduction'
+circuit_path = './data/example_reduction_2'
 
 # mapper = Mapper(pattern_path)
 circuit = Circuit(circuit_path)
-print(len(circuit.draft))
+# print(len(circuit.draft))
+print(circuit.draft)
 # print(circuit.operators)
 # mapper.execute(circuit)

@@ -1,24 +1,49 @@
 from qcpm.operator.convert import convert_type
 
-def getRuleSize(reductions):
-    min_sizes = []
+
+def getMaxRuleSize(reductions):
+    """
+    :param reductions: [...] reduction runners
+    :returns: max_rule_size
+    """
     max_sizes = []
 
     for reduction in reductions:
-        min_sizes.append( reduction.min_size )
         max_sizes.append( reduction.max_size )
     
-    return min(min_sizes), max(max_sizes)
+    return max(max_sizes)
 
 def solveRules(rules):
+    """
+    :param rules: [...] reduction rules
+        eg. rules = 
+        [
+            ['h', 'h'],
+            ['h', 'sdg', 'h'],
+            ...
+        ]
+    :returns: 
+        [
+            'hh', 'hSh', ...
+        ]
+    """
     return [
         ''.join(map(lambda k:convert_type(k), rule)) for rule in rules
     ]
 
 def gatherTypes(ops):
+    """
+    :param ops: [Operator('h'), Operator('cx'),...] Operators
+    :returns: 'hc...'
+    """
     return ''.join(convert_type(op.type) for op in ops)
 
 def matchTypes(opstr, pattern):
+    """
+    :param opstr: 'cchsh'
+    :param pattern: 'hsh'
+    :returns: match True, else False
+    """
     size = len(pattern)
     if len(opstr) < size:
         return False

@@ -13,6 +13,7 @@ rules = [
 
 rules = solveRules(rules)
 
+
 def HadamardReduction(ops):
     size = len(ops)
     if ops[size - 1].type != 'h':
@@ -24,6 +25,7 @@ def HadamardReduction(ops):
     # - H - H - => - I - => (None)
     if matchTypes(opstr, rules[0]) and \
         matchOperands(ops, [1, 2], [0, 0]):
+
         ops.pop()
         ops.pop()
 
@@ -31,6 +33,7 @@ def HadamardReduction(ops):
     # - H - S - H - => - S_dg - H - S_dg
     if matchTypes(opstr, rules[1]) and \
         matchOperands(ops, [1, 2, 3], [0, 0, 0]):
+
         ops[size - 1].change('sdg')
         ops[size - 2].change('h')
         ops[size - 3].change('sdg')
@@ -39,6 +42,7 @@ def HadamardReduction(ops):
     # - H - S_dg - H - => - S - H - S
     if matchTypes(opstr, rules[2]) and \
         matchOperands(ops, [1, 2, 3], [0, 0, 0]):
+
         ops[size - 1].change('s')
         ops[size - 2].change('h')
         ops[size - 3].change('s')
@@ -52,7 +56,9 @@ def HadamardReduction(ops):
            (matchOperands(ops, [1, 5], [0, 0]) and matchOperands(ops, [2, 4], [0, 0])) ) and \
         ( (matchOperands(ops, [1, 3], [0, 0]) and matchOperands(ops, [2, 3], [0, 1])) or \
            (matchOperands(ops, [1, 3], [0, 1]) and matchOperands(ops, [2, 3], [0, 0])) ):
+        
         operand = ops[size - 3].operands
+
         ops.pop(); ops.pop(); ops.pop(); ops.pop()
         op = ops.pop()
         op.change('cx', operand[::-1])
@@ -64,9 +70,11 @@ def HadamardReduction(ops):
     # - H - S - @ - S_dg - H -      - S_dg - @ - S -
     if matchTypes(opstr, rules[4]) and \
         matchOperands(ops, [1, 2, 3, 4, 5], [0, 0, 1, 0, 0]):
+
         ops.remove(ops[size - 5])
         ops.pop()
         size -= 2
+
         ops[size - 1].change('s')
         ops[size - 3].change('sdg')
        
@@ -76,9 +84,11 @@ def HadamardReduction(ops):
     # - H - S_dg - @ - S - H -      - S - @ - S_dg -
     if matchTypes(opstr, rules[5]) and \
         matchOperands(ops, [1, 2, 3, 4, 5], [0, 0, 1, 0, 0]):
+
         ops.remove(ops[size - 5])
         ops.pop()
         size -= 2
+
         ops[size - 1].change('sdg')
         ops[size - 3].change('s')
         
