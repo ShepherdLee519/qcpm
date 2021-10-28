@@ -15,7 +15,11 @@ class Operator:
 
         self.type = op_type
         self.index = index
-        self.operands =  self._solve_operands(operands.split(','))        
+        
+        if isinstance(operands, list):
+            self.operands = operands
+        else:
+            self.operands =  self._solve_operands(operands.split(','))        
     
     def _solve_operands(self, operands):
         # eg. 'q[12]' => 12

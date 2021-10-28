@@ -11,7 +11,7 @@ config['test'] = True
 # pattern_path = './data/pattern.json'
 # circuit_path = './data/example'
 # circuit_path = './data/example_reduction'
-circuit_path = './data/example_reduction_2'
+circuit_path = './data/example_reduction_4'
 
 # mapper = Mapper(pattern_path)
 circuit = Circuit(circuit_path)

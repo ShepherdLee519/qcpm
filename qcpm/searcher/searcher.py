@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
+
 class Searcher(metaclass=ABCMeta):
     @abstractmethod
     def reset(self):

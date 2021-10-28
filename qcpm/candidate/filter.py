@@ -1,5 +1,6 @@
 from qcpm.candidate.plan import Plan, Plans
 
+
 def filter(candidates):
     count = 0 # plan's total number
     size = len(candidates)

@@ -1,4 +1,3 @@
-from abc import abstractmethod
 from qcpm.searcher.searcher import Searcher
 
 class KMP(Searcher):

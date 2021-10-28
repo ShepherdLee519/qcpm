@@ -39,9 +39,11 @@ class Mapper:
                 self.patterns.append( Pattern(**pattern) )
     
     def _validate(self, circuit, pos, operator, operands):
+        # eg. operands: abbc  
+        #     targets:  [4, 1, 1, 2] 
         targets = [ operand for i in range(len(operator))
                             for operand in circuit.operators[pos + i].operands] 
-        
+
         books = {k:-1 for k in string.ascii_lowercase}
 
         for i, operand in enumerate(operands):

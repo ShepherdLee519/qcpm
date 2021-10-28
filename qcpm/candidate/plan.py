@@ -1,4 +1,4 @@
-from operator import attrgetter, index
+from operator import attrgetter
 from pprint import pformat
 
 from qcpm.common import countDecorator

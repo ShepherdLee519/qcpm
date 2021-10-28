@@ -23,11 +23,11 @@ def HadamardReduction(ops):
 
     # Rule 1: 
     # - H - H - => - I - => (None)
-    if matchTypes(opstr, rules[0]) and \
-        matchOperands(ops, [1, 2], [0, 0]):
+    # if matchTypes(opstr, rules[0]) and \
+    #     matchOperands(ops, [1, 2], [0, 0]):
 
-        ops.pop()
-        ops.pop()
+    #     ops.pop()
+    #     ops.pop()
 
     # Rule 2:
     # - H - S - H - => - S_dg - H - S_dg
