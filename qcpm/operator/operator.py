@@ -1,4 +1,5 @@
 from qcpm.common import countDecorator
+from qcpm.operator.common import convert_type
 
 _reject_type = {'qreg', 'creg'}
 
@@ -13,13 +14,22 @@ class Operator:
         if op_type in _reject_type:
             raise ValueError
 
-        self.type = op_type
+        self.type = self._rotate_filter(op_type)
+        self.angle = ''
         self.index = index
         
         if isinstance(operands, list):
             self.operands = operands
         else:
-            self.operands =  self._solve_operands(operands.split(','))        
+            self.operands =  self._solve_operands(operands.split(','))    
+
+    def _rotate_filter(self, op_type):
+        if op_type[:2] == 'rz':
+            self.angle = op_type[3:][:-1]
+
+            return convert_type('rz')
+        else:
+            return op_type
     
     def _solve_operands(self, operands):
         # eg. 'q[12]' => 12

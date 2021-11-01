@@ -3,6 +3,7 @@ _op_type_map = {
     'cx': 'c',
     'tdg': 'T',
     'sdg': 'S',
+    'rz': 'R',
 }
 
 def _reverseMap(map):

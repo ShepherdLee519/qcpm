@@ -1,8 +1,10 @@
 class Candidate:
     def __init__(self, pos, operator, pattern):
         self.pos = pos
-        self.size = len(operator)
-        self.end = pos + self.size - 1
+        self.size = len(pos)
+        
+        self.begin = pos[0]
+        self.end = pos[-1]
 
         self.operator = operator
         # pattern.src/dst => {'operator': 'xx', 'operands': 'aa'}
@@ -22,4 +24,7 @@ class Candidate:
         if other is None:
             return False
         else:
-            return self.pos + self.size - 1 >= other.pos
+            try:
+                return len(set(self.pos) & set(other.pos)) != 0
+            except:
+                return len(set(self.pos) & set(other)) != 0
