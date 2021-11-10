@@ -3,6 +3,7 @@ from pprint import pformat
 
 from qcpm.common import countDecorator
 
+
 @countDecorator
 class Plan:
     def __init__(self, candidates, saving, index=0):
@@ -16,6 +17,16 @@ class Plan:
         s += '\nChange: %s, Saving: %s\n' % (len(self.candidates), self.saving)
 
         return s
+    
+    def apply(self, circuit):
+        print('Circuit before: ', circuit.draft)
+
+        for candidate in self.candidates:
+            candidate.apply(circuit)
+        
+        circuit.updateDraft()
+        print('-' * 15)
+        print('Circuit after: ', circuit.draft)
 
 class Plans:
     def __init__(self, plans):
@@ -30,3 +41,6 @@ class Plans:
 
         return s + '.' * 10 \
             + "\n\nTotal Plans: %s" % len(self.plans)
+
+    def __getitem__(self, i):
+        return self.plans[i]

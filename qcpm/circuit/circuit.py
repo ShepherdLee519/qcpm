@@ -20,12 +20,20 @@ class Circuit:
     def _load_circuit(self, path):
         op_types = []
 
-        for operator in preprocess(path):
+        # for operator in preprocess(path):
         # for operator in reduction(preprocess(path)):
-        # for operator in optimizer(preprocess(path)):
+        for operator in optimizer(preprocess(path)):
             self.operators.append(operator)
             op_types.append( convert_type(operator.type) )
         
+        self.draft = ''.join(op_types)
+
+    def updateDraft(self):
+        op_types = []
+
+        for operator in self.operators:
+            op_types.append( convert_type(operator.type) )
+
         self.draft = ''.join(op_types)
 
     def print(self, start=0, steps=-1):

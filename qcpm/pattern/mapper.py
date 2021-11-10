@@ -103,11 +103,21 @@ class Mapper:
                 self.find(pattern)
 
         # 2. filter candidates => (without conflict)
-        with Timer('Filter Candidates'):
+        with Timer('Generate Plans'):
             self._candidates.sort(key=lambda x: (x.begin, x.size, x.end))
             print(self._candidates)
+
+            # TODO:
+            # should return a Plans object
+            # self.plans = searchPlan(self._candidates)
             self.plans = filterCandidates(self._candidates)
 
-            config['test'] and print('\n' + title('Candidate Plans') + '\n')
+            config['test'] and print('\n' + title('Generate Plans') + '\n')
             config['test'] and print(self.plans)
+        
+        # 3. apply the best plan
+        with Timer('apply mapping plan'):
+            config['test'] and print('\n' + title('Apply Mapping Plan') + '\n')
+
+            self.plans[0].apply(circuit)
         

@@ -1,35 +1,21 @@
+import copy
+
 from qcpm.common import timerDecorator
 
 
-# @timerDecorator(description='genCandidates')
-def _genCandidates(dp, i, j):
-    ans = []
-    temp = []
+def _add(elem, str_):
+    if len(str_) == 0:
+        return str(elem)
+    else:
+        return f"{str_},{elem}"
 
-    def recur(posi, posj):
-        if len(temp) == j:
-            ans.append(temp[::-1])
-            return
-        if dp[posi][posj] == 0:
-            return 
-        # elif j - len(temp) > posj:
-        #     return
+def _union(arr_a, str_b):
+    arr_a.append(str_b)
 
-        if dp[posi - 1][posj] == dp[posi][posj]:
-            recur(posi - 1, posj)
-        else:
-            temp.append(posi - 1)
-            recur(posi - 1, posj - 1)
-            temp.pop()
-
-            recur(posi - 1, posj)
-
-    recur(i, j)
-
-    return ans
+    return arr_a
 
 
-# @timerDecorator(description='Positioning')
+@timerDecorator(description='Positioning')
 def positioning(circuit, pattern):
     """
     :params circuit: circuit.draft eg. chxcccx...
@@ -39,19 +25,23 @@ def positioning(circuit, pattern):
     if pattern_size > circuit_size:
         return []
     
-    dp = [[0] * (pattern_size + 1) for _ in range(circuit_size + 1)]
-
-    for i in range(circuit_size + 1):
-        dp[i][0] = 1
+    dp = [0] * (pattern_size + 1)
+    dp[0] = 1
+    res = [[''] for i in range(pattern_size + 1)]
 
     for i in range(1, circuit_size + 1):
-        for j in range(1, pattern_size + 1):
-            if circuit[i-1] == pattern[j-1]:
-                dp[i][j] = dp[i-1][j-1] + dp[i-1][j]
-            else:
-                dp[i][j] = dp[i-1][j]
+        for j in range( min(i, pattern_size), 0, -1 ):
+            if circuit[i - 1] == pattern[j - 1]:
+                dp[j] = dp[j] + dp[j - 1]
+                for r in res[j - 1]:
+                    res[j] = _union(res[j], _add(i - 1, r))
 
-    if dp[-1][-1] == 0:
-        return []
-    else:
-        return _genCandidates(dp, circuit_size, pattern_size)
+    return list(
+        map(
+            lambda arr: [int(a) for a in arr], 
+            filter(
+                lambda r: len(r) == pattern_size, 
+                map(lambda a: a.split(','), res[pattern_size])
+            )
+        )
+    )

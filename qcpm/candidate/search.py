@@ -1,0 +1,3 @@
+
+def searchPlan(candidates):
+    pass
