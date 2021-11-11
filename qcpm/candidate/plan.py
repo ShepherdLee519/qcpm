@@ -24,7 +24,7 @@ class Plan:
         for candidate in self.candidates:
             candidate.apply(circuit)
         
-        circuit.updateDraft()
+        circuit.update()
         print('-' * 15)
         print('Circuit after: ', circuit.draft)
 
@@ -44,3 +44,6 @@ class Plans:
 
     def __getitem__(self, i):
         return self.plans[i]
+
+    def __len__(self):
+        return len(self.plans)

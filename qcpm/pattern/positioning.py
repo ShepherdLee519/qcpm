@@ -1,5 +1,3 @@
-import copy
-
 from qcpm.common import timerDecorator
 
 
@@ -15,7 +13,7 @@ def _union(arr_a, str_b):
     return arr_a
 
 
-@timerDecorator(description='Positioning')
+# @timerDecorator(description='Positioning')
 def positioning(circuit, pattern):
     """
     :params circuit: circuit.draft eg. chxcccx...

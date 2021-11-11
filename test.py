@@ -1,8 +1,6 @@
 import sys
 
-from qcpm import Mapper, Circuit, config
-
-config['test'] = True
+from qcpm import Mapper, Circuit
 
 # redirect to log file
 # f = open('log.txt', 'w')
@@ -11,6 +9,7 @@ config['test'] = True
 pattern_path = './data/pattern.json'
 # pattern_path = './data/pattern_subtitute.json'
 # circuit_path = './data/example'
+# circuit_path = './data/example_big'
 # circuit_path = './data/example_reduction'
 # circuit_path = './data/example_reduction_4'
 # circuit_path = './data/example_rz'

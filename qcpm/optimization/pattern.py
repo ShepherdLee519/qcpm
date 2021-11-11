@@ -2,7 +2,7 @@ import string
 from collections import deque
 
 from qcpm.pattern import PatternMeta
-from qcpm.operator import count_qubits, Operator, convert_type
+from qcpm.operator import Operator
 
 
 def gatherTypes(ops):
@@ -10,7 +10,7 @@ def gatherTypes(ops):
     :param ops: [Operator('h'), Operator('cx'),...] Operators
     :returns: 'hc...'
     """
-    return ''.join(convert_type(op.type) for op in ops)
+    return ''.join(Operator.convert_type(op.type) for op in ops)
 
 def matchTypes(opstr, pattern):
     """
@@ -79,9 +79,9 @@ class ReductionPattern(PatternMeta):
         dst_operator, dst_operands = self.dst['operator'], self.dst['operands']
 
         for i, operator in enumerate(dst_operator):
-            operands_size = count_qubits(operator)
+            operands_size = Operator.count_qubits(operator)
             operands = [ books[dst_operands[j + k]] for k in range(operands_size) ]
-            ops.append( Operator(convert_type(operator, True), operands) )
+            ops.append( Operator(Operator.convert_type(operator, True), operands) )
 
             j += operands_size
 
