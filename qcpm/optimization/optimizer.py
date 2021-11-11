@@ -1,11 +1,14 @@
-from qcpm import operator
 from qcpm.optimization.reduction import reduction
 from qcpm.optimization.commutation import commutation
 
 
 def optimizer(operators):
-    """
-        reduce -> commutate -> reduce
+    """ Optimizer which call both the reduction and commutation.
+
+    Optimizer steps: reduce -> commutate -> reduce
+
+    Example: 
+        call: optimizer(preprocess(path))
     """
 
     return reduction(

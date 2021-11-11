@@ -7,22 +7,32 @@ from qcpm.operator import Operator
 
 def gatherTypes(ops):
     """
-    :param ops: [Operator('h'), Operator('cx'),...] Operators
-    :returns: 'hc...'
+    Args:
+        ops: list of Operator object like:
+            => [Operator('h'), Operator('cx'),...]
+    -------
+    Returns: 
+        str about op_type of each Operator, like:
+            => 'hc...'
     """
     return ''.join(Operator.convert_type(op.type) for op in ops)
 
 def matchTypes(opstr, pattern):
     """
-    :param opstr: 'cchsh'
-    :param pattern: 'hsh'
-    :returns: match True, else False
+    Args:
+        opstr: like 'cchsh', str of op_types
+        pattern: like 'hsh', str of a pattern
+    -------
+    Returns: 
+        matched => True, else => False
     """
     size = len(pattern)
+
     if len(opstr) < size:
         return False
     else:
-        return opstr[-size:] == pattern
+        # opstr ends with pattern ?
+        return opstr.endswith(pattern)
 
 ######################## Class ########################
 
@@ -34,38 +44,37 @@ class ReductionPattern(PatternMeta):
         self.size = len(self.src['operator'])
 
     def _matchTypes(self, ops):
-        opstr = gatherTypes(ops)
-
-        return matchTypes(opstr, self.src['operator'])
-
-    def _matchOperands(self, ops):
-        # eg. operands: abbc  
-        #     targets:  [4, 1, 1, 2] 
-        targets = [ operand for i in range(self.size)
-                            for operand in ops[len(ops) - self.size + i].operands] 
-
-        books = {k:-1 for k in string.ascii_lowercase}
-        src_operands = self.src['operands']
-
-        for i, operand in enumerate(src_operands):
-            if books[operand] == -1:
-                books[operand] = targets[i]
-            elif books[operand] != targets[i]:
-                return False, None
-        
-        return True, books
+        return matchTypes(
+            gatherTypes(ops), # opstr like 'xxcxccc'
+            self.src['operator'] # like 'ccc'
+        )
 
     def map(self, ops):
+        """ Map reduction.
+
+        Example:
+            call: pattern.map(ops)
+        """
+        # Step 1. test operator matching
         if not self._matchTypes(ops):
             return False
 
-        # Step 1. test operands matching
+        # Step 2. test operands matching
         # -----------------------------
-        ok, books = self._matchOperands(ops)
+        ok, books = self.match(
+            ops, 
+            # eg. ops = 'xxhccc' => len = 6
+            #     pattern: 'ccc' => self.size = 3
+            # thus positions = [range(6 - 3, 6)] => [3, 4, 5]
+            list( range( len(ops) - self.size, len(ops) ) ), 
+            return_='books'
+        )
         if not ok:
             return False
+        # else: # matched ReductionPattern:
+        #   apply reduction:
 
-        # Step 2. pop old ops
+        # Step 3. pop old ops
         # ------------------------------
         # hscSh => Scs
         # operands: aabaaa => abaa
@@ -73,17 +82,25 @@ class ReductionPattern(PatternMeta):
         for i in range(self.size):
             ops.pop()
 
-        # Step 3. append new operator
+        # Step 4. append new operator
         # ------------------------------
-        j = 0
+        cur = 0
+        # eg. dst_operator = 'cc', dst_operands = 'abab'
         dst_operator, dst_operands = self.dst['operator'], self.dst['operands']
 
-        for i, operator in enumerate(dst_operator):
+        for _, operator in enumerate(dst_operator):
+            # eg. operator = 'c' => operands_size = 2
             operands_size = Operator.count_qubits(operator)
-            operands = [ books[dst_operands[j + k]] for k in range(operands_size) ]
+            # if books = {'a': 1, 'b': 4, ...}
+            # then operands "ab"  => [1, 4]
+            operands = [ books[dst_operands[cur + k]] for k in range(operands_size) ]
+
+            # Operator.op_type should be original type just like in QASM, eg. cx
+            # Operator.convert_type(operator, True):
+            #   => 'c' => 'cx'
             ops.append( Operator(Operator.convert_type(operator, True), operands) )
 
-            j += operands_size
+            cur += operands_size
 
 
 class CommutationPattern(ReductionPattern):
@@ -92,16 +109,28 @@ class CommutationPattern(ReductionPattern):
         super().__init__(src, dst)
 
     def map(self, ops):
+        """ Map commutation.
+
+        Example:
+            call: pattern.map(ops)
+        """
+        # Step 1. test operator matching
         if not self._matchTypes(ops):
             return False
 
-        # Step 1. test operands matching
+        # Step 2. test operands matching
         # -----------------------------
-        ok, _ = self._matchOperands(ops)
+        ok, _ = self.match(
+            ops, 
+            list( range( len(ops) - self.size, len(ops) ) )
+        )
         if not ok:
             return False
 
-        # Step 2. commutate
+        # Step 3. commutate
+        # -----------------------------
+        # example: "abcd" => "dcba"
+        # 
         temp = deque()
         for i in range(self.size):
             temp.append(ops.pop())

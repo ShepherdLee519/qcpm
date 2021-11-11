@@ -119,10 +119,8 @@ class Mapper:
         """
         # Step 1: get possible candidates' positions like [1, 4, 7] => "xcx"
         #
-        # eg. operator: xcx , operands: babb
-        operator, operands = pattern.src['operator'], pattern.src['operands']
-        positions = positioning(self.circuit.draft, operator)
-        # print(positions)
+        # eg. operator: xcx
+        positions = positioning(self.circuit.draft, pattern.src['operator'])
 
         # Step 2: validate possible candidates
         validater = self._validate(pattern)
@@ -131,7 +129,7 @@ class Mapper:
         print("\nCandidates: \n")
         for position in validated_positions:
             # keep candidates(=> Candidate object) in local _candidates[]
-            self._candidates.append(Candidate(position, pattern))
+            self._candidates.append( Candidate(position, pattern) )
 
             print(position)
 

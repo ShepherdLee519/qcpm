@@ -5,16 +5,29 @@ from qcpm.optimization.pattern import ReductionPattern, CommutationPattern
 
 
 class Invoker:
+    """ Callable Object that map patterns on Operators
+
+    detail patterns info will be decided by subclass.
+
+    """
     def __init__(self, name):
-        self.data = pkgutil.get_data(__package__, f'/rules/{name}.json')
-        self.rules = json.loads(self.data.decode())
+        # patterns data => self.rules
+        data = pkgutil.get_data(__package__, f'/rules/{name}.json')
+        self.rules = json.loads(data.decode())
 
         self.patterns = [] # should set by subclass
 
+        # the max/min size of operator need to match in all patterns
         self.min_size = len(min(self.rules, key=lambda rule:len(rule['src']))['src'])
         self.max_size = len(max(self.rules, key=lambda rule:len(rule['src']))['src'])
 
     def __call__(self, ops):
+        """
+        thus Invoker is callable.
+        the specific mapping operation will be decided by pattern's type.
+        eg. ReductionPattern or CommutationPattern etc.
+        
+        """
         if len(ops) < self.min_size:
             return
 

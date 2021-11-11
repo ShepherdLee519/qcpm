@@ -8,10 +8,19 @@ _reductions = [
     Reducer('hadamard'),
 ]
 
+##########################
+#                        #
+#     Tool Functions     #
+#                        #
+##########################
+
 def getMaxRuleSize(reductions):
     """
-    :param reductions: [...] reduction runners
-    :returns: max_rule_size
+    Args:
+        reductions: [...] reduction runners
+    -------
+    Returns: 
+        max_rule_size
     """
     max_sizes = []
 
@@ -22,8 +31,21 @@ def getMaxRuleSize(reductions):
 
 _rule_size_max = getMaxRuleSize(_reductions)
 
+###############################
+#                             #
+#     Reduction Generator     #
+#                             #
+###############################
 
 def reduction(operators):
+    """ Reduction Generator.
+
+    apply Reduction Pattern Mapping and yield the Operator after mapping.
+
+    Args:
+        operators: list of Operator / 
+            or a generator which generates Operator thus can compose to be a pipe.
+    """
     buffer = deque()
 
     for operator in operators:
@@ -43,5 +65,6 @@ def reduction(operators):
             if len(buffer) >= reductionRule.min_size:
                 reductionRule(buffer)
         
+    # yield the left Operators
     while len(buffer) != 0:
         yield buffer.popleft()
