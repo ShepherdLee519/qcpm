@@ -174,7 +174,7 @@ class Mapper:
             with Timer('apply mapping plan'):
                 print('\n' + title('Apply Mapping Plan') + '\n')
 
-                self.plans[0].apply(circuit)
+                self.plans.best().apply(circuit)
         else:
             print("There's no mapping plan.")
         

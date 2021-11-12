@@ -26,6 +26,7 @@ class Plan:
             circuit: Circuit object
         """
         print(f'Circuit before: {circuit.draft}')
+        print('-' * 15)
 
         for candidate in self.candidates:
             candidate.apply(circuit)
@@ -61,3 +62,20 @@ class Plans:
 
     def __len__(self):
         return len(self.plans)
+
+    def best(self, strategy='saving'):
+        """ return the best plan to apply
+
+        Args:
+            strategy: strategy use to decide the best plan. default: <saving>
+                thus return the Plan with the highest saving.
+        -------
+        Returns:
+            the best Plan
+        """
+        if strategy == 'saving':
+            plan = self.plans[0]
+
+        print(f'Selected Best Plan: \n{plan}')
+
+        return plan
