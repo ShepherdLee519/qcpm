@@ -1,7 +1,7 @@
 import json
 import string
 
-from qcpm.candidate import Candidate, filterCandidates
+from qcpm.candidate import Candidate, filterCandidates, SearchPlan
 from qcpm.pattern.pattern import Pattern
 from qcpm.pattern.positioning import positioning
 
@@ -160,11 +160,12 @@ class Mapper:
         with Timer('Generate Plans'):
             self._candidates.sort(key=lambda x: (x.begin, x.size, x.end))
             print(self._candidates)
+            print()
 
-            # TODO:
             # should return a Plans object
-            # self.plans = searchPlan(self._candidates)
-            self.plans = filterCandidates(self._candidates)
+            self.plans = SearchPlan(circuit, self._candidates)()
+            # self.plans = filterCandidates(self._candidates)
+            # return
 
             print('\n' + title('Generate Plans') + '\n')
             print(self.plans)

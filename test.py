@@ -13,7 +13,8 @@ pattern_path = './data/pattern.json'
 # circuit_path = './data/example_reduction'
 # circuit_path = './data/example_reduction_4'
 # circuit_path = './data/example_rz'
-circuit_path = './data/example_substitute'
+# circuit_path = './data/example_substitute'
+circuit_path = './data/test'
 
 mapper = Mapper(pattern_path)
 circuit = Circuit(circuit_path)

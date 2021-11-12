@@ -1,8 +1,6 @@
 from itertools import zip_longest
 
 from qcpm.operator import Operator
-
-
 class Candidate:
     """ Candidate object that contains mapped gates' positions etc.
 
@@ -18,6 +16,7 @@ class Candidate:
         """
         self.pos = pos
         self.size = len(pos)
+        self.delta_size = len(pattern.src['operator']) - len(pattern.dst['operator'])
         
         self.begin = pos[0]
         self.end = pos[-1]
@@ -39,8 +38,8 @@ class Candidate:
         """ check whether self(Candidate) conflicts with other
 
         Args:
-            other: should be another Candidate object.
-                but directly input positions list is also allowed.
+            other: should be another Candidate object or list of Candidate
+                but directly input positions list/set is also allowed.
         -------
         Example:
             Candidate1 & Candidate2 == True
@@ -52,8 +51,30 @@ class Candidate:
             try:
                 return len(set(self.pos) & set(other.pos)) != 0
             except:
-                # assume other is positions list
-                return len(set(self.pos) & set(other)) != 0
+                if isinstance(other, list):
+                    if len(other) == 0: 
+                        return False
+                    
+                    if isinstance(other[0], int):
+                        return len(set(self.pos) & set(other)) != 0
+                    elif isinstance(other[0], Candidate):
+                        # if other is list of Candidate
+                        for candidate in other:
+                            if self & candidate:
+                                return True
+                elif isinstance(other, set):
+                    return len(set(self.pos) & set(other)) != 0
+                else:
+                    raise
+    
+    @property
+    def delta(self):
+        """ calculate cost saving.
+
+        calculate delta cost-saving after using this candidate
+
+        """
+        return self.pattern.delta
     
     def apply(self, circuit):
         """ apply this candidated-mapping in the Circuit.
