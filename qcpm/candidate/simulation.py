@@ -68,7 +68,10 @@ class Simulation:
         """
         values = []
 
-        for _ in range(self.searcher.SIMULATION_TIMES):
+        # self.searcher.logdata += f'     Simulate: {candidate}\n'
+        for turn in range(self.searcher.SIMULATION_TIMES):
+            # self.searcher.logdata += f'     Turn: {turn + 1}\n'
+
             targets = self.gatherCandidates(candidate)
             candidates = [ candidate ]
             temp = list(filter(lambda c: not (c & candidates), targets))
@@ -76,12 +79,22 @@ class Simulation:
             value = candidate.delta
             
             while len(temp) != 0:
+                # self.searcher.logdata += f'         targets:\n'
+                # self.searcher.logdata += f'         ' + '-' * 20 + '\n'
+                # for t in temp:
+                #     self.searcher.logdata += f'         {str(t)}\n'
+                # self.searcher.logdata += f'         ' + '-' * 20 + '\n'
+
                 # calculate probabilities acoording to saving of each candidate
                 probs = [ t.delta for t in temp ]
                 probs = np.array(probs) / sum(probs)
+                # self.searcher.logdata += f'         probabillities:'
+                # probs_str = [f'{prob:.2f}' for prob in probs]
+                # self.searcher.logdata += f'[{",".join(probs_str)}]\n'
 
                 # sample a candidate
                 selected = sample(targets, probs)
+                # self.searcher.logdata += f'         Sample: {selected}\n\n'
                 targets.remove(selected)
                 candidates.append(selected)
                 value += selected.delta
@@ -90,6 +103,12 @@ class Simulation:
                 # will not be conflict with candidates in [candidates].  
                 temp = list(filter(lambda c: not (c & candidates), temp))
             
+            # self.searcher.logdata += f'         Value: {value}\n\n'
             values.append(value)
 
-        return np.mean(values)
+        mean = np.mean(values)
+        # self.searcher.logdata += f'     {"#" * 45}\n     # \n'
+        # self.searcher.logdata += f'     #  {candidate} => Mean value: {mean}\n     #\n'
+        # self.searcher.logdata += f'     {"#" * 45}\n\n'
+
+        return mean

@@ -93,13 +93,6 @@ class PatternMeta:
                 elif self.books[operand] != targets[i]:
                     return False, None
         except:
-            print(operators[5].type)
-            print(operators[5].operands)
-            print(operators[8].operands)
-            print(positions)
-            print(self.opd[0])
-            print(self.opr)
-            print('targets: ', targets)
             raise
 
         # matched => select extra_obj to return

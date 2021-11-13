@@ -12,7 +12,7 @@ class SearchPlan:
         => candidate.apply(circuit); circuit.update()
     
     """
-    WINDOW_SIZE = 15
+    WINDOW_SIZE = 20
     SIMULATION_SIZE = 10
     SIMULATION_TIMES = 10
 
@@ -71,6 +71,67 @@ class SearchPlan:
         """
         return [ Simulation(self)(candidate) + candidate.delta 
                     for candidate in candidates ]
+    
+    def log(self, key):
+        def startFunc():
+            self.logdata = ''
+
+            s = 'Monte Carlo-based plan searching\n\n'
+            s += '-' * 12
+            s += '\n\n'
+
+            self.logdata += s
+
+        def targetsFunc(targets):
+            s = f'Expansion: Candidates size: {len(targets)}\n\n'
+
+            for target in targets:
+                s += str(target)
+                s += '\n'
+            
+            self.logdata += s
+
+        def selectedFunc(target):
+            s = f'\nSelected: {target}\n'
+            s += '    ... '
+
+            end = self.pos + self.WINDOW_SIZE
+            if end > len(self.circuit):
+                end = len(self.circuit)
+            for i in range(self.pos, end):
+                s += self.circuit.draft[i]
+            s += ' ... \n'
+
+            s2 = ' ' * (end - self.pos)
+            s2 = list(s2)
+            for index in target.pos:
+                s2[index - self.pos] = '^'
+            s2 = 'target: ' + ''.join(s2) + '\n'
+            s2 += '\n' + '-' * 10
+
+            self.logdata += s + s2 + '\n\n'
+
+        def planFunc(plan):
+            s = 'Complete Plan: \n\n'
+            s += str(plan) + '\n'
+            s += f'\nTotal Saving: {self.saving}\n\n'
+
+            self.logdata += s
+
+        def endFunc():
+            with open('plan.txt', 'w') as f:
+                f.write(self.logdata)
+
+    
+        logs = {
+            'start': startFunc,
+            'targets': targetsFunc,
+            'selected': selectedFunc,
+            'plan': planFunc,
+            'end': endFunc
+        }
+
+        return logs[key]
 
     def __call__(self):
         """
@@ -79,24 +140,18 @@ class SearchPlan:
         """
         # print(self.candidates)
         
+        # reset datas
         self.cur = 0
         self.pos = 0
         self.saving = 0
         self.applied = []
-        plan = ''
-        #########################################
-        print('Monte Carlo-based plan searching')
-        print('-' * 12)
-        #########################################
+        # plan = ''
+
+        # self.log('start')()
         while self.cur < len(self.candidates):
             # Step 1. select and expansion candidates
             targets = self.expansion()
-
-            #########################################
-            print(f'Expansion: Candidates size: {len(targets)}\n')
-            for target in targets:
-                print(target)   
-            #########################################
+            # self.log('targets')(targets)
 
             # Select and apply candidate
             ## Step 2.1 no conflict => apply candidate
@@ -104,44 +159,21 @@ class SearchPlan:
                 target = targets[0]
             ## Step 2.2 candidates with conflict => simulate
             else:
+                # self.logdata += '\nSimulation: \n\n'
                 values = self.simulation(targets)
                 target = targets[ values.index(max(values)) ]
 
             self.pos = target.begin
 
-            #########################################
-            print()
-            print(f'Selected: {target}')
-            s = '    ... '
-            end = self.pos + self.WINDOW_SIZE
-            if end > len(self.circuit):
-                end = len(self.circuit)
-            for i in range(self.pos, end):
-                s += self.circuit.draft[i]
-            s += ' ... '
-            print(s)
-
-            s = ' ' * (end - self.pos)
-            s = list(s)
-            for index in target.pos:
-                s[index - self.pos] = '^'
-            s = 'target: ' + ''.join(s)
-            print(s)
-            print()
-            #########################################
+            # self.log('selected')(target)
 
             ## Apply selected candidate
             self.applied.append(target)
-            plan += str(target) + '\n'
+            # plan += str(target) + '\n'
             self.saving += target.delta
             self.pos = target.end + 1
 
-            print('-' * 10) 
-
-        #########################################
-        print('Complete Plan: \n')
-        print(plan)
-        print(f'\nTotal Saving: {self.saving}\n\n')
-        #########################################
+        # self.log('plan')(plan)
+        # self.log('end')()
 
         return Plans([Plan(self.applied, self.saving)])

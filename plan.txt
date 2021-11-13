@@ -1,0 +1,2035 @@
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 3
+
+Pos: [1, 4] cc => c
+Pos: [1, 4, 5] ccc => cc
+Pos: [4, 5] cc => c
+
+Simulation: 
+
+     Simulate: Pos: [1, 4] cc => c
+     Turn: 1
+         targets:
+         --------------------
+         Pos: [5, 6] cc => c
+         Pos: [5, 8] cc => I
+         Pos: [5, 6, 8] ccc => cc
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.11,0.22,0.11,0.11,0.11,0.22,0.11]
+         Sample: Pos: [6, 7] cc => c
+
+         targets:
+         --------------------
+         Pos: [5, 8] cc => I
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [1, 4, 5] ccc => cc
+
+         Value: 6
+
+     Turn: 2
+         targets:
+         --------------------
+         Pos: [5, 6] cc => c
+         Pos: [5, 8] cc => I
+         Pos: [5, 6, 8] ccc => cc
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.11,0.22,0.11,0.11,0.11,0.22,0.11]
+         Sample: Pos: [1, 4, 5] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 6] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 14
+
+     Turn: 3
+         targets:
+         --------------------
+         Pos: [5, 6] cc => c
+         Pos: [5, 8] cc => I
+         Pos: [5, 6, 8] ccc => cc
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.11,0.22,0.11,0.11,0.11,0.22,0.11]
+         Sample: Pos: [4, 5] cc => c
+
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 6] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [7, 9] cc => c
+
+         Value: 14
+
+     Turn: 4
+         targets:
+         --------------------
+         Pos: [5, 6] cc => c
+         Pos: [5, 8] cc => I
+         Pos: [5, 6, 8] ccc => cc
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.11,0.22,0.11,0.11,0.11,0.22,0.11]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [4, 5] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 6] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 14
+
+     Turn: 5
+         targets:
+         --------------------
+         Pos: [5, 6] cc => c
+         Pos: [5, 8] cc => I
+         Pos: [5, 6, 8] ccc => cc
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.11,0.22,0.11,0.11,0.11,0.22,0.11]
+         Sample: Pos: [6, 7] cc => c
+
+         targets:
+         --------------------
+         Pos: [5, 8] cc => I
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [1, 4, 5] ccc => cc
+
+         Value: 6
+
+     Turn: 6
+         targets:
+         --------------------
+         Pos: [5, 6] cc => c
+         Pos: [5, 8] cc => I
+         Pos: [5, 6, 8] ccc => cc
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.11,0.22,0.11,0.11,0.11,0.22,0.11]
+         Sample: Pos: [5, 6] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [4, 5] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 14
+
+     Turn: 7
+         targets:
+         --------------------
+         Pos: [5, 6] cc => c
+         Pos: [5, 8] cc => I
+         Pos: [5, 6, 8] ccc => cc
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.11,0.22,0.11,0.11,0.11,0.22,0.11]
+         Sample: Pos: [4, 5] cc => c
+
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [1, 4, 5] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 10
+
+     Turn: 8
+         targets:
+         --------------------
+         Pos: [5, 6] cc => c
+         Pos: [5, 8] cc => I
+         Pos: [5, 6, 8] ccc => cc
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.11,0.22,0.11,0.11,0.11,0.22,0.11]
+         Sample: Pos: [5, 6] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [4, 5] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [1, 4, 5] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [7, 10] cc => I
+
+         Value: 18
+
+     Turn: 9
+         targets:
+         --------------------
+         Pos: [5, 6] cc => c
+         Pos: [5, 8] cc => I
+         Pos: [5, 6, 8] ccc => cc
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.11,0.22,0.11,0.11,0.11,0.22,0.11]
+         Sample: Pos: [6, 7] cc => c
+
+         targets:
+         --------------------
+         Pos: [5, 8] cc => I
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [1, 4, 5] ccc => cc
+
+         Value: 6
+
+     Turn: 10
+         targets:
+         --------------------
+         Pos: [5, 6] cc => c
+         Pos: [5, 8] cc => I
+         Pos: [5, 6, 8] ccc => cc
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.11,0.22,0.11,0.11,0.11,0.22,0.11]
+         Sample: Pos: [6, 7] cc => c
+
+         targets:
+         --------------------
+         Pos: [5, 8] cc => I
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [1, 4, 5] ccc => cc
+
+         Value: 6
+
+     #############################################
+     # 
+     #  Pos: [1, 4] cc => c => Mean value: 10.8
+     #
+     #############################################
+
+     Simulate: Pos: [1, 4, 5] ccc => cc
+     Turn: 1
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 6] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 12
+
+     Turn: 2
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [4, 5] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 6] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [7, 9] cc => c
+
+         Value: 14
+
+     Turn: 3
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [4, 5] cc => c
+
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 12
+
+     Turn: 4
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [4, 5] cc => c
+
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 12
+
+     Turn: 5
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 10
+
+     Turn: 6
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 12
+
+     Turn: 7
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 6] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [4, 5] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [7, 9] cc => c
+
+         Value: 14
+
+     Turn: 8
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [4, 5] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [7, 10] cc => I
+
+         Value: 16
+
+     Turn: 9
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [4, 5] cc => c
+
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 6
+
+     Turn: 10
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [4, 5] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [7, 9] cc => c
+
+         Value: 12
+
+     #############################################
+     # 
+     #  Pos: [1, 4, 5] ccc => cc => Mean value: 12.0
+     #
+     #############################################
+
+     Simulate: Pos: [4, 5] cc => c
+     Turn: 1
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 8
+
+     Turn: 2
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 10
+
+     Turn: 3
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 6
+
+     Turn: 4
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 10
+
+     Turn: 5
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 4
+
+     Turn: 6
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [7, 9] cc => c
+
+         Value: 12
+
+     Turn: 7
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 6] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [7, 9] cc => c
+
+         Value: 12
+
+     Turn: 8
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 8] cc => I
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 6] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [7, 9] cc => c
+
+         Value: 12
+
+     Turn: 9
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 6
+
+     Turn: 10
+         targets:
+         --------------------
+         Pos: [6, 7] cc => c
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.20,0.20,0.40,0.20]
+         Sample: Pos: [5, 6] cc => c
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [5, 6, 8] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [7, 9] cc => c
+         Pos: [7, 10] cc => I
+         Pos: [7, 9, 10] ccc => cc
+         --------------------
+         probabillities:[0.25,0.50,0.25]
+         Sample: Pos: [6, 7] cc => c
+
+         Value: 8
+
+     #############################################
+     # 
+     #  Pos: [4, 5] cc => c => Mean value: 8.8
+     #
+     #############################################
+
+
+Selected: Pos: [1, 4, 5] ccc => cc
+    ... chxccccccccxxcccchcR ... 
+target: ^  ^^               
+
+----------
+
+Expansion: Candidates size: 4
+
+Pos: [6, 7] cc => c
+Pos: [7, 9] cc => c
+Pos: [7, 10] cc => I
+Pos: [7, 9, 10] ccc => cc
+
+Simulation: 
+
+     Simulate: Pos: [6, 7] cc => c
+     Turn: 1
+         Value: 2
+
+     Turn: 2
+         Value: 2
+
+     Turn: 3
+         Value: 2
+
+     Turn: 4
+         Value: 2
+
+     Turn: 5
+         Value: 2
+
+     Turn: 6
+         Value: 2
+
+     Turn: 7
+         Value: 2
+
+     Turn: 8
+         Value: 2
+
+     Turn: 9
+         Value: 2
+
+     Turn: 10
+         Value: 2
+
+     #############################################
+     # 
+     #  Pos: [6, 7] cc => c => Mean value: 2.0
+     #
+     #############################################
+
+     Simulate: Pos: [7, 9] cc => c
+     Turn: 1
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 10] cc => I
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 10
+
+     Turn: 2
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 10] cc => I
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 10
+
+     Turn: 3
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 10] cc => I
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 10
+
+     Turn: 4
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 10] cc => I
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 10
+
+     Turn: 5
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 10] cc => I
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 10
+
+     Turn: 6
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 10] cc => I
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 10
+
+     Turn: 7
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 10] cc => I
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 10
+
+     Turn: 8
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 10] cc => I
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 10
+
+     Turn: 9
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 10] cc => I
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 10
+
+     Turn: 10
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 10] cc => I
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 10
+
+     #############################################
+     # 
+     #  Pos: [7, 9] cc => c => Mean value: 10.0
+     #
+     #############################################
+
+     Simulate: Pos: [7, 10] cc => I
+     Turn: 1
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 8
+
+     Turn: 2
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 8
+
+     Turn: 3
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 8
+
+     Turn: 4
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 8
+
+     Turn: 5
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 8
+
+     Turn: 6
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 8
+
+     Turn: 7
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 8
+
+     Turn: 8
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 8
+
+     Turn: 9
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 8
+
+     Turn: 10
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [7, 9, 10] ccc => cc
+
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 8
+
+     #############################################
+     # 
+     #  Pos: [7, 10] cc => I => Mean value: 8.0
+     #
+     #############################################
+
+     Simulate: Pos: [7, 9, 10] ccc => cc
+     Turn: 1
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 4
+
+     Turn: 2
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 4
+
+     Turn: 3
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 4
+
+     Turn: 4
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 4
+
+     Turn: 5
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 4
+
+     Turn: 6
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 4
+
+     Turn: 7
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 4
+
+     Turn: 8
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 4
+
+     Turn: 9
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 4
+
+     Turn: 10
+         targets:
+         --------------------
+         Pos: [15, 16] cc => c
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [15, 16] cc => c
+
+         Value: 4
+
+     #############################################
+     # 
+     #  Pos: [7, 9, 10] ccc => cc => Mean value: 4.0
+     #
+     #############################################
+
+
+Selected: Pos: [7, 9] cc => c
+    ... cccccxxcccchcRhxccxc ... 
+target: ^ ^                 
+
+----------
+
+Expansion: Candidates size: 2
+
+Pos: [15, 16] cc => c
+Pos: [16, 17] cc => c
+
+Simulation: 
+
+     Simulate: Pos: [15, 16] cc => c
+     Turn: 1
+         Value: 2
+
+     Turn: 2
+         Value: 2
+
+     Turn: 3
+         Value: 2
+
+     Turn: 4
+         Value: 2
+
+     Turn: 5
+         Value: 2
+
+     Turn: 6
+         Value: 2
+
+     Turn: 7
+         Value: 2
+
+     Turn: 8
+         Value: 2
+
+     Turn: 9
+         Value: 2
+
+     Turn: 10
+         Value: 2
+
+     #############################################
+     # 
+     #  Pos: [15, 16] cc => c => Mean value: 2.0
+     #
+     #############################################
+
+     Simulate: Pos: [16, 17] cc => c
+     Turn: 1
+         targets:
+         --------------------
+         Pos: [22, 25] xx => I
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [22, 25] xx => I
+
+         Value: 4
+
+     Turn: 2
+         targets:
+         --------------------
+         Pos: [22, 25] xx => I
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [22, 25] xx => I
+
+         Value: 4
+
+     Turn: 3
+         targets:
+         --------------------
+         Pos: [22, 25] xx => I
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [22, 25] xx => I
+
+         Value: 4
+
+     Turn: 4
+         targets:
+         --------------------
+         Pos: [22, 25] xx => I
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [22, 25] xx => I
+
+         Value: 4
+
+     Turn: 5
+         targets:
+         --------------------
+         Pos: [22, 25] xx => I
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [22, 25] xx => I
+
+         Value: 4
+
+     Turn: 6
+         targets:
+         --------------------
+         Pos: [22, 25] xx => I
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [22, 25] xx => I
+
+         Value: 4
+
+     Turn: 7
+         targets:
+         --------------------
+         Pos: [22, 25] xx => I
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [22, 25] xx => I
+
+         Value: 4
+
+     Turn: 8
+         targets:
+         --------------------
+         Pos: [22, 25] xx => I
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [22, 25] xx => I
+
+         Value: 4
+
+     Turn: 9
+         targets:
+         --------------------
+         Pos: [22, 25] xx => I
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [22, 25] xx => I
+
+         Value: 4
+
+     Turn: 10
+         targets:
+         --------------------
+         Pos: [22, 25] xx => I
+         --------------------
+         probabillities:[1.00]
+         Sample: Pos: [22, 25] xx => I
+
+         Value: 4
+
+     #############################################
+     # 
+     #  Pos: [16, 17] cc => c => Mean value: 4.0
+     #
+     #############################################
+
+
+Selected: Pos: [16, 17] cc => c
+    ... cchcRhxccxcchRhchxcc ... 
+target: ^^                  
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [22, 25] xx => I
+
+Selected: Pos: [22, 25] xx => I
+    ... xccxcchRhchxcccxchxc ... 
+target: ^  ^                
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [33, 37] xx => I
+
+Selected: Pos: [33, 37] xx => I
+    ... xcccxchxcxccch ... 
+target: ^   ^         
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [35, 36] cc => c
+
+Selected: Pos: [35, 36] cc => c
+    ... ccxchxcxccch ... 
+target: ^^          
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [40, 42] xx => I
+
+Selected: Pos: [40, 42] xx => I
+    ... xcxccch ... 
+target: ^ ^    
+
+----------
+
+Expansion: Candidates size: 2
+
+Pos: [41, 43] cc => I
+Pos: [43, 44] cc => c
+
+Simulation: 
+
+     Simulate: Pos: [41, 43] cc => I
+     Turn: 1
+         Value: 4
+
+     Turn: 2
+         Value: 4
+
+     Turn: 3
+         Value: 4
+
+     Turn: 4
+         Value: 4
+
+     Turn: 5
+         Value: 4
+
+     Turn: 6
+         Value: 4
+
+     Turn: 7
+         Value: 4
+
+     Turn: 8
+         Value: 4
+
+     Turn: 9
+         Value: 4
+
+     Turn: 10
+         Value: 4
+
+     #############################################
+     # 
+     #  Pos: [41, 43] cc => I => Mean value: 4.0
+     #
+     #############################################
+
+     Simulate: Pos: [43, 44] cc => c
+     Turn: 1
+         Value: 2
+
+     Turn: 2
+         Value: 2
+
+     Turn: 3
+         Value: 2
+
+     Turn: 4
+         Value: 2
+
+     Turn: 5
+         Value: 2
+
+     Turn: 6
+         Value: 2
+
+     Turn: 7
+         Value: 2
+
+     Turn: 8
+         Value: 2
+
+     Turn: 9
+         Value: 2
+
+     Turn: 10
+         Value: 2
+
+     #############################################
+     # 
+     #  Pos: [43, 44] cc => c => Mean value: 2.0
+     #
+     #############################################
+
+
+Selected: Pos: [41, 43] cc => I
+    ... cxccch ... 
+target: ^ ^   
+
+----------
+
+Complete Plan: 
+
+Pos: [1, 4, 5] ccc => cc
+Pos: [7, 9] cc => c
+Pos: [16, 17] cc => c
+Pos: [22, 25] xx => I
+Pos: [33, 37] xx => I
+Pos: [35, 36] cc => c
+Pos: [40, 42] xx => I
+Pos: [41, 43] cc => I
+
+
+Total Saving: 18
+
