@@ -19,18 +19,23 @@ def preprocess(path, ext='.qasm'):
     with open(path, 'rt') as file:
         # Skip the first two lines
         # Skip => OPENQASM 2.0; include "qelib1.inc"; 
-        next(file)
-        next(file)
-        
+        header = [next(file), next(file)]
+        flag = True
+
         for line in file:
             # "cx q[2],q[4];" => 'cx', 'q[2],q[4]'
             op_type, operands = (line.strip()[:-1].split(' '))
 
             try:
                 op = Operator(op_type, operands)
+
+                if flag:
+                    flag = False
+                    yield header
+
                 yield op
             
             except ValueError:
                 # "qreg q[];" will occur this error
                 # just ignore it. 
-                pass
+                header.append(line)

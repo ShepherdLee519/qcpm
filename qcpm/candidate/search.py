@@ -169,9 +169,9 @@ class SearchPlan:
 
             ## Apply selected candidate
             self.applied.append(target)
-            # plan += str(target) + '\n'
             self.saving += target.delta
             self.pos = target.end + 1
+            # plan += str(target) + '\n'
 
         # self.log('plan')(plan)
         # self.log('end')()

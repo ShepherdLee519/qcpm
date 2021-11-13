@@ -30,9 +30,13 @@ class Circuit:
         """
         op_types = []
 
+        ops = preprocess(path)
+        self.header = next(ops)
+        print('Header: ', self.header)
+
         # for operator in preprocess(path):
         # for operator in reduction(preprocess(path)):
-        for operator in optimizer(preprocess(path)):
+        for operator in optimizer(ops):
             self.operators.append(operator)
             # cx = convert_type() => c
             op_types.append( Operator.convert_type(operator.type) )
