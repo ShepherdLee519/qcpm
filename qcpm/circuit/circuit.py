@@ -50,9 +50,11 @@ class Circuit:
         abandon the operator which has type: Operator.ABANDON
 
         """
-        self.operators = filter(
-            lambda op: op.type != Operator.ABANDON, 
-            self.operators
+        self.operators = list(
+            filter(
+                lambda op: op.type != Operator.ABANDON, 
+                self.operators
+            )
         ) # abandon operators which has type: Operator.ABANDON(like '_').
 
         op_types = []
