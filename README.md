@@ -4,7 +4,7 @@
 
 + circuit data: (.qasm)
   
-  example.qasm:
+  `example.qasm`:
   ```
   OPENQASM 2.0;
   include "qelib1.inc";
@@ -19,7 +19,7 @@
  
  + pattern data: (.json)
     
-    pattern.json:
+    `pattern.json`:
     ```json
     [
         {
@@ -36,23 +36,76 @@
         ...
     ]
     ```
+    上述 pattern 描述了如下映射：
+    ```
+    |0>: - o ----- o -
+           |       |
+    |1>: - X - o - X -
+               |
+    |2>: ----- X -----
+    ```
+    到
+    ```
+    |0>: - o -----
+           |       
+    |1>: - | - o -
+           |   |
+    |2>: - X - X -
+    ```
+ + 用于 Reduction/Commutation 的模式也按相同的语法描述。例如 `commutation.json`:
+    ```json
+    [
+    {
+        "src": [
+            ["h", [0]],
+            ["s", [0]],
+            ["h", [0]]
+        ],
+        "dst": [
+            ["sdg", [0]],
+            ["h", [0]],
+            ["sdg", [0]]
+        ]
+    },
+    ...
+    ```
+    相关文件在 `qcpm/optimization/rules` 下
+
+---
+
  ## 运行
 
-+ `Mapper` 从 json 文件表示的映射关系中构建映射模式，用于内部的映射处理。内部使用的匹配算法默认使用 `KMP`。
+1. 逐步手动运行
+   + `Mapper` 从 json 文件表示的映射关系中构建映射模式，用于内部的映射处理。
 
-+ `Circuit` 从 qasm 中构建电路
+   + `Circuit` 从 qasm 中读入数据并构建对象。
 
-+ `mapper.execute(circuit)`: 在线路 circuit 上应用映射 mapper
+   + `mapper.execute(circuit)`: 在线路 circuit 上应用映射 mapper
 
-```python
-from qcpm.pattern.mapper import Mapper
-from qcpm.circuit.circuit import Circuit
+   + `circuit.save(circuit_output_path)`: 将处理后的 Circuit 对象以 qasm 数据的格式输出至指定文件。
 
-mapper = Mapper(pattern_path) # ./.json
-circuit = Circuit(circuit_path) # ./.qasm
+   ```python
+   from qcpm import Mapper, Circuit
 
-mapper.execute(circuit)
-```
+   mapper = Mapper(pattern_path) # ./.json
+   circuit = Circuit(circuit_path) # ./.qasm
+
+   mapper.execute(circuit)
+
+   circuit.save(circuit_output) # ./.qasm
+   ```
+2. 使用封装的 `QCPatternMapper` 运行
+    
+    其中 `log=` 参数给定日志文件的输出路径。不设置的情况下默认为标准输出。
+
+    `execute` 函数的参数分别为输入的 qasm 文件路径与输出的 qasm 路径(处理后)。不设置的情况下则不保存映射后的结果。
+    ```python
+    from qcpm import QCPatternMapper
+
+    QCPM = QCPatternMapper(pattern_path, log=log_path)
+    QCPM.execute(circuit_path, circuit_output)
+    ```
+---
 
 ## 输出
 
@@ -88,60 +141,129 @@ No: 75, cx [4, 1]
 Candidate: 
  [73, 75]
 ```
+候选替换方案生成：
+1. 按节约(saving)成本的排序输出所有可能的备选替换方案(排除冲突)(old)：
 
-按节约(saving)成本的排序输出所有可能的备选替换方案(排除冲突)：
+    ```
+    Rank: 1
+    Plan: 1
+    [Pos: 54 xx => I,
+    Pos: 76 cc => c,
+    Pos: 78 cc => c,
+    Pos: 130 cc => I,
+    Pos: 133 cc => I,
+    Pos: 194 cc => c,
+    Pos: 230 xcx => c]
+    Change: 7, Saving: 18
+
+    Rank: 2
+    Plan: 2
+    [Pos: 54 xx => I,
+    Pos: 76 cc => c,
+    Pos: 78 cc => c,
+    Pos: 130 cc => I,
+    Pos: 133 cc => I,
+    Pos: 195 cc => c,
+    Pos: 230 xcx => c]
+    Change: 7, Saving: 18
+
+    ......
+
+    Total Plans: 36
+    ```
+
+    其中 `Change` 为该方案需实际替换的模式数量(非替换的门数量)， `Saving` 为该方案所能节省的成本(用门的深度来衡量)
+
+2. 使用蒙特卡洛模拟的情况下的候选方案输出日志如下(当前实现)：
+
+    ```
+    **********************
+    *                    *
+    *   Generate Plans   *
+    *                    *
+    **********************
+
+    Sorted Candidates: 
+
+    [Pos: [1, 4] cc => c, Pos: [1, 4, 5] ccc => cc, Pos: [4, 5] cc => c, Pos: [5, 6] cc => c, Pos: [5, 8] cc => I, Pos: [5, 6, 8] ccc => cc, Pos: [6, 7] cc => c, Pos: [7, 9] cc => c, Pos: [7, 10] cc => I, Pos: [7, 9, 10] ccc => cc, Pos: [15, 16] cc => c, Pos: [16, 17] cc => c, Pos: [22, 25] xx => I, Pos: [33, 37] xx => I, Pos: [35, 36] cc => c, Pos: [40, 42] xx => I, Pos: [41, 43] cc => I, Pos: [43, 44] cc => c]
+
+    Monte Carlo-based plan searching
+
+    ------------
+
+    Expansion: Candidates size: 3
+
+    Pos: [1, 4] cc => c
+    Pos: [1, 4, 5] ccc => cc
+    Pos: [4, 5] cc => c
+
+    Selected: Pos: [1, 4] cc => c
+        ... xchxccccccccxxcccchc ... 
+    target:  ^  ^               
+
+    ----------
+
+    Expansion: Candidates size: 4
+
+    Pos: [5, 6] cc => c
+    Pos: [5, 8] cc => I
+    Pos: [5, 6, 8] ccc => cc
+    Pos: [6, 7] cc => c
+
+    Selected: Pos: [5, 8] cc => I
+        ... cccccccxxcccchcRhxcc ... 
+    target: ^  ^                
+
+    ......
+
+    Complete Plan: 
+
+    Pos: [1, 4] cc => c
+    Pos: [5, 8] cc => I
+    Pos: [7, 10] cc => I
+    Pos: [16, 17] cc => c
+    Pos: [22, 25] xx => I
+    Pos: [33, 37] xx => I
+    Pos: [35, 36] cc => c
+    Pos: [40, 42] xx => I
+    Pos: [41, 43] cc => I
+
+    Total Saving: 24
+    ```
+
+根据选择的最优方案进行映射：
 
 ```
-Rank: 1
-Plan: 1
-[Pos: 54 xx => I,
- Pos: 76 cc => c,
- Pos: 78 cc => c,
- Pos: 130 cc => I,
- Pos: 133 cc => I,
- Pos: 194 cc => c,
- Pos: 230 xcx => c]
-Change: 7, Saving: 18
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
 
-Rank: 2
-Plan: 2
-[Pos: 54 xx => I,
- Pos: 76 cc => c,
- Pos: 78 cc => c,
- Pos: 130 cc => I,
- Pos: 133 cc => I,
- Pos: 195 cc => c,
- Pos: 230 xcx => c]
-Change: 7, Saving: 18
+Selected Best Plan: 
+[Pos: [1, 4] cc => c,
+ Pos: [5, 8] cc => I,
+ Pos: [7, 10] cc => I,
+ Pos: [16, 17] cc => c,
+ Pos: [22, 25] xx => I,
+ Pos: [33, 37] xx => I,
+ Pos: [35, 36] cc => c,
+ Pos: [40, 42] xx => I,
+ Pos: [41, 43] cc => I]
+Change: 9, Saving: 24
 
-......
+Circuit before: xchxccccccccxxcccchcRhxccxcchRhchxcccxchxcxccch
+---------------
+Apply:  Pos: [1, 4] cc => c
+Apply:  Pos: [5, 8] cc => I
+Apply:  Pos: [7, 10] cc => I
+Apply:  Pos: [16, 17] cc => c
+Apply:  Pos: [22, 25] xx => I
+Apply:  Pos: [33, 37] xx => I
+Apply:  Pos: [35, 36] cc => c
+Apply:  Pos: [40, 42] xx => I
+Apply:  Pos: [41, 43] cc => I
+---------------
+Circuit after: xchxcccxxccchcRhcccchRhchccchcch
 
-Total Plans: 36
-```
-
-其中 `Change` 为该方案需实际替换的模式数量(非替换的门数量)， `Saving` 为该方案所能节省的成本(用门的深度来衡量)
-
-此外，设置 
-
-```python
-config['test'] = False
-```
-
-的情况下，不输出运行细节，只统计相关的运行时间：
-
-```
-Start Timer: [Init Mapper]
-End Timer [Init Mapper]:  0.0009982585906982422
-
-Start Timer: [Init Circuit]
-End Timer [Init Circuit]:  0.0029921531677246094
-
-Start Timer: [Execute Mapping]
-----Start Timer: [Find Candidates]
-----End Timer [Find Candidates]:  0.012965679168701172
-
-----Start Timer: [Filter Candidates]
-----End Timer [Filter Candidates]:  0.000997304916381836
-
-End Timer [Execute Mapping]:  0.013962984085083008
 ```
