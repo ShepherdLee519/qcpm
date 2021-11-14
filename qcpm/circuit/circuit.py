@@ -31,11 +31,11 @@ class Circuit:
         op_types = []
 
         ops = preprocess(path)
+        # eg. ['OPENQASM 2.0;\n', 'include "qelib1.inc";\n', 'qreg q[4];\n', ...]
         self.header = next(ops)
-        print('Header: ', self.header)
 
-        # for operator in preprocess(path):
-        # for operator in reduction(preprocess(path)):
+        # for operator in ops:
+        # for operator in reduction(ops):
         for operator in optimizer(ops):
             self.operators.append(operator)
             # cx = convert_type() => c
@@ -67,3 +67,26 @@ class Circuit:
     
     def __getitem__(self, index):
         return self.operators[index]
+
+    @property
+    def QASM(self):
+        """ return QASM code of this circuit.
+        
+        """
+        code = ''.join(self.header)
+
+        for op in self:
+            code += op.output
+
+        return code
+
+    def save(self, path):
+        """ save code of this circuit to path
+
+        save self.QASM to file(given by path)
+
+        Args:
+            path: like ./circuit (default extension: .qasm)
+        """
+        with open(f'{path}.qasm', 'w') as file:
+            file.write(self.QASM)

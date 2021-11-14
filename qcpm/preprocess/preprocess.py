@@ -30,6 +30,8 @@ def preprocess(path, ext='.qasm'):
                 op = Operator(op_type, operands)
 
                 if flag:
+                    # no error occur => header info is all gathered
+                    # should yeild it.
                     flag = False
                     yield header
 
@@ -37,5 +39,5 @@ def preprocess(path, ext='.qasm'):
             
             except ValueError:
                 # "qreg q[];" will occur this error
-                # just ignore it. 
+                # keep it in header
                 header.append(line)

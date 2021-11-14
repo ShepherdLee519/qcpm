@@ -31,8 +31,8 @@ class Operator(operatorMixin):
         if op_type in self.reject_type:
             raise ValueError(f"value <{op_type}> doesn't mean a operator")
 
-        self.type = self._rotate_filter(op_type)
         self.angle = ''
+        self.type = self._rotate_filter(op_type)
         self.index = index
         
         if isinstance(operands, list):
@@ -47,11 +47,11 @@ class Operator(operatorMixin):
         if operator is a rotate Gate, solve to save the angle.
 
         """
-        if op_type[:1] == 'r': # eg. rz
+        if op_type[0] == 'r': # eg. rz
             self.angle = op_type[3:][:-1]
 
             # op_type[:2] => eg. 'rz'
-            return self.convert_type(op_type[:2])
+            return op_type[:2]
         else:
             return op_type
     
@@ -87,3 +87,24 @@ class Operator(operatorMixin):
 
     def __repr__(self):
         return "No: {}, {} {}".format(self.index, self.type, self.operands)
+
+    @property
+    def output(self):
+        """ output self as a raw data in QASM.
+
+        1. should ignore ABANDON / empty operands case
+        2. should solve case with rotation.
+
+        eg. self.type = 'cx', self.operands = [2, 4]
+            => return 'cx q[2],q[4];\n'
+        """ 
+        if self.type == self.ABANDON or len(self.operands) == 0:
+            return ''
+        
+        type_output = self.type
+        if self.angle != '':
+            type_output += f'({self.angle})'
+        
+        operands_output = ','.join([f'q[{opd}]' for opd in self.operands])
+
+        return f'{type_output} {operands_output};\n'
