@@ -12,6 +12,9 @@ def sample(targets, probabilities):
     Returns:
         Sample a element in targets according to probabilities. 
     """
+    # First:
+    # [0.1, 0.2, 0.3, 0.4] => [0.1, 0.3, 0.6, 1.0]
+    # 
     prob = probabilities[0]
     probs = [ prob ]
 
@@ -19,6 +22,11 @@ def sample(targets, probabilities):
         prob += probabilities[i]
         probs.append(prob)
 
+    # Second:
+    # eg.
+    # ['a', 'b', 'c', 'd'] with [0.1, 0.3, 0.6, 1.0]
+    # if p = 0.45 => < 0.6 that choose 'c'
+    # 
     p = np.random.rand()
 
     for i, prob in enumerate(probs):
@@ -36,19 +44,26 @@ class Simulation:
     def gatherCandidates(self, candidate):
         """ return the cnadidates after candidate in SIMULATION_SIZE
 
+        thus the simulation will randomly choose candidate in the candidates
+        that return by gatherCandidates.
+
         """
         targets = []
         circuit = self.searcher.circuit
         candidates = self.searcher.candidates
 
+        # index of current candidate in all candidates
         index = candidates.index(candidate)
-        # range of simulation
+        # range limit of simulation
         limit = candidate.begin + self.searcher.SIMULATION_SIZE
         if limit > len(circuit):
             limit = len(circuit)
         
         for i in range(index + 1, len(candidates)):
             # filter candidate in simulation range
+            # -----------
+            # eg. candidate: [1, 4, 7] thus end = 7
+            # should gather the candidates that guarantee end < limit above.
             if candidates[i].end < limit:
                 targets.append(candidates[i])
         
@@ -68,47 +83,36 @@ class Simulation:
         """
         values = []
 
-        # self.searcher.logdata += f'     Simulate: {candidate}\n'
-        for turn in range(self.searcher.SIMULATION_TIMES):
-            # self.searcher.logdata += f'     Turn: {turn + 1}\n'
-
+        # for each simulation turn
+        for _ in range(self.searcher.SIMULATION_TIMES):
+            # list of candidate that could shoose to simualte.
             targets = self.gatherCandidates(candidate)
-            candidates = [ candidate ]
-            temp = list(filter(lambda c: not (c & candidates), targets))
 
+            # list of candidate that already choose to apply.
+            applied = [ candidate ]
             value = candidate.delta
+
+            # filter that guarantee there is no conflict with current candidate
+            targets = list(filter(lambda c: not (c & applied), targets))
             
-            while len(temp) != 0:
-                # self.searcher.logdata += f'         targets:\n'
-                # self.searcher.logdata += f'         ' + '-' * 20 + '\n'
-                # for t in temp:
-                #     self.searcher.logdata += f'         {str(t)}\n'
-                # self.searcher.logdata += f'         ' + '-' * 20 + '\n'
-
-                # calculate probabilities acoording to saving of each candidate
-                probs = [ t.delta for t in temp ]
+            # start simulation
+            while len(targets) != 0:
+                # Step 1. calculate probabilities acoording to saving of each candidate
+                probs = [ t.delta for t in targets ]
                 probs = np.array(probs) / sum(probs)
-                # self.searcher.logdata += f'         probabillities:'
-                # probs_str = [f'{prob:.2f}' for prob in probs]
-                # self.searcher.logdata += f'[{",".join(probs_str)}]\n'
 
-                # sample a candidate
+                # Step 2. sample a candidate
                 selected = sample(targets, probs)
-                # self.searcher.logdata += f'         Sample: {selected}\n\n'
                 targets.remove(selected)
-                candidates.append(selected)
+
+                applied.append(selected)
                 value += selected.delta
 
-                # update candidates that guarantee that selected one 
+                # Step 3. update candidates that guarantee that selected one 
                 # will not be conflict with candidates in [candidates].  
-                temp = list(filter(lambda c: not (c & candidates), temp))
+                targets = list(filter(lambda c: not (c & applied), targets))
             
-            # self.searcher.logdata += f'         Value: {value}\n\n'
+            # end of one simualtion turn.
             values.append(value)
 
-        mean = np.mean(values)
-        # self.searcher.logdata += f'     {"#" * 45}\n     # \n'
-        # self.searcher.logdata += f'     #  {candidate} => Mean value: {mean}\n     #\n'
-        # self.searcher.logdata += f'     {"#" * 45}\n\n'
-
-        return mean
+        return np.mean(values)

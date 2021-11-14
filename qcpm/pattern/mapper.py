@@ -159,16 +159,15 @@ class Mapper:
         # 2. filter candidates => (without conflict)
         with Timer('Generate Plans'):
             self._candidates.sort(key=lambda x: (x.begin, x.size, x.end))
+
+            print('\n' + title('Generate Plans') + '\n')
+            print('Sorted Candidates: \n')
             print(self._candidates)
             print()
 
             # should return a Plans object
             self.plans = SearchPlan(circuit, self._candidates)()
             # self.plans = filterCandidates(self._candidates)
-            # return
-
-            print('\n' + title('Generate Plans') + '\n')
-            print(self.plans)
         
         # 3. apply the best plan
         if len(self.plans) != 0:

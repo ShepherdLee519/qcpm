@@ -38,4 +38,7 @@ def filterCandidates(candidates):
         )
 
     # generate Plans object and return.
-    return Plans(plans)
+    plans = Plans(plans)
+    print(plans)
+
+    return plans
