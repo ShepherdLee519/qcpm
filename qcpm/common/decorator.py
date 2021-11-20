@@ -2,6 +2,7 @@ from functools import wraps, partial
 
 from qcpm.common.timer import Timer
 
+
 def countDecorator(func):
     index = 0
 
@@ -12,6 +13,7 @@ def countDecorator(func):
         index += 1
 
         return r
+    
     return wrapper
 
 def timerDecorator(func=None, description=''):
@@ -24,4 +26,5 @@ def timerDecorator(func=None, description=''):
             r = func(*args, **kwargs)
         
         return r
+    
     return wrapper

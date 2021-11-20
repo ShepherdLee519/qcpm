@@ -1,4 +1,3 @@
-import string
 from collections import deque
 
 from qcpm.pattern import PatternMeta

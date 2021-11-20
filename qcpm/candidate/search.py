@@ -224,6 +224,7 @@ class SearchPlan:
                 values = self.simulation(targets)
                 # choose the target with max value
                 target = targets[ values.index(max(values)) ]
+            self.pos = target.begin
             self.log('selected')(target)
 
             # Step 3. Apply selected candidate

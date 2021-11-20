@@ -1,8 +1,5 @@
-Start Timer: [Init Mapper]
-End Timer [Init Mapper]:  0.0009982585906982422
-
 Start Timer: [Init Circuit]
-End Timer [Init Circuit]:  0.010973215103149414
+End Timer [Init Circuit]:  0.018948793411254883
 
 Start Timer: [Execute Mapping]
 
@@ -83,7 +80,7 @@ Candidates:
 [22, 25]
 [33, 37]
 [40, 42]
-----End Timer [Find Candidates]:  0.1107022762298584
+----End Timer [Find Candidates]:  0.0718080997467041
 
 ----Start Timer: [Generate Plans]
 
@@ -215,7 +212,7 @@ Pos: [41, 43] cc => I
 Total Saving: 24
 
 
-----End Timer [Generate Plans]:  0.05286002159118652
+----End Timer [Generate Plans]:  0.01795339584350586
 
 ----Start Timer: [apply mapping plan]
 
@@ -257,5 +254,5 @@ Circuit after: xchxcccxxccchcRhcccchRhchccchcch
 Origin Circuit: xchxccccccccxxccchRhchchxccxcchRhchxcccccxchxcxccch - size: 51
 Solved Circuit: xchxcccxxccchcRhcccchRhchccchcch - size: 32
 change: 19 (37.25%)
-End Timer [Execute Mapping]:  0.16456031799316406
+End Timer [Execute Mapping]:  0.0907595157623291
 

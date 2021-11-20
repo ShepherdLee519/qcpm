@@ -1,0 +1,151 @@
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.0029926300048828125
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+Candidates: 
+
+[1, 4, 6]
+[10, 11, 12]
+
+------------ 2 ------------
+Pattern: 2
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 2]
+
+Candidates: 
+
+[1, 4]
+[4, 5]
+[10, 11]
+
+------------ 3 ------------
+Pattern: 3
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+Candidates: 
+
+[1, 6]
+[10, 12]
+
+------------ 5 ------------
+Pattern: 5
+    x [0]
+    x [0]
+    => 
+    I
+
+Candidates: 
+
+----End Timer [Find Candidates]:  0.0019960403442382812
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [1, 4] cc => c, Pos: [1, 6] cc => I, Pos: [1, 4, 6] ccc => cc, Pos: [4, 5] cc => c, Pos: [10, 11] cc => c, Pos: [10, 12] cc => I, Pos: [10, 11, 12] ccc => cc]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 4
+
+Pos: [1, 4] cc => c
+Pos: [1, 6] cc => I
+Pos: [1, 4, 6] ccc => cc
+Pos: [4, 5] cc => c
+
+Selected: Pos: [1, 6] cc => I
+    ... chxcccxxcccc ... 
+target: ^    ^      
+
+----------
+
+Expansion: Candidates size: 3
+
+Pos: [10, 11] cc => c
+Pos: [10, 12] cc => I
+Pos: [10, 11, 12] ccc => cc
+
+Selected: Pos: [10, 12] cc => I
+    ... ccc ... 
+target: ^ ^
+
+----------
+
+Complete Plan: 
+
+Pos: [1, 6] cc => I
+Pos: [10, 12] cc => I
+
+Total Saving: 8
+
+
+----End Timer [Generate Plans]:  0.001994609832763672
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [1, 6] cc => I, Pos: [10, 12] cc => I]
+Change: 2, Saving: 8
+
+Circuit before: xchxcccxxcccc
+---------------
+Apply:  Pos: [1, 6] cc => I
+Apply:  Pos: [10, 12] cc => I
+---------------
+Circuit after: xhxccxxcc
+
+----End Timer [apply mapping plan]:  0.0
+
+---------------
+Origin Circuit: xchxcccxxcccc - size: 13
+Solved Circuit: xhxccxxcc - size: 9
+change: 4 (30.77%)
+End Timer [Execute Mapping]:  0.003990650177001953
+

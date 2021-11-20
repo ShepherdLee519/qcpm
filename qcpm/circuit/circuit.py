@@ -15,9 +15,11 @@ class Circuit:
     @timerDecorator(description='Init Circuit')
     def __init__(self, path):
         self.operators = []
+        self.origin = '' # origin circuit's gates string
         self.draft = ''
 
-        self._load_circuit(path)
+        # self._load_circuit(path)
+        self._optimize( self._load_circuit(path) )
 
     def _load_circuit(self, path):
         """ init Circuit according to QASM file.
@@ -30,13 +32,27 @@ class Circuit:
         """
         op_types = []
 
-        ops = preprocess(path)
+        ops = preprocess(path) # iterator
         # eg. ['OPENQASM 2.0;\n', 'include "qelib1.inc";\n', 'qreg q[4];\n', ...]
         self.header = next(ops)
 
-        # for operator in ops:
-        # for operator in reduction(ops):
-        for operator in optimizer(ops):
+        for operator in ops:
+            yield operator
+            # cx = convert_type() => c
+            op_types.append( Operator.convert_type(operator.type) )
+        
+        self.origin = ''.join(op_types)
+
+    def _optimize(self, operators):
+        """ optimize the loaded circuit by each Operator
+
+        using [optimizer] in ./optimization
+
+        Args:
+            operators: iteratable Operators object.
+        """
+        op_types = []
+        for operator in optimizer(operators):
             self.operators.append(operator)
             # cx = convert_type() => c
             op_types.append( Operator.convert_type(operator.type) )

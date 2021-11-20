@@ -1,5 +1,5 @@
 import json
-import string
+import pkgutil
 
 from qcpm.candidate import Candidate, filterCandidates, SearchPlan
 from qcpm.pattern.pattern import Pattern
@@ -38,7 +38,7 @@ class Mapper:
             which [circuit] is a Circuit object.
     """
     @timerDecorator(description='Init Mapper')
-    def __init__(self, path):
+    def __init__(self, path=None):
         self.patterns = [] # contains Pattern object.
         self._init_patterns(path)
 
@@ -54,18 +54,23 @@ class Mapper:
 
         Args:
             path: should be path about pattern file(json file).
+                => while path is None, using ./rules/pattern.json
         """
-        with open(path, 'r') as file:
-            patterns_data = json.load(file)
+        if path == None:
+            data = pkgutil.get_data(__package__, '/rules/pattern.json')
+            patterns_data = json.loads(data.decode())
+        else:
+            with open(path, 'r') as file:
+                patterns_data = json.load(file)
 
-            # pattern: 
-            # {
-            #     "src": [ ["x", [1]], ["cx", [0, 1]], ["x", [1]] ],
-            #     "dst": [ ["cx", [0, 1]] ]
-            # }
-            for pattern in patterns_data:
-                # Pattern(src, dst)
-                self.patterns.append( Pattern(**pattern) )
+        # pattern: 
+        # {
+        #     "src": [ ["x", [1]], ["cx", [0, 1]], ["x", [1]] ],
+        #     "dst": [ ["cx", [0, 1]] ]
+        # }
+        for pattern in patterns_data:
+            # Pattern(src, dst)
+            self.patterns.append( Pattern(**pattern) )
 
     def _validate(self, pattern):
         """ Return a a validater function
@@ -110,7 +115,6 @@ class Mapper:
         
         return validater
 
-
     def find(self, pattern):
         """ according to pattern that finds Candidiates' positions
 
@@ -135,7 +139,7 @@ class Mapper:
 
 
     @timerDecorator(description='Execute Mapping')
-    def execute(self, circuit):
+    def execute(self, circuit, *, strategy=None):
         """ execute mapping on circuit object
 
         Args:
@@ -166,8 +170,10 @@ class Mapper:
             print()
 
             # should return a Plans object
-            self.plans = SearchPlan(circuit, self._candidates)()
-            # self.plans = filterCandidates(self._candidates)
+            if strategy == 'MCM':
+                self.plans = SearchPlan(circuit, self._candidates)()
+            else:
+                self.plans = filterCandidates(self._candidates)
         
         # 3. apply the best plan
         if len(self.plans) != 0:
@@ -177,4 +183,11 @@ class Mapper:
                 self.plans.best().apply(circuit)
         else:
             print("There's no mapping plan.")
+
+        # 4. show the result.
+        print('-' * 15)
+        print(f'Origin Circuit: {circuit.origin} - size: {len(circuit.origin)}')
+        print(f'Solved Circuit: {circuit.draft} - size: {len(circuit.draft)}')
+        print(f'change: {len(circuit.origin) - len(circuit.draft)}', 
+            f'({(len(circuit.origin) - len(circuit.draft)) / len(circuit.origin) * 100:.2f}%)')
         
