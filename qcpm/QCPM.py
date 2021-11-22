@@ -15,6 +15,7 @@ def logging(log_path, mode='a'):
     enter: redirect stdout to log_file(according to log_path)
         if log_paht is '' no redirect
     leave: recover the sys.stdout to origin stdout
+
     """
     if log_path != '':
         # redirect to log file
@@ -37,48 +38,94 @@ def logging(log_path, mode='a'):
 ############################
 
 class QCPatternMapper:
-    def __init__(self, *, pattern_path=None, log=''):
+    """ Quantum circuit pattern mapper Class.
+
+    Example:
+        QCPM = QCPatternMapper()
+
+        # 1. single file to file
+        QCPM.execute(circuit_path, './circuit_after')
+
+        # 2. dir to dir (batch work)
+        QCPM.execute('./data/', './output/', strategy='MCM')
+    
+    """
+
+    def __init__(self, **kwargs):
         """ 
         Args:
             pattern_path: json file about patterns.
             log: log file to redirect. default '' means to log in stdout.
         """
-        self.turns_limit = 5
-        
-        self.log = log
-        with logging(log, 'w'):
-            self.mapper = Mapper(pattern_path)
+        self.log = kwargs.get('log', '') # log file path
+        self.logs = kwargs.get('logs', './log/') # log files' output dir
+        with logging(self.log, 'w'):
+            self.mapper = Mapper()
 
-    def execute(self, circuit_path, circuit_save_path='', *, strategy=None, silence=False):
-        if os.path.isdir(circuit_path):
-            self._executeDir(circuit_path, circuit_save_path, 
-                strategy=strategy, silence=silence)
+    def execute(self, input_path, output_path='', **kwargs):
+        """ apply mapper on target circuit.
+
+        If input path is dir => call self._executeDir
+
+        Args:
+            input_path: qasm file's path or may be qasm files' dir path.
+            output_path: default='' means no output.
+        """
+        # if input_path is a folder path => batch work model
+        if os.path.isdir(input_path):
+            self._executeDir(input_path, output_path, **kwargs)
             return 
         
         with logging(self.log):
-            count = 1
-            circuit = Circuit(circuit_path)
-            changed = self.mapper.execute(circuit, strategy=strategy, silence=silence)
+            # execute turns limit.
+            # in each turn: 
+            # ---------------
+            # 1. optimization: reduction -> commutation ...(×n)... -> reduction
+            # 2. pattern mapping: mapper.execute(circuit)
+            # 
+            LIMIT = 5
 
-            while changed and count < self.turns_limit:
+            turn = 1
+            # first turn should initial circuit(default call optimization.)
+            circuit = Circuit(input_path)
+            changed = self.mapper.execute(circuit, **kwargs)
+
+            while changed and turn < LIMIT:
                 circuit.optimize()
-                changed = self.mapper.execute(circuit, strategy=strategy, silence=silence)
-                count += 1
+                changed = self.mapper.execute(circuit, **kwargs)
 
-            if circuit_save_path != '':
-                circuit.save(circuit_save_path)
+                turn += 1
 
-            if silence:
+            if output_path != '':
+                # save qasm file (after mapping)
+                circuit.save(output_path)
+
+            if kwargs.get('silence', False):
                 self.mapper.result(circuit)
 
-    def _executeDir(self, input_dir, output_dir, *, strategy=None, silence=False):
+    def _executeDir(self, input_dir, output_dir, **kwargs):
+        """ execute when call batch work form dir to dir.
+
+        Iterately call [self.execute] to execute.
+
+        Args:
+            input_dir/output_dir: file folder path. (from => to)
+            [! Other args should be corresponding to self.execute] => **kwargs
+        
+        """
         for file in os.listdir(input_dir):
+            # eg. 'example.qasm'
+            # filename => 'example'
             filename = os.path.splitext(file)[0]
+            # output_name => 'example_output'
             output_name = f'{filename}_output'
-            self.log = f'./log/{filename}_log.txt'
+
+            # default log file will be ./log/example_log.txt
+            self.log = f'{self.logs}{filename}_log.txt'
             
+            # call self.execute to solve single file.
             self.execute(
                 os.path.join(input_dir, f'{filename}.qasm'),
                 os.path.join(output_dir, f'{output_name}.qasm'),
-                strategy=strategy, silence=silence
+                **kwargs
             )

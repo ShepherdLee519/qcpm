@@ -24,7 +24,11 @@ def preprocess(path, ext='.qasm'):
 
         for line in file:
             # "cx q[2],q[4];" => 'cx', 'q[2],q[4]'
+            # Caution!: "cx q[2], q[4];" => 'cx', 'q[2],', 'q[4]'
+            # 
+            # thus *operands may be 'q[2],q[4]' or ['q[2],', 'q[4]']
             op_type, *operands = (line.strip()[:-1].split(' '))
+            # convert to the unified format: 'q[2],q[4]'
             operands = ''.join(operands)
 
             try:

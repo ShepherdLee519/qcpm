@@ -1,3 +1,4 @@
+import sys
 import json
 import pkgutil
 
@@ -115,7 +116,7 @@ class Mapper:
         
         return validater
 
-    def find(self, pattern, *, silence=False):
+    def find(self, pattern):
         """ according to pattern that finds Candidiates' positions
 
         call [positioning] to find the candidates' positions 
@@ -130,14 +131,12 @@ class Mapper:
         validater = self._validate(pattern)
         validated_positions = filter(validater, positions)
 
-        if not silence:
-            print("\nCandidates: \n")
+        print("\nCandidates: \n")
         for position in validated_positions:
             # keep candidates(=> Candidate object) in local _candidates[]
             self._candidates.append( Candidate(position, pattern) )
 
-            if not silence:
-                print(position)
+            print(position)
 
     def result(self, circuit):
         """ show final result of mapping
@@ -160,10 +159,22 @@ class Mapper:
         Args:
             circuit: A Circuit object. 
                 Recall that circuit containes [operators], and [draft].
+            -------
+            strategy: strategy to generate mapping plan.
+                None => exact mapping
+                'MCM' => Monte Carlo-based plan searching
+            silence: whether print log info. 
+                True => do not print (default False: print)
         -------
         Returns:
-            changed[bool]
+            changed[bool]: whether change the target circuit 
+                in this pattern mapping executation.
         """
+        # if silence => close all output:
+        stdout = sys.stdout
+        if silence:
+            sys.stdout = None
+
         # 0. reset
         self.circuit = circuit
         size_before = len(circuit) # record it to judge whether changed
@@ -171,46 +182,44 @@ class Mapper:
         self.plans = []
 
         # 1. collect possible candidates
-        if not silence:
-            print('\n' + title('Pattern & Candidates'))
+        print('\n' + title('Pattern & Candidates'))
         with Timer('Find Candidates'):
             for i, pattern in enumerate(self.patterns):
-                if not silence:
-                    print('\n' + '-' * 12 + f" {i + 1} " + '-' * 12)
-                    print(pattern)
+                print('\n' + '-' * 12 + f" {i + 1} " + '-' * 12)
+                print(pattern)
 
-                self.find(pattern, silence=silence)
+                self.find(pattern)
 
         # 2. filter candidates => (without conflict)
         with Timer('Generate Plans'):
             self._candidates.sort(key=lambda x: (x.begin, x.size, x.end))
 
-            if not silence:
-                print('\n' + title('Generate Plans') + '\n')
-                print('Sorted Candidates: \n')
-                print(self._candidates)
-                print()
+            print('\n' + title('Generate Plans') + '\n')
+            print('Sorted Candidates: \n')
+            print(self._candidates)
+            print()
 
             # should return a Plans object
             if strategy == 'MCM':
-                self.plans = SearchPlan(circuit, self._candidates, silence=silence)()
+                self.plans = SearchPlan(circuit, self._candidates)()
             else:
-                self.plans = filterCandidates(self._candidates, silence=silence)
+                self.plans = filterCandidates(self._candidates)
         
         # 3. apply the best plan
         if len(self.plans) != 0:
             with Timer('apply mapping plan'):
-                if not silence:
-                    print('\n' + title('Apply Mapping Plan') + '\n')
+                print('\n' + title('Apply Mapping Plan') + '\n')
 
-                self.plans.best(silence=silence).apply(circuit, silence=silence)
+                self.plans.best.apply(circuit)
         else:
-            if not silence:
-                print("There's no mapping plan.")
+            print("There's no mapping plan.")
 
         # 4. show the result.
         changed = size_before != len(circuit.draft)
-        if not silence:
-            self.result(circuit)
+        self.result(circuit)
+
+        # recover sys.stdout if silence
+        if silence:
+            sys.stdout = stdout
 
         return changed

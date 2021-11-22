@@ -76,7 +76,7 @@ class Candidate:
         """
         return self.pattern.delta
     
-    def apply(self, circuit, *, silence=False):
+    def apply(self, circuit):
         """ apply this candidated-mapping in the Circuit.
 
         called by Mapper.execute => Plans.apply
@@ -102,8 +102,7 @@ class Candidate:
         ops_from, ops_to = self.pattern.opr
         operands_to = self.pattern.dst['operands']
 
-        if not silence:
-            print('Apply: ', self.__repr__())
+        print('Apply: ', self.__repr__())
 
         for i, (op_from, op_to) in enumerate(zip_longest(ops_from, ops_to)):
             # eg. h => 1, c => 2 ...

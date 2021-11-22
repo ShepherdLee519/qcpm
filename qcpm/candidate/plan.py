@@ -17,7 +17,7 @@ class Plan:
 
         return s
     
-    def apply(self, circuit, *, silence=False):
+    def apply(self, circuit):
         """ apply this plan on target Circuit.
 
         plan.apply => [candidate.apply(), ...]
@@ -25,19 +25,17 @@ class Plan:
         Args:
             circuit: Circuit object
         """
-        if not silence:
-            print(f'Circuit before: {circuit.draft}')
-            print('-' * 15)
+        print(f'Circuit before: {circuit.draft}')
+        print('-' * 15)
 
         for candidate in self.candidates:
-            candidate.apply(circuit, silence=silence)
+            candidate.apply(circuit)
         
         # change the circuit, should update its operators/draft
         circuit.update()
 
-        if not silence:
-            print('-' * 15)
-            print(f'Circuit after: {circuit.draft}\n')
+        print('-' * 15)
+        print(f'Circuit after: {circuit.draft}\n')
 
 
 class Plans:
@@ -65,20 +63,17 @@ class Plans:
     def __len__(self):
         return len(self.plans)
 
-    def best(self, *, strategy='saving', silence=False):
+    @property
+    def best(self):
         """ return the best plan to apply
 
-        Args:
-            strategy: strategy use to decide the best plan. default: <saving>
-                thus return the Plan with the highest saving.
-        -------
-        Returns:
-            the best Plan
-        """
-        if strategy == 'saving':
-            plan = self.plans[0]
+        Get the Plan with the highest saving.
 
-        if not silence:
-            print(f'Selected Best Plan: \n{plan}')
+        Return:
+            best plan waits to apply. (Plan object)
+        """
+        plan = self.plans[0]
+
+        print(f'Selected Best Plan: \n{plan}')
 
         return plan

@@ -9,7 +9,7 @@ from qcpm.candidate.plan import Plan, Plans
 #                        #
 ##########################
 
-def logger(searcher, silence=False):
+def logger(searcher):
     """ print log data
 
     Args:
@@ -93,8 +93,7 @@ def logger(searcher, silence=False):
             with open(logpath, 'w') as f:
                 f.write(logdata)
         else:
-            if not silence:
-                print(logdata)
+            print(logdata)
 
     ##############################################
 
@@ -131,7 +130,7 @@ class SearchPlan:
     SIMULATION_SIZE = 10
     SIMULATION_TIMES = 10
 
-    def __init__(self, circuit, candidates, *, silence=False):
+    def __init__(self, circuit, candidates):
         """
         Args:
             circuit: Circuit object.
@@ -145,7 +144,7 @@ class SearchPlan:
         self.circuit = circuit
         self.candidates = candidates
 
-        self.log = logger(self, silence)
+        self.log = logger(self)
 
     def expansion(self):
         """ Expanase to get targte candidates
@@ -155,13 +154,16 @@ class SearchPlan:
 
         Returns:
             targets: list of Candidates with conflict from [self.cur]
+                => [!Caution]: targets may be empty
         """ 
         while True:
-            # ignore the after candidates that 
-            # conflict with current selected candidates
+            # reach the end of all candidates.
+            # means no target candidates
             if self.cur == len(self.candidates):
                 return []
             
+            # ignore the after candidates that 
+            # conflict with current selected candidates
             if self.candidates[self.cur] & self.selected:
                 self.cur += 1
             else:
@@ -210,23 +212,28 @@ class SearchPlan:
         self.selected = [] # should contains all selected candidates
 
     def __call__(self):
-        """
+        """ Monte Carlo-based plan searching
+
         Returns:
             Plans object contains all possible plan.
         """
-        self.reset() # reset searcher's state
+        # Step 0. reset searcher's state
+        self.reset()
 
         self.log('start')()
         while self.cur < len(self.candidates):
+
             # Step 1. select and expansion candidates
             targets = self.expansion()
-            if len(targets) == 0:
-                break
+
             self.log('targets')(targets)
 
             # Step 2. Select and apply candidate
-            ## if no conflict => apply candidate
-            if len(targets) == 1:
+            ## no more targets => stop searching.
+            if len(targets) == 0:
+                break
+            ## if no conflict => apply 
+            elif len(targets) == 1:
                 target = targets[0]
             ## else candidates with conflict => simulate
             else:
@@ -234,6 +241,7 @@ class SearchPlan:
                 # choose the target with max value
                 target = targets[ values.index(max(values)) ]
             self.pos = target.begin
+            
             self.log('selected')(target)
 
             # Step 3. Apply selected candidate
