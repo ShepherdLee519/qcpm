@@ -78,7 +78,7 @@ class QCPatternMapper:
             self.log = f'./log/{filename}_log.txt'
             
             self.execute(
-                os.path.join(input_dir, filename),
-                os.path.join(output_dir, output_name),
+                os.path.join(input_dir, f'{filename}.qasm'),
+                os.path.join(output_dir, f'{output_name}.qasm'),
                 strategy=strategy, silence=silence
             )

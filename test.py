@@ -30,8 +30,9 @@ QCPM = QCPatternMapper()
 # solve single qasm file
 # QCPM.execute(circuit_path, './circuit_after')
 # QCPM.execute(circuit_path, './circuit_after', silence=True)
-QCPM.execute(circuit_path, './circuit_after', strategy='MCM')
+# QCPM.execute(circuit_path, './circuit_after', strategy='MCM')
 # QCPM.execute(circuit_path, './circuit_after', strategy='MCM', silence=True)
 
 # input_dir / output_dir
 # QCPM.execute('./data/', './output/', strategy='MCM')
+QCPM.execute('./BIGD/', './BIGD_output', strategy='MCM')

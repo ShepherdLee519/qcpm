@@ -68,8 +68,11 @@ def logger(searcher, silence=False):
         #
         s = ' ' * (end - searcher.pos)
         s = list(s)
-        for index in target.pos:
-            s[index - searcher.pos] = '^'
+        try:
+            for index in target.pos:
+                s[index - searcher.pos] = '^'
+        except:
+            pass
         s = 'target: ' + ''.join(s) + '\n'
         s += '\n' + '-' * 10
 
@@ -156,6 +159,9 @@ class SearchPlan:
         while True:
             # ignore the after candidates that 
             # conflict with current selected candidates
+            if self.cur == len(self.candidates):
+                return []
+            
             if self.candidates[self.cur] & self.selected:
                 self.cur += 1
             else:
@@ -214,6 +220,8 @@ class SearchPlan:
         while self.cur < len(self.candidates):
             # Step 1. select and expansion candidates
             targets = self.expansion()
+            if len(targets) == 0:
+                break
             self.log('targets')(targets)
 
             # Step 2. Select and apply candidate

@@ -24,7 +24,8 @@ def preprocess(path, ext='.qasm'):
 
         for line in file:
             # "cx q[2],q[4];" => 'cx', 'q[2],q[4]'
-            op_type, operands = (line.strip()[:-1].split(' '))
+            op_type, *operands = (line.strip()[:-1].split(' '))
+            operands = ''.join(operands)
 
             try:
                 op = Operator(op_type, operands)
