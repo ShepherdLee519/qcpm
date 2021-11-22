@@ -1,5 +1,5 @@
 Start Timer: [Init Circuit]
-End Timer [Init Circuit]:  0.004986763000488281
+End Timer [Init Circuit]:  0.008011102676391602
 
 Start Timer: [Execute Mapping]
 
@@ -45,16 +45,40 @@ Candidates:
 
 ------------ 4 ------------
 Pattern: 4
+    cx [1, 2]
     cx [0, 1]
-    cx [0, 1]
+    cx [1, 2]
     => 
-    I
+    cx [0, 1]
+    cx [1, 2]
 
 Candidates: 
 
 
 ------------ 5 ------------
 Pattern: 5
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+Candidates: 
+
+
+------------ 7 ------------
+Pattern: 7
     x [0]
     x [0]
     => 
@@ -62,7 +86,7 @@ Pattern: 5
 
 Candidates: 
 
-----End Timer [Find Candidates]:  0.0
+----End Timer [Find Candidates]:  0.0009999275207519531
 
 ----Start Timer: [Generate Plans]
 
@@ -87,7 +111,7 @@ Complete Plan:
 Total Saving: 0
 
 
-----End Timer [Generate Plans]:  0.0009970664978027344
+----End Timer [Generate Plans]:  0.0
 
 ----Start Timer: [apply mapping plan]
 
@@ -112,5 +136,5 @@ Circuit after: Scschcy
 Origin Circuit: IhscShhchchxxyyy - size: 16
 Solved Circuit: Scschcy - size: 7
 change: 9 (56.25%)
-End Timer [Execute Mapping]:  0.0009970664978027344
+End Timer [Execute Mapping]:  0.0009999275207519531
 

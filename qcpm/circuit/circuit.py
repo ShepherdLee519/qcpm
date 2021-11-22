@@ -1,5 +1,7 @@
+import os
+
 from qcpm.preprocess import preprocess
-from qcpm.optimization import optimizer
+from qcpm.optimization import optimizer, reduction
 from qcpm.operator import Operator
 from qcpm.common import timerDecorator
 
@@ -16,10 +18,9 @@ class Circuit:
     def __init__(self, path):
         self.operators = []
         self.origin = '' # origin circuit's gates string
-        self.draft = ''
+        self.draft = '' # solved circuit's gates string
 
-        # self._load_circuit(path)
-        self._optimize( self._load_circuit(path) )
+        self.optimize( self._load_circuit(path) )
 
     def _load_circuit(self, path):
         """ init Circuit according to QASM file.
@@ -41,23 +42,77 @@ class Circuit:
             # cx = convert_type() => c
             op_types.append( Operator.convert_type(operator.type) )
         
+        # keep the gates string of origin input circuit.
         self.origin = ''.join(op_types)
 
-    def _optimize(self, operators):
-        """ optimize the loaded circuit by each Operator
+    def _optimize(self, operators, *, optimizer=optimizer):
+        """ optimization during each turn
 
         using [optimizer] in ./optimization
+            => Reduction -> Commutation
 
         Args:
             operators: iteratable Operators object.
+            optimizer: optimizer using to optimize operators.
+                => eg. qcpm.optimization.optimizer / qcpm.optimization.reduction
+                => if None, just read in without optimization.
+        -------
+        Returns:
+            changed[bool]:
+                - True => will still call _optimize unless the turns of 
+                    optimization is over the LIMIT.
+                - False => Stop useless optimization. 
         """
+        temp_operators = []
         op_types = []
-        for operator in optimizer(operators):
-            self.operators.append(operator)
+
+        # get iterator of operators after optimization
+        if optimizer == None:
+            targets = operators
+        else:
+            targets = optimizer(operators)
+
+        # solve each operator
+        for operator in targets:
+            temp_operators.append(operator)
             # cx = convert_type() => c
             op_types.append( Operator.convert_type(operator.type) )
         
-        self.draft = ''.join(op_types)
+        draft = ''.join(op_types)
+        changed = draft != self.draft
+
+        self.draft = draft
+        # self.operators = temp_operators
+
+        return changed, temp_operators
+    
+    def optimize(self, operators=None, *, iteration=3):
+        """ Optimize the loaded circuit by each Operator until no change occurs
+
+        using _optimize() while no change occurs.
+
+        Args:
+            operators: iteratable Operators object.
+                => if operators is None, optimize circuit(self) itself.
+            iteration: iteration turns that optimization. default=3
+        """
+        if operators == None:
+            operators = self
+
+        count = 0
+        while count < iteration:
+            # optimize: reduction -> commutation
+            changed, operators = self._optimize(operators)
+
+            if not changed:
+                # after reduction -> commutation -> ... -> reduction -> commutation
+                # at last: apply reduction.
+                _, operators = self._optimize(operators, optimizer=reduction)
+                break
+            
+            count += 1
+        
+        self.operators = operators
 
     def update(self):
         """ using self.operators re-calculate self.draft
@@ -78,19 +133,15 @@ class Circuit:
         for operator in self.operators:
             op_types.append( Operator.convert_type(operator.type) )
 
+        # update circuit's draft representation.
         self.draft = ''.join(op_types)
-
-    def __len__(self):
-        return len(self.draft)
-    
-    def __getitem__(self, index):
-        return self.operators[index]
 
     @property
     def QASM(self):
-        """ return QASM code of this circuit.
+        """ return QASM code representation of this circuit.
         
         """
+        # remember header: eg. ['OPENQASM 2.0;\n', ...]
         code = ''.join(self.header)
 
         for op in self:
@@ -106,5 +157,15 @@ class Circuit:
         Args:
             path: like ./circuit (default extension: .qasm)
         """
-        with open(f'{path}.qasm', 'w') as file:
+        path = path + '.qasm' if os.path.splitext(path)[-1] == '' else path
+
+        with open(path, 'w') as file:
             file.write(self.QASM)
+        
+    def __len__(self):
+        # len(circuit) <=> len(circuit.draft)
+        return len(self.draft)
+    
+    def __getitem__(self, index):
+        # thus circuit[i] <=> circuit.operators[i]
+        return self.operators[index]

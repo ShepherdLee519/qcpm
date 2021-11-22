@@ -76,7 +76,7 @@ class Candidate:
         """
         return self.pattern.delta
     
-    def apply(self, circuit):
+    def apply(self, circuit, *, silence=False):
         """ apply this candidated-mapping in the Circuit.
 
         called by Mapper.execute => Plans.apply
@@ -92,7 +92,7 @@ class Candidate:
         # 
         # example 2:
         # --------------------
-        # self.pos: eg. [4, 5]
+        # self.pos: eg. [1, 4]
         # self.pattern.src: eg. {'operator': 'cc', 'operands': 'abbc'}
         # self.pattern.dst: eg. {'operator': 'c', 'operands': 'ac'}
         #
@@ -102,11 +102,12 @@ class Candidate:
         ops_from, ops_to = self.pattern.opr
         operands_to = self.pattern.dst['operands']
 
-        print('Apply: ', self.__repr__())
+        if not silence:
+            print('Apply: ', self.__repr__())
 
         for i, (op_from, op_to) in enumerate(zip_longest(ops_from, ops_to)):
             # eg. h => 1, c => 2 ...
-            size = Operator.count_qubits(op_from)
+            size = Operator.count_qubits(op_to)
             # eg. 'ab' => [1, 4]
             operands = [ books[operand] for operand in operands_to[cur: cur + size] ]
 

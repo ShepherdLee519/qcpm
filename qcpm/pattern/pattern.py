@@ -86,14 +86,11 @@ class PatternMeta:
                             # operator.operands => positions like [1, 4]
                             for operand in operators[positions[i]].operands ]
         
-        try:
-            for i, operand in enumerate(self.opd[0]):
-                if self.books[operand] == -1:
-                    self.books[operand] = targets[i]
-                elif self.books[operand] != targets[i]:
-                    return False, None
-        except:
-            raise
+        for i, operand in enumerate(self.opd[0]):
+            if self.books[operand] == -1:
+                self.books[operand] = targets[i]
+            elif self.books[operand] != targets[i]:
+                return False, None
 
         # matched => select extra_obj to return
         if return_ == 'targets':

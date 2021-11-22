@@ -1,5 +1,5 @@
 Start Timer: [Init Circuit]
-End Timer [Init Circuit]:  0.0010023117065429688
+End Timer [Init Circuit]:  0.0019953250885009766
 
 Start Timer: [Execute Mapping]
 
@@ -45,6 +45,30 @@ Candidates:
 
 ------------ 4 ------------
 Pattern: 4
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
     cx [0, 1]
     cx [0, 1]
     => 
@@ -53,8 +77,8 @@ Pattern: 4
 Candidates: 
 
 
------------- 5 ------------
-Pattern: 5
+------------ 7 ------------
+Pattern: 7
     x [0]
     x [0]
     => 
@@ -112,5 +136,5 @@ Circuit after: chR
 Origin Circuit: hRhch - size: 5
 Solved Circuit: chR - size: 3
 change: 2 (40.00%)
-End Timer [Execute Mapping]:  0.0009920597076416016
+End Timer [Execute Mapping]:  0.0
 

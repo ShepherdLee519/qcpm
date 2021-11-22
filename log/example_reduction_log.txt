@@ -1,5 +1,5 @@
 Start Timer: [Init Circuit]
-End Timer [Init Circuit]:  0.005983114242553711
+End Timer [Init Circuit]:  0.019876718521118164
 
 Start Timer: [Execute Mapping]
 
@@ -45,16 +45,40 @@ Candidates:
 
 ------------ 4 ------------
 Pattern: 4
+    cx [1, 2]
     cx [0, 1]
-    cx [0, 1]
+    cx [1, 2]
     => 
-    I
+    cx [0, 1]
+    cx [1, 2]
 
 Candidates: 
 
 
 ------------ 5 ------------
 Pattern: 5
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+Candidates: 
+
+
+------------ 7 ------------
+Pattern: 7
     x [0]
     x [0]
     => 
@@ -62,7 +86,7 @@ Pattern: 5
 
 Candidates: 
 
-----End Timer [Find Candidates]:  0.0
+----End Timer [Find Candidates]:  0.0019943714141845703
 
 ----Start Timer: [Generate Plans]
 
@@ -101,16 +125,16 @@ Selected Best Plan:
 []
 Change: 0, Saving: 0
 
-Circuit before: hzxSshsczxScszscS
+Circuit before: xzsczxScszscS
 ---------------
 ---------------
-Circuit after: hzxSshsczxScszscS
+Circuit after: xzsczxScszscS
 
 ----End Timer [apply mapping plan]:  0.0
 
 ---------------
 Origin Circuit: hzhhxhshhhhchhzxhscShzhScsh - size: 27
-Solved Circuit: hzxSshsczxScszscS - size: 17
-change: 10 (37.04%)
-End Timer [Execute Mapping]:  0.0
+Solved Circuit: xzsczxScszscS - size: 13
+change: 14 (51.85%)
+End Timer [Execute Mapping]:  0.00299072265625
 

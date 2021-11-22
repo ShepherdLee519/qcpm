@@ -115,7 +115,7 @@ class Mapper:
         
         return validater
 
-    def find(self, pattern):
+    def find(self, pattern, *, silence=False):
         """ according to pattern that finds Candidiates' positions
 
         call [positioning] to find the candidates' positions 
@@ -130,64 +130,87 @@ class Mapper:
         validater = self._validate(pattern)
         validated_positions = filter(validater, positions)
 
-        print("\nCandidates: \n")
+        if not silence:
+            print("\nCandidates: \n")
         for position in validated_positions:
             # keep candidates(=> Candidate object) in local _candidates[]
             self._candidates.append( Candidate(position, pattern) )
 
-            print(position)
+            if not silence:
+                print(position)
 
+    def result(self, circuit):
+        """ show final result of mapping
+
+        Args:
+            circuit: Circuit object which is the mapping target.
+        """
+        size_origin, size_after = len(circuit.origin), len(circuit.draft)
+
+        print('-' * 15)
+        print(f'Origin Circuit: {circuit.origin} - size: {size_origin}')
+        print(f'Solved Circuit: {circuit.draft} - size: {size_after}')
+        print(f'change: {size_origin - size_after}', 
+            f'({(size_origin - size_after) / size_origin * 100:.2f}%)')
 
     @timerDecorator(description='Execute Mapping')
-    def execute(self, circuit, *, strategy=None):
+    def execute(self, circuit, *, strategy=None, silence=False):
         """ execute mapping on circuit object
 
         Args:
             circuit: A Circuit object. 
                 Recall that circuit containes [operators], and [draft].
+        -------
+        Returns:
+            changed[bool]
         """
         # 0. reset
         self.circuit = circuit
+        size_before = len(circuit) # record it to judge whether changed
         self._candidates = []
         self.plans = []
 
         # 1. collect possible candidates
-        print('\n' + title('Pattern & Candidates'))
+        if not silence:
+            print('\n' + title('Pattern & Candidates'))
         with Timer('Find Candidates'):
             for i, pattern in enumerate(self.patterns):
-                print('\n' + '-' * 12 + f" {i + 1} " + '-' * 12)
-                print(pattern)
+                if not silence:
+                    print('\n' + '-' * 12 + f" {i + 1} " + '-' * 12)
+                    print(pattern)
 
-                self.find(pattern)
+                self.find(pattern, silence=silence)
 
         # 2. filter candidates => (without conflict)
         with Timer('Generate Plans'):
             self._candidates.sort(key=lambda x: (x.begin, x.size, x.end))
 
-            print('\n' + title('Generate Plans') + '\n')
-            print('Sorted Candidates: \n')
-            print(self._candidates)
-            print()
+            if not silence:
+                print('\n' + title('Generate Plans') + '\n')
+                print('Sorted Candidates: \n')
+                print(self._candidates)
+                print()
 
             # should return a Plans object
             if strategy == 'MCM':
-                self.plans = SearchPlan(circuit, self._candidates)()
+                self.plans = SearchPlan(circuit, self._candidates, silence=silence)()
             else:
-                self.plans = filterCandidates(self._candidates)
+                self.plans = filterCandidates(self._candidates, silence=silence)
         
         # 3. apply the best plan
         if len(self.plans) != 0:
             with Timer('apply mapping plan'):
-                print('\n' + title('Apply Mapping Plan') + '\n')
+                if not silence:
+                    print('\n' + title('Apply Mapping Plan') + '\n')
 
-                self.plans.best().apply(circuit)
+                self.plans.best(silence=silence).apply(circuit, silence=silence)
         else:
-            print("There's no mapping plan.")
+            if not silence:
+                print("There's no mapping plan.")
 
         # 4. show the result.
-        print('-' * 15)
-        print(f'Origin Circuit: {circuit.origin} - size: {len(circuit.origin)}')
-        print(f'Solved Circuit: {circuit.draft} - size: {len(circuit.draft)}')
-        print(f'change: {len(circuit.origin) - len(circuit.draft)}', 
-            f'({(len(circuit.origin) - len(circuit.draft)) / len(circuit.origin) * 100:.2f}%)')
-        
+        changed = size_before != len(circuit.draft)
+        if not silence:
+            self.result(circuit)
+
+        return changed

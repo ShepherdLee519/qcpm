@@ -9,7 +9,7 @@ from qcpm.candidate.plan import Plan, Plans
 #                        #
 ##########################
 
-def logger(searcher):
+def logger(searcher, silence=False):
     """ print log data
 
     Args:
@@ -90,7 +90,8 @@ def logger(searcher):
             with open(logpath, 'w') as f:
                 f.write(logdata)
         else:
-            print(logdata)
+            if not silence:
+                print(logdata)
 
     ##############################################
 
@@ -127,7 +128,7 @@ class SearchPlan:
     SIMULATION_SIZE = 10
     SIMULATION_TIMES = 10
 
-    def __init__(self, circuit, candidates):
+    def __init__(self, circuit, candidates, *, silence=False):
         """
         Args:
             circuit: Circuit object.
@@ -141,7 +142,7 @@ class SearchPlan:
         self.circuit = circuit
         self.candidates = candidates
 
-        self.log = logger(self)
+        self.log = logger(self, silence)
 
     def expansion(self):
         """ Expanase to get targte candidates

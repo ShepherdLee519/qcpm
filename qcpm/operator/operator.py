@@ -78,9 +78,17 @@ class Operator(operatorMixin):
                 otherwise new_type should be a type before converting, like 'cx'
             new_operands: default: keep the setted operands.
         """
-        self.type = new_type
+        if new_type == Operator.ABANDON:
+            self.type = new_type
+            return
+        else:
+            self.type = self.__class__.convert_type(new_type, True)
 
         if new_operands != None:
+            size = self.__class__.count_qubits(self.type)
+            if len(new_operands) != size:
+                raise ValueError('????????????')
+
             self.operands = new_operands
         
         return self
@@ -107,4 +115,4 @@ class Operator(operatorMixin):
         
         operands_output = ','.join([f'q[{opd}]' for opd in self.operands])
 
-        return f'{type_output} {operands_output};\n'
+        return f'{self.__class__.convert_type(type_output, True)} {operands_output};\n'
