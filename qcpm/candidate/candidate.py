@@ -38,8 +38,9 @@ class Candidate:
         """ check whether self(Candidate) conflicts with other
 
         Args:
-            other: should be another Candidate object or list of Candidate
-                but directly input positions list/set is also allowed.
+            other: may be => None,  
+                Candidate,  [Candidate, ...],
+                [1, 2, 3, ...], set{1, 2, 3}
         -------
         Example:
             Candidate1 & Candidate2 == True
@@ -47,26 +48,23 @@ class Candidate:
         """
         if other is None:
             return False
-        else:
-            try:
-                return len(set(self.pos) & set(other.pos)) != 0
-            except:
-                if isinstance(other, list):
-                    if len(other) == 0: 
-                        return False
-                    
-                    if isinstance(other[0], int):
-                        return len(set(self.pos) & set(other)) != 0
-                    elif isinstance(other[0], Candidate):
-                        # if other is list of Candidate
-                        for candidate in other:
-                            if self & candidate:
-                                return True
-                elif isinstance(other, set):
-                    return len(set(self.pos) & set(other)) != 0
-                else:
-                    raise
-    
+
+        try:
+            # other is Candidate.
+            return len(set(self.pos) & set(other.pos)) != 0
+        except:
+            if isinstance(other, list) and len(other) != 0:
+                # if other is list of Candidate
+                if isinstance(other[0], Candidate):
+                    for candidate in other:
+                        if self & candidate:
+                            return True
+                    # no conflict between self and [Candidate, ...]
+                    return False
+                
+            # int positions list / set
+            return len(set(self.pos) & set(other)) != 0
+
     @property
     def delta(self):
         """ calculate cost saving.
@@ -108,7 +106,8 @@ class Candidate:
             # eg. h => 1, c => 2 ...
             size = Operator.count_qubits(op_to)
             # eg. 'ab' => [1, 4]
-            operands = [ books[operand] for operand in operands_to[cur: cur + size] ]
+            operands = [ books[operand] for 
+                operand in operands_to[cur: cur + size] ]
 
             if op_to == None:
                 op_to = Operator.ABANDON
