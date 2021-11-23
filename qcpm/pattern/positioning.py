@@ -15,6 +15,33 @@ def _add(elem, result):
         return f"{result},{elem}"
 
 
+def _apart(result, elem):
+    """ test whether candidate pattern's gates are so far apart
+
+    Args:
+        result: string like "1,4"
+        elem: int like 7, a position
+    -------
+    Returns:
+        True => so far apart => not a proper candidate, else True
+    -------
+    Example:
+        result: "1,4", elem = 51 (when distance_limit = 50)
+            => False
+    """
+    distance_limit = 50
+
+    if result == '':
+        return False
+
+    # result = "1,4,7" => begin = 1
+    begin = int(result.split(',')[0])
+
+    # for result = "1,4,7", elem = 52
+    # just test the distance between the begining of result and elem.
+    return elem - begin > distance_limit
+
+
 # @timerDecorator(description='Positioning')
 def positioning(circuit_str, pattern_str):
     """ find the mapped pattern position
@@ -40,6 +67,8 @@ def positioning(circuit_str, pattern_str):
                 dp[j] = dp[j] + dp[j - 1]
 
                 for result in res[j - 1]:
+                    if _apart(result, i - 1):
+                        continue
                     # eg. result = "1,4", i - 1 = 7
                     # after _add => "1,4,7"
                     # res[j].append("1,4,7")

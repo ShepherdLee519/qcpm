@@ -3,13 +3,13 @@ from qcpm import Mapper, Circuit, QCPatternMapper
 pattern_path = './data/pattern.json'
 # pattern_path = './data/pattern_subtitute.json'
 
-# circuit_path = './data/example'
+circuit_path = './data/example'
 # circuit_path = './data/example_reduction'
 # circuit_path = './data/example_reduction_3'
 # circuit_path = './data/example_reduction_4'
 # circuit_path = './data/example_rz'
 # circuit_path = './data/example_substitute'
-circuit_path = './data/test'
+# circuit_path = './data/test'
 
 
 
