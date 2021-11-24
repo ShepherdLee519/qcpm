@@ -1,6 +1,84 @@
 from qcpm.common import timerDecorator
 
 
+DISTANCE_LIMIT = 50
+
+##########################
+#                        #
+#     Tool Functions     #
+#                        #
+##########################
+
+def _apart(result, elem):
+    """ test whether candidate pattern's gates are so far apart
+
+    Args:
+        result: string like "1,4"
+        elem: int like 7, a position
+    -------
+    Returns:
+        True => so far apart => not a proper candidate, else True
+    -------
+    Example:
+        result: "1,4", elem = 51 (when DISTANCE_LIMIT = 50)
+            => False
+    """
+    if result == '':
+        return False
+
+    # result = "1,4,7" => begin = 1
+    begin = int(result.split(',')[0])
+
+    # for result = "1,4,7", elem = 52
+    # just test the distance between the begining of result and elem.
+    return elem - begin > DISTANCE_LIMIT
+
+def _filter(results, elem, circuit_size, pattern_size):
+    """ drop the improper result in advance
+
+    A result(size < pattern_size) while its beginning is
+    far apart from next potential matched position is improper.
+
+    Args:
+        results: list of result( string like "1,4", may be '' )
+        elem: int like 7, the current position
+        circuit_size: circuit draft's length
+        pattern_size: pattern length
+    -------
+    Returns:
+        filtered results: drop the improper ones and return rest.
+    -------
+    Example:
+        # if DISTANCE_LIMIT = 50
+        input: results = ["1,4", "2,12", "57,58", "59"]
+               elem = 60, pattern_size = 3
+        output: filtered_results = ["57,58", "59"]
+
+        explain: "1,4" => beginning: 1 is so far from elem: 60 (limit: 50) 
+    """
+    # for small size circuit, no need to filter.
+    if circuit_size <= DISTANCE_LIMIT:
+        return results
+
+    filtered_results = []
+    for result in results:
+        # "1,4,7" => ['1', '4', '7']
+        # "" => ['']
+        result_arr = result.split(',')
+        # keep empty: '' and already matched result.
+        if result == '' or len(result_arr) == pattern_size:
+            filtered_results.append(result)
+            continue
+
+        # result = "1,4,7" => begin = 1
+        begin = int(result_arr[0])
+        # test distance between begin("1,4,7" => 1) and elem(current position)
+        # distance <= limit is thus proper.
+        if elem - begin <= DISTANCE_LIMIT:
+            filtered_results.append(result)
+
+    return filtered_results
+
 def _add(elem, result):
     """
     Example:
@@ -15,31 +93,11 @@ def _add(elem, result):
         return f"{result},{elem}"
 
 
-def _apart(result, elem):
-    """ test whether candidate pattern's gates are so far apart
-
-    Args:
-        result: string like "1,4"
-        elem: int like 7, a position
-    -------
-    Returns:
-        True => so far apart => not a proper candidate, else True
-    -------
-    Example:
-        result: "1,4", elem = 51 (when distance_limit = 50)
-            => False
-    """
-    distance_limit = 50
-
-    if result == '':
-        return False
-
-    # result = "1,4,7" => begin = 1
-    begin = int(result.split(',')[0])
-
-    # for result = "1,4,7", elem = 52
-    # just test the distance between the begining of result and elem.
-    return elem - begin > distance_limit
+##########################
+#                        #
+#       Positioning      #
+#                        #
+##########################
 
 
 # @timerDecorator(description='Positioning')
@@ -65,6 +123,10 @@ def positioning(circuit_str, pattern_str):
         for j in range( min(i, pattern_size), 0, -1 ):
             if circuit_str[i - 1] == pattern_str[j - 1]:
                 dp[j] = dp[j] + dp[j - 1]
+                res[j - 1] = _filter(
+                    res[j - 1], i - 1, 
+                    circuit_size, pattern_size
+                )
 
                 for result in res[j - 1]:
                     if _apart(result, i - 1):
