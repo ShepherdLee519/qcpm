@@ -1,7 +1,7 @@
 from qcpm.candidate.plan import Plan, Plans
 
 
-def filterCandidates(candidates, *, silence=False):
+def filterCandidates(candidates):
     """ filter candidates(without conflict occurance) and generate Plans.
 
     Args: 
@@ -39,7 +39,6 @@ def filterCandidates(candidates, *, silence=False):
 
     # generate Plans object and return.
     plans = Plans(plans)
-    if not silence:
-        print(plans)
+    print(plans)
 
     return plans

@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 from contextlib import contextmanager
 
 from qcpm.pattern import Mapper

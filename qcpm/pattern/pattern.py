@@ -92,6 +92,17 @@ class PatternMeta:
             elif self.books[operand] != targets[i]:
                 return False, None
 
+        # check no duplicated operand in books
+        operands = set()
+        operands_num = 0
+        for k in self.books:
+            if self.books[k] != -1:
+                operands.add(self.books[k])
+                operands_num += 1
+        # there are duplicated operands
+        if len(operands) != operands_num:
+            return False, None
+
         # matched => select extra_obj to return
         if return_ == 'targets':
             extra_obj = targets

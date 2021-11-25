@@ -149,39 +149,38 @@ class SearchPlan:
     def expansion(self):
         """ Expanase to get targte candidates
 
-        Expanase target candidates at position self.cur
-            => will change self.cur
+        Expanase target candidates from start.
 
         Returns:
-            targets: list of Candidates with conflict from [self.cur]
+            targets: list of Candidates with conflict from beginning one.
                 => [!Caution]: targets may be empty
         """ 
+        cur = 0 # candidates' cur
+
         while True:
             # reach the end of all candidates.
             # means no target candidates
-            if self.cur == len(self.candidates):
+            if cur == len(self.candidates):
                 return []
             
             # ignore the after candidates that 
             # conflict with current selected candidates
-            if self.candidates[self.cur] & self.selected:
-                self.cur += 1
+            if self.candidates[cur] & self.selected:
+                cur += 1
             else:
                 break
 
-        # current candidate => candidates[self.cur]
-        targets = [ self.candidates[self.cur] ]
+        # current candidate => candidates[cur]
+        targets = [ self.candidates[cur] ]
 
         # gather the candidates that have conflicts with current candidate.
         #   => self.candidates[i] & targets[0]
-        for i in range(self.cur + 1, len(self.candidates)):
+        for i in range(cur + 1, len(self.candidates)):
             if self.candidates[i] & targets[0]:
                 targets.append(self.candidates[i])
             else:
                 break
         
-        self.cur += len(targets)
-
         return targets
     
     def simulation(self, candidates):
@@ -200,9 +199,6 @@ class SearchPlan:
         """ reset searcher's states
 
         """
-        # candidates' cur
-        ## will change after self.expansion
-        self.cur = 0
         # operator position in circuit
         ## will change at Step 3 in __call__
         self.pos = 0
@@ -221,8 +217,7 @@ class SearchPlan:
         self.reset()
 
         self.log('start')()
-        while self.cur < len(self.candidates):
-
+        while len(self.candidates) != 0:
             # Step 1. select and expansion candidates
             targets = self.expansion()
 
@@ -250,6 +245,10 @@ class SearchPlan:
             self.selected.append(target)
             self.saving += target.delta
             self.pos = target.end + 1
+
+            # Step 4. filter candidates that guarantee 
+            # there is no conflict with target.
+            filter(lambda candidate: not (candidate & target), self.candidates)
 
         self.log('plan')(self.selected)
         self.log('end')()
