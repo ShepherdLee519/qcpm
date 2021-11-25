@@ -149,6 +149,51 @@ class Circuit:
 
         return code
 
+    @property
+    def depth(self):
+        """ calculate depth of circuit
+
+        Note that: 
+            1. assume the max qubits size => MAX_QUBITS = 25
+            2. depth count from 0
+        
+        Returns:
+            max depth of each layers.
+        """
+        MAX_QUBITS = 25
+
+        last_layer = [-1] * MAX_QUBITS
+
+        for operator in self:
+            opds = operator.operands
+            
+            try:
+                if len(opds) == 1:
+                    # x q[3] => opds = [3] => depth of qubit 3 increase.
+                    last_layer[ opds[0] ] += 1
+                else:
+                    # cx q[2], q[5] => opds = [2, 5]
+                    # => depth of qubit 2, 5 become the bigger depth + 1
+                    # for example:
+                    # -------
+                    # 2: ...xhhh depth: 10
+                    # 5: ...xx   depth: 8
+                    # 
+                    # thus:
+                    # 2: ...xhhhC depth: 11
+                    # 5: ...xx  X depth: 11
+                    layers = map(lambda opd: last_layer[opd], opds)
+                    layer = max(layers) + 1
+
+                    for opd in opds:
+                        last_layer[opd] = layer
+            except IndexError:
+                print(f'Error occured during solving operator: <{opds}>')
+                print(f'Qubits num is over the limit: <{MAX_QUBITS}>.')
+                raise
+        
+        return max(last_layer)
+
     def save(self, path):
         """ save code of this circuit to path
 

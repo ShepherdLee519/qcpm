@@ -13,31 +13,30 @@ circuit_path = './data/example'
 # circuit_path = './BIGD/20QBT_45CYC_.2D1_.4D2_4.qasm' # 300
 # circuit_path = './BIGD/20QBT_45CYC_.2D1_.1D2_7.qasm' # 200
 # circuit_path = './BIGD/20QBT_45CYC_.0D1_.2D2_0.qasm' # 100
-circuit_path = './data/test'
+# circuit_path = './data/test'
 # circuit_path = './data/test_pattern4'
 
 
 
-mapper = Mapper()
+# mapper = Mapper()
 # mapper = Mapper(pattern_path)
-circuit = Circuit(circuit_path)
+# circuit = Circuit(circuit_path)
 
-mapper.execute(circuit)
 # mapper.execute(circuit)
-# circuit.optimize()
-circuit.save('./circuit_after')
+# mapper.execute(circuit)
+# circuit.save('./circuit_after')
 
 
 
 # QCPM = QCPatternMapper(log='./log.txt')
-# QCPM = QCPatternMapper()
+QCPM = QCPatternMapper()
 
 # solve single qasm file
 # QCPM.execute(circuit_path, './circuit_after')
 # QCPM.execute(circuit_path, './circuit_after', silence=True)
 # QCPM.execute(circuit_path, strategy='MCM')
 # QCPM.execute(circuit_path)
-# QCPM.execute(circuit_path, './circuit_after', strategy='MCM')
+QCPM.execute(circuit_path, './circuit_after', strategy='MCM')
 
 # input_dir / output_dir
 # QCPM.execute('./data/', './output/', strategy='MCM')

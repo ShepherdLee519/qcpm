@@ -102,8 +102,8 @@ class Mapper:
                     operand = self.circuit[pos].operands
 
                     # eg. [control, *targets] => *targets
-                    # if len(operand) >= 2:
-                    #     operand = operand[1:]
+                    if len(operand) >= 2:
+                        operand = operand[1:]
 
                     # eg. [1, 4] => [4] => {4}
                     ops = set(operand)
