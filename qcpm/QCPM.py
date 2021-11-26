@@ -59,6 +59,7 @@ class QCPatternMapper:
         """
         self.log = kwargs.get('log', '') # log file path
         self.logs = kwargs.get('logs', './log/') # log files' output dir
+
         with logging(self.log, 'w'):
             self.mapper = Mapper()
 
@@ -113,12 +114,14 @@ class QCPatternMapper:
             [! Other args should be corresponding to self.execute] => **kwargs
         
         """
-        for file in os.listdir(input_dir):
+        for i, file in enumerate(os.listdir(input_dir)):
             # eg. 'example.qasm'
             # filename => 'example'
             filename = os.path.splitext(file)[0]
             # output_name => 'example_output'
             output_name = f'{filename}_output'
+            
+            print(f'solving {i + 1}-th file <{input_dir}{filename}.qasm>...', sep='')
 
             # default log file will be ./log/example_log.txt
             self.log = f'{self.logs}{filename}_log.txt'
@@ -129,3 +132,6 @@ class QCPatternMapper:
                 os.path.join(output_dir, f'{output_name}.qasm'),
                 **kwargs
             )
+
+            print(f'-- finished! output: <{output_dir}{output_name}>.')
+            print(f'---- log file in [{self.log}].\n')

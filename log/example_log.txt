@@ -473,3 +473,1755 @@ Solved Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtc
 change: 16 (5.86%)
 End Timer [Execute Mapping]:  11.507840871810913
 
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.17154169082641602
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+Candidates: 
+
+[74, 75, 76]
+[76, 77, 78]
+
+------------ 2 ------------
+Pattern: 2
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+Candidates: 
+
+[224, 225, 226]
+
+------------ 3 ------------
+Pattern: 3
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+[75, 76, 77]
+
+------------ 4 ------------
+Pattern: 4
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+Candidates: 
+
+[74, 76]
+[76, 78]
+
+------------ 6 ------------
+Pattern: 6
+    x [0]
+    x [0]
+    => 
+    I
+
+Candidates: 
+
+----End Timer [Find Candidates]:  1.4085049629211426
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [74, 76] cc => I, Pos: [74, 75, 76] ccc => cc, Pos: [75, 76, 77] ccc => cc, Pos: [76, 78] cc => I, Pos: [76, 77, 78] ccc => cc, Pos: [224, 225, 226] xcx => c]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 5
+
+Pos: [74, 76] cc => I
+Pos: [74, 75, 76] ccc => cc
+Pos: [75, 76, 77] ccc => cc
+Pos: [76, 78] cc => I
+Pos: [76, 77, 78] ccc => cc
+
+Selected: Pos: [74, 76] cc => I
+    ... cccccTcTTtccchhtttcc ... 
+target: ^ ^                 
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [224, 225, 226] xcx => c
+
+Selected: Pos: [224, 225, 226] xcx => c
+    ... xcxTTtccchhtttcccTcT ... 
+target: ^^^                 
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [74, 76] cc => I
+Pos: [224, 225, 226] xcx => c
+
+Total Saving: 6
+
+
+----End Timer [Generate Plans]:  0.0069849491119384766
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [74, 76] cc => I, Pos: [224, 225, 226] xcx => c]
+Change: 2, Saving: 6
+
+Circuit before: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+---------------
+Apply:  Pos: [74, 76] cc => I
+Apply:  Pos: [224, 225, 226] xcx => c
+---------------
+Circuit after: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+
+----End Timer [apply mapping plan]:  0.001994609832763672
+
+---------------
+Origin Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttxxcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcccccTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchhhtttcccTcTTtccch - size: 273
+Solved Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch - size: 261
+change: 12 (4.40%)
+End Timer [Execute Mapping]:  1.4174845218658447
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    x [0]
+    x [0]
+    => 
+    I
+
+Candidates: 
+
+----End Timer [Find Candidates]:  1.3155431747436523
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+----End Timer [Generate Plans]:  0.0
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+---------------
+---------------
+Circuit after: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+
+----End Timer [apply mapping plan]:  0.0010344982147216797
+
+---------------
+Origin Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttxxcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcccccTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchhhtttcccTcTTtccch - size: 273
+Solved Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch - size: 259
+change: 14 (5.13%)
+End Timer [Execute Mapping]:  1.316577672958374
+
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.18550372123718262
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+Candidates: 
+
+[74, 75, 76]
+[76, 77, 78]
+
+------------ 2 ------------
+Pattern: 2
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+Candidates: 
+
+[224, 225, 226]
+
+------------ 3 ------------
+Pattern: 3
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+[75, 76, 77]
+
+------------ 4 ------------
+Pattern: 4
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+Candidates: 
+
+[74, 76]
+[76, 78]
+
+------------ 6 ------------
+Pattern: 6
+    x [0]
+    x [0]
+    => 
+    I
+
+Candidates: 
+
+----End Timer [Find Candidates]:  1.5286273956298828
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [74, 76] cc => I, Pos: [74, 75, 76] ccc => cc, Pos: [75, 76, 77] ccc => cc, Pos: [76, 78] cc => I, Pos: [76, 77, 78] ccc => cc, Pos: [224, 225, 226] xcx => c]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 5
+
+Pos: [74, 76] cc => I
+Pos: [74, 75, 76] ccc => cc
+Pos: [75, 76, 77] ccc => cc
+Pos: [76, 78] cc => I
+Pos: [76, 77, 78] ccc => cc
+
+Selected: Pos: [74, 76] cc => I
+    ... cccccTcTTtccchhtttcc ... 
+target: ^ ^                 
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [224, 225, 226] xcx => c
+
+Selected: Pos: [224, 225, 226] xcx => c
+    ... xcxTTtccchhtttcccTcT ... 
+target: ^^^                 
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [74, 76] cc => I
+Pos: [224, 225, 226] xcx => c
+
+Total Saving: 6
+
+
+----End Timer [Generate Plans]:  0.001958608627319336
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [74, 76] cc => I, Pos: [224, 225, 226] xcx => c]
+Change: 2, Saving: 6
+
+Circuit before: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+---------------
+Apply:  Pos: [74, 76] cc => I
+Apply:  Pos: [224, 225, 226] xcx => c
+---------------
+Circuit after: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+
+----End Timer [apply mapping plan]:  0.0
+
+---------------
+Origin Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttxxcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcccccTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchhhtttcccTcTTtccch - size: 273
+Solved Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch - size: 261
+change: 12 (4.40%)
+End Timer [Execute Mapping]:  1.5305860042572021
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    x [0]
+    x [0]
+    => 
+    I
+
+Candidates: 
+
+----End Timer [Find Candidates]:  1.331970453262329
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+----End Timer [Generate Plans]:  0.0009982585906982422
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+---------------
+---------------
+Circuit after: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+
+----End Timer [apply mapping plan]:  0.0
+
+---------------
+Origin Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttxxcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcccccTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchhhtttcccTcTTtccch - size: 273
+Solved Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch - size: 259
+change: 14 (5.13%)
+End Timer [Execute Mapping]:  1.3329687118530273
+
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.18506979942321777
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+Candidates: 
+
+[74, 75, 76]
+[76, 77, 78]
+
+------------ 2 ------------
+Pattern: 2
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+Candidates: 
+
+[224, 225, 226]
+
+------------ 3 ------------
+Pattern: 3
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+[75, 76, 77]
+
+------------ 4 ------------
+Pattern: 4
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+Candidates: 
+
+[74, 76]
+[76, 78]
+
+------------ 6 ------------
+Pattern: 6
+    x [0]
+    x [0]
+    => 
+    I
+
+Candidates: 
+
+----End Timer [Find Candidates]:  1.761871099472046
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [74, 76] cc => I, Pos: [74, 75, 76] ccc => cc, Pos: [75, 76, 77] ccc => cc, Pos: [76, 78] cc => I, Pos: [76, 77, 78] ccc => cc, Pos: [224, 225, 226] xcx => c]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 5
+
+Pos: [74, 76] cc => I
+Pos: [74, 75, 76] ccc => cc
+Pos: [75, 76, 77] ccc => cc
+Pos: [76, 78] cc => I
+Pos: [76, 77, 78] ccc => cc
+
+Selected: Pos: [74, 76] cc => I
+    ... cccccTcTTtccchhtttcc ... 
+target: ^ ^                 
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [224, 225, 226] xcx => c
+
+Selected: Pos: [224, 225, 226] xcx => c
+    ... xcxTTtccchhtttcccTcT ... 
+target: ^^^                 
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [74, 76] cc => I
+Pos: [224, 225, 226] xcx => c
+
+Total Saving: 6
+
+
+----End Timer [Generate Plans]:  0.0019931793212890625
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [74, 76] cc => I, Pos: [224, 225, 226] xcx => c]
+Change: 2, Saving: 6
+
+Circuit before: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+---------------
+Apply:  Pos: [74, 76] cc => I
+Apply:  Pos: [224, 225, 226] xcx => c
+---------------
+Circuit after: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+
+----End Timer [apply mapping plan]:  0.0
+
+---------------
+Origin Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttxxcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcccccTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchhhtttcccTcTTtccch - size: 273
+Solved Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch - size: 261
+change: 12 (4.40%)
+End Timer [Execute Mapping]:  1.763864278793335
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    x [0]
+    x [0]
+    => 
+    I
+
+Candidates: 
+
+----End Timer [Find Candidates]:  2.341296434402466
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+----End Timer [Generate Plans]:  0.0
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+---------------
+---------------
+Circuit after: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+
+----End Timer [apply mapping plan]:  0.0
+
+---------------
+Origin Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttxxcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcccccTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchhhtttcccTcTTtccch - size: 273
+Solved Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch - size: 259
+change: 14 (5.13%)
+End Timer [Execute Mapping]:  2.341296434402466
+
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.1715395450592041
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+Candidates: 
+
+[74, 75, 76]
+[76, 77, 78]
+
+------------ 2 ------------
+Pattern: 2
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+Candidates: 
+
+[224, 225, 226]
+
+------------ 3 ------------
+Pattern: 3
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+[75, 76, 77]
+
+------------ 4 ------------
+Pattern: 4
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+Candidates: 
+
+[74, 76]
+[76, 78]
+
+------------ 6 ------------
+Pattern: 6
+    x [0]
+    x [0]
+    => 
+    I
+
+Candidates: 
+
+----End Timer [Find Candidates]:  1.738443374633789
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [74, 76] cc => I, Pos: [74, 75, 76] ccc => cc, Pos: [75, 76, 77] ccc => cc, Pos: [76, 78] cc => I, Pos: [76, 77, 78] ccc => cc, Pos: [224, 225, 226] xcx => c]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 5
+
+Pos: [74, 76] cc => I
+Pos: [74, 75, 76] ccc => cc
+Pos: [75, 76, 77] ccc => cc
+Pos: [76, 78] cc => I
+Pos: [76, 77, 78] ccc => cc
+
+Selected: Pos: [74, 76] cc => I
+    ... cccccTcTTtccchhtttcc ... 
+target: ^ ^                 
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [224, 225, 226] xcx => c
+
+Selected: Pos: [224, 225, 226] xcx => c
+    ... xcxTTtccchhtttcccTcT ... 
+target: ^^^                 
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [74, 76] cc => I
+Pos: [224, 225, 226] xcx => c
+
+Total Saving: 6
+
+
+----End Timer [Generate Plans]:  0.002960681915283203
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [74, 76] cc => I, Pos: [224, 225, 226] xcx => c]
+Change: 2, Saving: 6
+
+Circuit before: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+---------------
+Apply:  Pos: [74, 76] cc => I
+Apply:  Pos: [224, 225, 226] xcx => c
+---------------
+Circuit after: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+
+----End Timer [apply mapping plan]:  0.0
+
+---------------
+Origin Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttxxcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcccccTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchhhtttcccTcTTtccch - size: 273
+Solved Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch - size: 261
+change: 12 (4.40%)
+End Timer [Execute Mapping]:  1.7424030303955078
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    x [0]
+    x [0]
+    => 
+    I
+
+Candidates: 
+
+----End Timer [Find Candidates]:  1.4137861728668213
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+----End Timer [Generate Plans]:  0.0
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+---------------
+---------------
+Circuit after: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+
+----End Timer [apply mapping plan]:  0.000997781753540039
+
+---------------
+Origin Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttxxcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcccccTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchhhtttcccTcTTtccch - size: 273
+Solved Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch - size: 259
+change: 14 (5.13%)
+End Timer [Execute Mapping]:  1.4147839546203613
+
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.34607481956481934
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+Candidates: 
+
+[74, 75, 76]
+[76, 77, 78]
+
+------------ 2 ------------
+Pattern: 2
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+Candidates: 
+
+[224, 225, 226]
+
+------------ 3 ------------
+Pattern: 3
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+[75, 76, 77]
+
+------------ 4 ------------
+Pattern: 4
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+Candidates: 
+
+[74, 76]
+[76, 78]
+
+------------ 6 ------------
+Pattern: 6
+    x [0]
+    x [0]
+    => 
+    I
+
+Candidates: 
+
+----End Timer [Find Candidates]:  2.202099084854126
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [74, 76] cc => I, Pos: [74, 75, 76] ccc => cc, Pos: [75, 76, 77] ccc => cc, Pos: [76, 78] cc => I, Pos: [76, 77, 78] ccc => cc, Pos: [224, 225, 226] xcx => c]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 5
+
+Pos: [74, 76] cc => I
+Pos: [74, 75, 76] ccc => cc
+Pos: [75, 76, 77] ccc => cc
+Pos: [76, 78] cc => I
+Pos: [76, 77, 78] ccc => cc
+
+Selected: Pos: [74, 76] cc => I
+    ... cccccTcTTtccchhtttcc ... 
+target: ^ ^                 
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [224, 225, 226] xcx => c
+
+Selected: Pos: [224, 225, 226] xcx => c
+    ... xcxTTtccchhtttcccTcT ... 
+target: ^^^                 
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [74, 76] cc => I
+Pos: [224, 225, 226] xcx => c
+
+Total Saving: 6
+
+
+----End Timer [Generate Plans]:  0.0020287036895751953
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [74, 76] cc => I, Pos: [224, 225, 226] xcx => c]
+Change: 2, Saving: 6
+
+Circuit before: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+---------------
+Apply:  Pos: [74, 76] cc => I
+Apply:  Pos: [224, 225, 226] xcx => c
+---------------
+Circuit after: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+
+----End Timer [apply mapping plan]:  0.0
+
+---------------
+Origin Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttxxcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcccccTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchhhtttcccTcTTtccch - size: 273
+Solved Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch - size: 261
+change: 12 (4.40%)
+End Timer [Execute Mapping]:  2.204127788543701
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    x [0]
+    x [0]
+    => 
+    I
+
+Candidates: 
+
+----End Timer [Find Candidates]:  1.3339807987213135
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+----End Timer [Generate Plans]:  0.0
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+---------------
+---------------
+Circuit after: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+
+----End Timer [apply mapping plan]:  0.000993967056274414
+
+---------------
+Origin Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttxxcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcccccTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchhhtttcccTcTTtccch - size: 273
+Solved Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch - size: 259
+change: 14 (5.13%)
+End Timer [Execute Mapping]:  1.334974765777588
+
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.1941814422607422
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+Candidates: 
+
+[74, 75, 76]
+[76, 77, 78]
+
+------------ 2 ------------
+Pattern: 2
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+Candidates: 
+
+[224, 225, 226]
+
+------------ 3 ------------
+Pattern: 3
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+[75, 76, 77]
+
+------------ 4 ------------
+Pattern: 4
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+Candidates: 
+
+[74, 76]
+[76, 78]
+
+------------ 6 ------------
+Pattern: 6
+    x [0]
+    x [0]
+    => 
+    I
+
+Candidates: 
+
+----End Timer [Find Candidates]:  1.665126085281372
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [74, 76] cc => I, Pos: [74, 75, 76] ccc => cc, Pos: [75, 76, 77] ccc => cc, Pos: [76, 78] cc => I, Pos: [76, 77, 78] ccc => cc, Pos: [224, 225, 226] xcx => c]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 5
+
+Pos: [74, 76] cc => I
+Pos: [74, 75, 76] ccc => cc
+Pos: [75, 76, 77] ccc => cc
+Pos: [76, 78] cc => I
+Pos: [76, 77, 78] ccc => cc
+
+Selected: Pos: [74, 76] cc => I
+    ... cccccTcTTtccchhtttcc ... 
+target: ^ ^                 
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [224, 225, 226] xcx => c
+
+Selected: Pos: [224, 225, 226] xcx => c
+    ... xcxTTtccchhtttcccTcT ... 
+target: ^^^                 
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [74, 76] cc => I
+Pos: [224, 225, 226] xcx => c
+
+Total Saving: 6
+
+
+----End Timer [Generate Plans]:  0.0019931793212890625
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [74, 76] cc => I, Pos: [224, 225, 226] xcx => c]
+Change: 2, Saving: 6
+
+Circuit before: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+---------------
+Apply:  Pos: [74, 76] cc => I
+Apply:  Pos: [224, 225, 226] xcx => c
+---------------
+Circuit after: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+
+----End Timer [apply mapping plan]:  0.0
+
+---------------
+Origin Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttxxcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcccccTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchhhtttcccTcTTtccch - size: 273
+Solved Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch - size: 261
+change: 12 (4.40%)
+End Timer [Execute Mapping]:  1.6671192646026611
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    x [0]
+    x [0]
+    => 
+    I
+
+Candidates: 
+
+----End Timer [Find Candidates]:  2.554837226867676
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+----End Timer [Generate Plans]:  0.0
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+---------------
+---------------
+Circuit after: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch
+
+----End Timer [apply mapping plan]:  0.0
+
+---------------
+Origin Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttxxcxccTcTTtccchhtttccccccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcccccTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTxcxTTtccchhtttcccTcTTtccchhhtttcccTcTTtccch - size: 273
+Solved Circuit: ctthctccTcTTtccchxhtttcccTcTTtccchhtttcccTcTTtccchhtttcxccTcTTtccchhtttccccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchhtttcccTcTTtccchtttcccTcTTtccch - size: 259
+change: 14 (5.13%)
+End Timer [Execute Mapping]:  2.555835247039795
+

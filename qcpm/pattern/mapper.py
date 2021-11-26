@@ -147,8 +147,8 @@ class Mapper:
         size_origin, size_after = len(circuit.origin), len(circuit.draft)
 
         print('-' * 15)
-        print(f'Origin Circuit: {circuit.origin} - size: {size_origin}')
-        print(f'Solved Circuit: {circuit.draft} - size: {size_after}')
+        print(f'Origin Circuit: \n => {circuit.origin} - size: [{size_origin}], depth: []\n')
+        print(f'Solved Circuit: \n => {circuit.draft} - size: [{size_after}]\n')
         print(f'change: {size_origin - size_after}', 
             f'({(size_origin - size_after) / size_origin * 100:.2f}%)')
 

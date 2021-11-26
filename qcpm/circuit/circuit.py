@@ -9,20 +9,24 @@ from qcpm.common import timerDecorator
 class Circuit:
     """ Circuit object creating by QASM file.
 
+    Default using optimization when loading.
+    when load origin circuit without optimization: 
+        => circuit = Circuit(path, optimize=Fasle)
+
     Example:
         data: cx q[4],q[1]; t q[4]; t q[2]; h q[0]; ...
             => operators: [Operator, Operator ...] (eg. Operator: cx [4,1])
             => draft: ctth...(cx => c)
     """
     @timerDecorator(description='Init Circuit')
-    def __init__(self, path):
+    def __init__(self, path, *, optimize=True):
         self.operators = []
         self.origin = '' # origin circuit's gates string
         self.draft = '' # solved circuit's gates string
 
-        self.optimize( self._load_circuit(path) )
+        self._load_circuit(path, optimize)
 
-    def _load_circuit(self, path):
+    def _load_circuit(self, path, optimize):
         """ init Circuit according to QASM file.
 
         load data from a QASM file. 
@@ -30,26 +34,39 @@ class Circuit:
 
         Args:
             path: path of QASM file.
+            optimize: whether use optimize. default: True(using)
         """
         op_types = []
+        operators = []
 
         ops = preprocess(path) # iterator
         # eg. ['OPENQASM 2.0;\n', 'include "qelib1.inc";\n', 'qreg q[4];\n', ...]
         self.header = next(ops)
 
         for operator in ops:
-            yield operator
+            operators.append(operator)
             # cx = convert_type() => c
             op_types.append( Operator.convert_type(operator.type) )
         
         # keep the gates string of origin input circuit.
         self.origin = ''.join(op_types)
 
+        if optimize:
+            # optimize will save the self.operators and self.draft
+            self.optimize(operators)
+        else:
+            # keep the gates string of origin input circuit.
+            self.draft = ''.join(op_types)
+            self.operators = operators
+
     def _optimize(self, operators, *, optimizer=optimizer):
         """ optimization during each turn
 
         using [optimizer] in ./optimization
             => Reduction -> Commutation
+        
+        will keep the self.draft but return optimized operators to optimize() 
+        whether keep the final self.operators thus is decided by optimize()
 
         Args:
             operators: iteratable Operators object.
@@ -82,7 +99,6 @@ class Circuit:
         changed = draft != self.draft
 
         self.draft = draft
-        # self.operators = temp_operators
 
         return changed, temp_operators
     
@@ -90,6 +106,8 @@ class Circuit:
         """ Optimize the loaded circuit by each Operator until no change occurs
 
         using _optimize() while no change occurs.
+        will keep the optimized operators in [self.operators]
+        and also keep the [self.draft] through subroutine: _optimize()
 
         Args:
             operators: iteratable Operators object.
