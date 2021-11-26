@@ -144,13 +144,18 @@ class Mapper:
         Args:
             circuit: Circuit object which is the mapping target.
         """
-        size_origin, size_after = len(circuit.origin), len(circuit.draft)
+        size_origin, size_after = len(circuit.origin.draft), len(circuit.draft)
+        circuit_info = circuit.info
 
         print('-' * 15)
-        print(f'Origin Circuit: \n => {circuit.origin} - size: [{size_origin}], depth: []\n')
-        print(f'Solved Circuit: \n => {circuit.draft} - size: [{size_after}]\n')
-        print(f'change: {size_origin - size_after}', 
+        print('>> Origin circuit: ')
+        print(circuit.origin)
+        print('\n>> Solved circuit: ')
+        print(circuit_info)
+
+        print(f'Reduced: \n - size: {size_origin - size_after}', 
             f'({(size_origin - size_after) / size_origin * 100:.2f}%)')
+        print(f' - depth: {circuit.origin.depth - circuit_info.depth}\n')
 
     @timerDecorator(description='Execute Mapping')
     def execute(self, circuit, *, strategy=None, silence=False):

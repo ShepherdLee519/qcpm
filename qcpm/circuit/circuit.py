@@ -1,5 +1,6 @@
 import os
 
+from qcpm.circuit.info import CircuitInfo
 from qcpm.preprocess import preprocess
 from qcpm.optimization import optimizer, reduction
 from qcpm.operator import Operator
@@ -21,7 +22,6 @@ class Circuit:
     @timerDecorator(description='Init Circuit')
     def __init__(self, path, *, optimize=True):
         self.operators = []
-        self.origin = '' # origin circuit's gates string
         self.draft = '' # solved circuit's gates string
 
         self._load_circuit(path, optimize)
@@ -36,7 +36,6 @@ class Circuit:
             path: path of QASM file.
             optimize: whether use optimize. default: True(using)
         """
-        op_types = []
         operators = []
 
         ops = preprocess(path) # iterator
@@ -45,19 +44,16 @@ class Circuit:
 
         for operator in ops:
             operators.append(operator)
-            # cx = convert_type() => c
-            op_types.append( Operator.convert_type(operator.type) )
         
-        # keep the gates string of origin input circuit.
-        self.origin = ''.join(op_types)
+        self.origin = CircuitInfo(operators)
 
         if optimize:
             # optimize will save the self.operators and self.draft
             self.optimize(operators)
         else:
             # keep the gates string of origin input circuit.
-            self.draft = ''.join(op_types)
             self.operators = operators
+            self.draft = self.origin.draft
 
     def _optimize(self, operators, *, optimizer=optimizer):
         """ optimization during each turn
@@ -153,6 +149,33 @@ class Circuit:
 
         # update circuit's draft representation.
         self.draft = ''.join(op_types)
+    
+    def save(self, path):
+        """ save code of this circuit to path
+
+        save self.QASM to file(given by path)
+
+        Args:
+            path: like ./circuit (default extension: .qasm)
+        """
+        path = path + '.qasm' if os.path.splitext(path)[-1] == '' else path
+
+        with open(path, 'w') as file:
+            file.write(self.QASM)
+    
+    ######################
+    #                    #
+    #     Properties     #
+    #                    #
+    ######################
+
+    @property
+    def depth(self):
+        return CircuitInfo.compute_depth(self)
+
+    @property
+    def info(self):
+        return CircuitInfo(self)
 
     @property
     def QASM(self):
@@ -167,63 +190,11 @@ class Circuit:
 
         return code
 
-    @property
-    def depth(self):
-        """ calculate depth of circuit
-
-        Note that: 
-            1. assume the max qubits size => MAX_QUBITS = 25
-            2. depth count from 0
-        
-        Returns:
-            max depth of each layers.
-        """
-        MAX_QUBITS = 25
-
-        last_layer = [-1] * MAX_QUBITS
-
-        for operator in self:
-            opds = operator.operands
-            
-            try:
-                if len(opds) == 1:
-                    # x q[3] => opds = [3] => depth of qubit 3 increase.
-                    last_layer[ opds[0] ] += 1
-                else:
-                    # cx q[2], q[5] => opds = [2, 5]
-                    # => depth of qubit 2, 5 become the bigger depth + 1
-                    # for example:
-                    # -------
-                    # 2: ...xhhh depth: 10
-                    # 5: ...xx   depth: 8
-                    # 
-                    # thus:
-                    # 2: ...xhhhC depth: 11
-                    # 5: ...xx  X depth: 11
-                    layers = map(lambda opd: last_layer[opd], opds)
-                    layer = max(layers) + 1
-
-                    for opd in opds:
-                        last_layer[opd] = layer
-            except IndexError:
-                print(f'Error occured during solving operator: <{opds}>')
-                print(f'Qubits num is over the limit: <{MAX_QUBITS}>.')
-                raise
-        
-        return max(last_layer)
-
-    def save(self, path):
-        """ save code of this circuit to path
-
-        save self.QASM to file(given by path)
-
-        Args:
-            path: like ./circuit (default extension: .qasm)
-        """
-        path = path + '.qasm' if os.path.splitext(path)[-1] == '' else path
-
-        with open(path, 'w') as file:
-            file.write(self.QASM)
+    ##########################
+    #                        #
+    #     Dunder Methods     #
+    #                        #
+    ##########################
         
     def __len__(self):
         # len(circuit) <=> len(circuit.draft)

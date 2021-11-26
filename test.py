@@ -1,4 +1,5 @@
 from qcpm import Mapper, Circuit, QCPatternMapper
+from qcpm.circuit.info import CircuitInfo
 
 pattern_path = './data/pattern.json'
 # pattern_path = './data/pattern_subtitute.json'
@@ -21,11 +22,14 @@ mapper = Mapper()
 # mapper = Mapper(pattern_path)
 circuit = Circuit(circuit_path)
 # circuit = Circuit(circuit_path, optimize=False)
+# circuitInfo = CircuitInfo(circuit)
 # circuit.optimize()
 
-# mapper.execute(circuit)
+mapper.execute(circuit)
 # mapper.execute(circuit, strategy='MCM')
-circuit.save('./circuit_after')
+# print(circuitInfo)
+# print(CircuitInfo.compute_depth(circuit, detail=True))
+# circuit.save('./circuit_after')
 
 
 
