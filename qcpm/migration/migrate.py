@@ -60,12 +60,19 @@ def migrate(operators, source_type, target_type):
     for operator in operators:
         buffer.append(operator)
 
+        # if rule_min_size = 2, rule_max_size = 5
+        # -------------------------
+        # Case 1. ['h'] => Nothing
+        # Case 2. ['(h)hShsh'] => popleft()
+        # Case 3. ['hsh'] => migrater(['hsh'])
+
         if len(buffer) > migrater.max_size:
             yield buffer.popleft()
         
         if len(buffer) >= migrater.min_size:
+            # recall that Migrater.__call__() will return list of Operator
             yield from migrater(buffer)
-            # print(migrater(buffer))
 
+    # yield the left operators
     while len(buffer) != 0:
         yield buffer.popleft()

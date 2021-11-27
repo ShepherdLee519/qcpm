@@ -1,8 +1,7 @@
 from qcpm import Circuit
-from qcpm.migration import migrate
 
-circuit_path = './data/test'
-circuit = Circuit(circuit_path)
+circuit_path = './data/example_test_migration'
+# circuit_path = './data/test'
+circuit = Circuit(circuit_path, optimize=False)
 
-transfered = list(migrate(circuit, 'IBM', 'Surface'))
-print(transfered)
+circuit.save('circuit_after', to='Surface')

@@ -4,6 +4,12 @@ from qcpm.pattern import PatternMeta
 from qcpm.operator import Operator
 
 
+##########################
+#                        #
+#     Tool functions     #
+#                        #
+##########################
+
 def gatherTypes(ops):
     """
     Args:
@@ -33,7 +39,12 @@ def matchTypes(opstr, pattern):
         # opstr ends with pattern ?
         return opstr.endswith(pattern)
 
-######################## Class ########################
+
+############################
+#                          #
+#     Class definition     #
+#                          #
+############################
 
 class ReductionPattern(PatternMeta):
     def __init__(self, src, dst):
@@ -84,8 +95,9 @@ class ReductionPattern(PatternMeta):
         # Step 4. append new operator
         # ------------------------------
         cur = 0
-        # eg. dst_operator = 'cc', dst_operands = 'abab'
+        # eg. dst_operator = 'xY', dst_operands = 'aa', dst_angles = [None, "-pi/2"]
         dst_operator, dst_operands = self.dst['operator'], self.dst['operands']
+        dst_angles = self.dst['angles']
 
         for _, operator in enumerate(dst_operator):
             # eg. operator = 'c' => operands_size = 2
@@ -94,10 +106,15 @@ class ReductionPattern(PatternMeta):
             # then operands "ab"  => [1, 4]
             operands = [ books[dst_operands[cur + k]] for k in range(operands_size) ]
 
-            # Operator.op_type should be original type just like in QASM, eg. cx
+           # Operator.op_type should be original type just like in QASM, eg. cx
             # Operator.convert_type(operator, True):
-            #   => 'c' => 'cx'
-            ops.append( Operator(Operator.convert_type(operator, True), operands) )
+            #   => 'Y' => 'ry'
+            op_type = Operator.convert_type(operator, True)
+            # if is rotation like rz => rz(pi/2) while pi/2 info is from dst_angles
+            if Operator.is_rotation(op_type):
+                op_type = f'{op_type}({dst_angles[i]})'
+            
+            ops.append( Operator(op_type, operands) )
 
             cur += operands_size
 

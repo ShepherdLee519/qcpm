@@ -110,7 +110,7 @@ class Operator(operatorMixin):
             return ''
         
         type_output = self.type
-        if self.angle != '':
+        if self.angle != None:
             type_output += f'({self.angle})'
         
         operands_output = ','.join([f'q[{opd}]' for opd in self.operands])

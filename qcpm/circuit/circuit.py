@@ -4,6 +4,7 @@ from qcpm.circuit.info import CircuitInfo
 from qcpm.preprocess import preprocess
 from qcpm.optimization import optimizer, reduction
 from qcpm.operator import Operator
+from qcpm.migration import migrate
 from qcpm.common import timerDecorator
 
 
@@ -20,7 +21,8 @@ class Circuit:
             => draft: ctth...(cx => c)
     """
     @timerDecorator(description='Init Circuit')
-    def __init__(self, path, *, optimize=True):
+    def __init__(self, path, *, optimize=True, system='IBM'):
+        self.system = system
         self.operators = []
         self.draft = '' # solved circuit's gates string
 
@@ -53,7 +55,7 @@ class Circuit:
         else:
             # keep the gates string of origin input circuit.
             self.operators = operators
-            self.draft = self.origin.draft
+            self.draft = self.origin.circuit
 
     def _optimize(self, operators, *, optimizer=optimizer):
         """ optimization during each turn
@@ -150,14 +152,31 @@ class Circuit:
         # update circuit's draft representation.
         self.draft = ''.join(op_types)
     
-    def save(self, path):
+    def save(self, path, to=None):
         """ save code of this circuit to path
 
         save self.QASM to file(given by path)
 
         Args:
             path: like ./circuit (default extension: .qasm)
+            to: target system type, default None. maybe 'IBM'/'Surface'...
         """
+        if to != None and to != self.system:
+            # maigration self.system to [to]
+            # eg. 'IBM' => 'Surface'
+            # 
+            op_types = []
+            migrated_operators = []
+
+            for operator in migrate(self, self.system, to):
+                op_types.append( Operator.convert_type(operator.type) )
+                migrated_operators.append(operator)
+
+            # update circuit's draft representation.
+            self.draft = ''.join(op_types)
+            self.operators = migrated_operators
+            self.system = to
+
         path = path + '.qasm' if os.path.splitext(path)[-1] == '' else path
 
         with open(path, 'w') as file:
