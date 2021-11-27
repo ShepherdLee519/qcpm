@@ -2,16 +2,25 @@ class operatorMixin:
 
     op_type_map = {
         'id': 'I',
+        
         'cx': 'c',
+        'cz': 'e',
+
         'tdg': 'T',
         'sdg': 'S',
-        'rz': 'R',
+
+        'rx': 'X',
+        'ry': 'Y',
+        'rz': 'Z',
     }
     # {'I': 'id' ...}
     op_type_map_reversed = {v:k for (k,v) in op_type_map.items()}
 
+    rotation_gates = ['rx', 'ry', 'rz']
+
     multi_qubits_gate = {
-        'cx': 2
+        'cx': 2,
+        'cz': 2,
     }
 
     @classmethod
@@ -38,3 +47,11 @@ class operatorMixin:
 
         # default qubits size: 1
         return cls.multi_qubits_gate.get(op, 1)
+
+    @classmethod
+    def is_rotation(cls, op):
+        # get original op_type
+        if op not in cls.op_type_map:
+            op = cls.convert_type(op, True)
+
+        return op in cls.rotation_gates

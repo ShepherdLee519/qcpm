@@ -144,7 +144,7 @@ class Mapper:
         Args:
             circuit: Circuit object which is the mapping target.
         """
-        size_origin, size_after = len(circuit.origin.draft), len(circuit.draft)
+        size_origin, size_after = circuit.origin.size, len(circuit.draft)
         circuit_info = circuit.info
 
         print('-' * 15)

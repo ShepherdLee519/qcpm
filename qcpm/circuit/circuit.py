@@ -203,3 +203,9 @@ class Circuit:
     def __getitem__(self, index):
         # thus circuit[i] <=> circuit.operators[i]
         return self.operators[index]
+
+    def __repr__(self):
+        # if Circuit: cx h cx sdg ...
+        # => draft: chcS...
+        # => this: cx-h-cx-sdg-...
+        return '-'.join(map(lambda op: op.type, self))

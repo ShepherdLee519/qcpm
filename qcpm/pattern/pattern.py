@@ -13,10 +13,10 @@ class PatternMeta:
     def __init__(self, src, dst):
         """
         src/dst: 
-        eg. [ ["x", [1]], ["cx", [0, 1]], ["x", [1]] ]
+        eg. [ ["rx", [1], "pi/2"], ["cx", [0, 1]], ["x", [1]] ]
 
         self.src/self.dst:
-        eg. {'operaror': 'xcx', 'operands': 'abaa'}
+        eg. {'operaror': 'Xcx', 'operands': 'abaa', 'angles': ["pi/2", None, None]}
         
         """
         self.data = {
@@ -24,18 +24,21 @@ class PatternMeta:
             'dst': dst
         }
 
+        # solved pattern data
         self.src = self._solve_pattern(src)
         self.dst = self._solve_pattern(dst)
 
+        # separatly store each info for convinence
         self.opr = [ self.src['operator'], self.dst['operator'] ]
         self.opd = [ self.src['operands'], self.dst['operands'] ]
+        self.angles = [ self.src['angles'], self.dst['angles'] ]
     
     def _solve_pattern(self, target):
         """
         eg. target:
         
         [ 
-            ["x", [1]], 
+            ["rx", [1], "pi/2"], 
             ["cx", [0, 1]], 
             ["x", [1]] 
         ],
@@ -43,18 +46,22 @@ class PatternMeta:
         after _solve_pattern():
         
         {
-            "operator": "xcx",
-            "operands": "abaa"
+            "operator": "Xcx",
+            "operands": "abaa",
+            "angles": ["pi/2", None, None]
         }
         
         """
         operator_pattern = [ Operator.convert_type(operation[0]) for operation in target ]
         operands_pattern = [ string.ascii_lowercase[int(operands)] 
             for operation in target for operands in operation[1] ]
+        angles_pattern = [  None if len(operation) == 2 else operation[-1] 
+            for operation in target ]
 
         return {
             'operator': ''.join(operator_pattern),
-            'operands': ''.join(operands_pattern)
+            'operands': ''.join(operands_pattern),
+            'angles': angles_pattern
         }
     
     def match(self, operators, positions, *, return_='targets'):
@@ -78,6 +85,8 @@ class PatternMeta:
         for k in self.books:
             self.books[k] = -1
         
+        # Test 1. matched operands
+        # 
         # eg. operands: abbc  
         #     targets:  [4, 1, 1, 2] 
         # 
@@ -92,7 +101,11 @@ class PatternMeta:
             elif self.books[operand] != targets[i]:
                 return False, None
 
-        # check no duplicated operand in books
+        # Test 2. no duplicated operand in books
+        #
+        # eg. pattern: 'cc', operands: abcb
+        #   => cx q[1],q[3]; cx q[1],q[3]; shouldn't match
+        #      cause operand a = c = 1 
         operands = set()
         operands_num = 0
         for k in self.books:
@@ -102,6 +115,13 @@ class PatternMeta:
         # there are duplicated operands
         if len(operands) != operands_num:
             return False, None
+
+        # Test 3. matched angles in rotation gates.
+        angles = [ operators[positions[i]].angle for i in range(len(positions)) ]
+
+        for i, angle in enumerate(angles):
+            if not angle == self.angles[0][i]:
+                return False, None
 
         # matched => select extra_obj to return
         if return_ == 'targets':

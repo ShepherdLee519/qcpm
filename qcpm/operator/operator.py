@@ -12,7 +12,7 @@ class Operator(operatorMixin):
     - operands should always be a list. 
 
     Example:
-        input: 'cx q[2],q[4]' 
+        input: 'cx', 'q[2],q[4]' 
             => self.type = 'cx', self.operands = [2, 4]
     """
 
@@ -31,7 +31,7 @@ class Operator(operatorMixin):
         if op_type in self.reject_type:
             raise ValueError(f"value <{op_type}> doesn't mean a operator")
 
-        self.angle = ''
+        self.angle = None
         self.type = self._rotate_filter(op_type)
         self.index = index
         
@@ -47,10 +47,13 @@ class Operator(operatorMixin):
         if operator is a rotate Gate, solve to save the angle.
 
         """
-        if op_type[0] == 'r': # eg. rz
+        if op_type[0] == 'r':
+            # eg. rx(-pi/2) q[1]; 
+            #   => op_type = "rx(-pi/2)"
+            #   => op_type[3:][:-1] = "-pi/2"
             self.angle = op_type[3:][:-1]
 
-            # op_type[:2] => eg. 'rz'
+            # op_type[:2] => 'rx'
             return op_type[:2]
         else:
             return op_type
@@ -93,9 +96,6 @@ class Operator(operatorMixin):
         
         return self
 
-    def __repr__(self):
-        return "No: {}, {} {}".format(self.index, self.type, self.operands)
-
     @property
     def output(self):
         """ output self as a raw data in QASM.
@@ -116,3 +116,6 @@ class Operator(operatorMixin):
         operands_output = ','.join([f'q[{opd}]' for opd in self.operands])
 
         return f'{self.__class__.convert_type(type_output, True)} {operands_output};\n'
+
+    def __repr__(self):
+        return "No: {}, {} {}".format(self.index, self.type, self.operands)

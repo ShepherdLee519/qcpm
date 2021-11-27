@@ -5,7 +5,7 @@ class CircuitInfo:
     """ Circuit's info
 
     Example:
-        draft: hzhhxhshhhhchhzxhscShzhScsh
+        circuit: h-z-h-h-x-h-s-h-h-h-h-cx-h-h-z-x-h-s-c-sdg-h-z-h-sdg-cx-s-h
         size: 27, gates_group = [x, z, s, cx, sdg, h],
         qubits_num: 2, depth: 22, depth_detail = [20, 22]
 
@@ -13,10 +13,10 @@ class CircuitInfo:
     def __init__(self, operators):
         self.size = len(operators)
         
-        self.draft = ''
+        self.circuit = ''
         self.gates_group = []
         self.qubits_num = 0
-        # draft/gates_group/qubtis_num will be set in _solve()
+        # circuit/gates_group/qubtis_num will be set in _solve()
         self._solve(operators)
 
         # eg. depth_detail = [20, 22, -1, -1 ...] , qubits_num = 2
@@ -41,15 +41,13 @@ class CircuitInfo:
             # op_type: cx / h ...
             op_type = operator.type
 
+            op_types.append(op_type)
             gates.add(op_type)
             qubits = qubits | set(operator.operands)
-
-            # cx = convert_type() => c
-            op_types.append( Operator.convert_type(op_type) )
         
-        self.draft = ''.join(op_types)
         self.gates_group = list(gates)
         self.qubits_num = len(qubits)
+        self.circuit = '-'.join(op_types)
 
     ##########################
     #                        #
@@ -138,7 +136,7 @@ class CircuitInfo:
 
     def __repr__(self):
         info = 'Circuit Info: \n'
-        info += f' - circuit: {self.draft} - total size: [{self.size}]\n'
+        info += f' - circuit: {self.circuit} \n     => total size: [{self.size}]\n'
         info += ' ' + '-' * 20 + '\n'
         info += f' - qubits_num: {self.qubits_num}, using gates: [{",".join(self.gates_group)}]\n'
         info += f' - circuit depth: {self.depth} - ({self.evaluate_depth(self.depth)})\n'
