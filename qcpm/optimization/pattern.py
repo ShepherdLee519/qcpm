@@ -48,7 +48,8 @@ def matchTypes(opstr, pattern):
 
 class ReductionPattern(PatternMeta):
     def __init__(self, src, dst):
-        # self.src/dst = eg. {'operaror': 'ccc', 'operands': 'abbcab'}
+        # self.src/dst = 
+        # eg. {'operaror': 'ccc', 'operands': 'abbcab', 'angles': ['', '', '']}
         super().__init__(src, dst)
 
         self.size = len(self.src['operator'])
@@ -70,6 +71,7 @@ class ReductionPattern(PatternMeta):
             return False
 
         # Step 2. test operands matching
+        # detail matching is implemented in qcpm.pattern.pattern
         # -----------------------------
         ok, books = self.match(
             ops, 
@@ -135,6 +137,7 @@ class CommutationPattern(ReductionPattern):
             return False
 
         # Step 2. test operands matching
+        # detail matching is implemented in qcpm.pattern.pattern
         # -----------------------------
         ok, _ = self.match(
             ops, 

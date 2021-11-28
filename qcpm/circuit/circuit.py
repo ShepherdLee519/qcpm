@@ -26,6 +26,14 @@ class Circuit:
         self.operators = []
         self.draft = '' # solved circuit's gates string
 
+        # CircutiInfo objects
+        ## circuit info of current circuit.
+        ## store the CirucitInfo and set by calling: circuti.info
+        ## may be reseted during optimize() / update()
+        self._info = None
+        ## circuit info of origin circuit, setted during _load_circuit
+        self.origin = None
+
         self._load_circuit(path, optimize)
 
     def _load_circuit(self, path, optimize):
@@ -33,12 +41,14 @@ class Circuit:
 
         load data from a QASM file. 
         Init self.operators and self.draft.
+        also keep the CircuitInfo of origin circuit in self.origin
 
         Args:
             path: path of QASM file.
             optimize: whether use optimize. default: True(using)
         """
         operators = []
+        op_types = []
 
         ops = preprocess(path) # iterator
         # eg. ['OPENQASM 2.0;\n', 'include "qelib1.inc";\n', 'qreg q[4];\n', ...]
@@ -46,7 +56,10 @@ class Circuit:
 
         for operator in ops:
             operators.append(operator)
+            # cx = convert_type() => c
+            optimize or op_types.append( Operator.convert_type(operator.type) )
         
+        # keep the origin ciruit's info object
         self.origin = CircuitInfo(operators)
 
         if optimize:
@@ -55,7 +68,7 @@ class Circuit:
         else:
             # keep the gates string of origin input circuit.
             self.operators = operators
-            self.draft = self.origin.circuit
+            self.draft = ''.join(op_types)
 
     def _optimize(self, operators, *, optimizer=optimizer):
         """ optimization during each turn
@@ -129,6 +142,7 @@ class Circuit:
             count += 1
         
         self.operators = operators
+        self._info = None # reset circuitInfo
 
     def update(self):
         """ using self.operators re-calculate self.draft
@@ -151,6 +165,7 @@ class Circuit:
 
         # update circuit's draft representation.
         self.draft = ''.join(op_types)
+        self._info = None # reset circuitInfo
     
     def save(self, path, to=None):
         """ save code of this circuit to path
@@ -194,7 +209,21 @@ class Circuit:
 
     @property
     def info(self):
-        return CircuitInfo(self)
+        """ return circuitInfo of this circuit.
+
+        the CircuitInfo object is stored in self._info which would not initial
+        before using it. (may not exist or being None.)
+        
+        optimize() and update()(after mapper.execute()) may reset self._info.
+
+        return:
+            self._info: circuitInfo object. if there's no change occured in circuit
+                there's thus no need to re-call CircuitInfo() but return stored object. 
+        """
+        if '_info' not in self.__dict__ or self._info == None:
+            self._info = CircuitInfo(self)
+        
+        return self._info
 
     @property
     def QASM(self):

@@ -2,7 +2,9 @@ from qcpm.operator import Operator
 
 
 class CircuitInfo:
-    """ Circuit's info
+    """ represent Circuit's detail info
+
+    used in mapper when show result info.
 
     Example:
         circuit: h-z-h-h-x-h-s-h-h-h-h-cx-h-h-z-x-h-s-c-sdg-h-z-h-sdg-cx-s-h
@@ -33,8 +35,8 @@ class CircuitInfo:
             operators: may be list of Operator or Circuit object(already mapped) 
         """
         op_types = []
-        qubits = set()
-        gates = set()
+        qubits = set() # gather qubits index to count qubtis num
+        gates = set() # gather all the operator occured
 
         # solve each operator
         for operator in operators:

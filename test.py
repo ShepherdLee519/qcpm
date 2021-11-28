@@ -1,7 +1,7 @@
 from qcpm import Mapper, Circuit, QCPatternMapper
 from qcpm.circuit.info import CircuitInfo
 
-pattern_path = './data/pattern.json'
+# pattern_path = './data/pattern.json'
 # pattern_path = './data/pattern_subtitute.json'
 
 # circuit_path = './data/example'
@@ -19,27 +19,28 @@ circuit_path = './data/test'
 
 
 mapper = Mapper()
-# mapper = Mapper(pattern_path)
-circuit = Circuit(circuit_path)
-# circuit = Circuit(circuit_path, optimize=False)
-# circuitInfo = CircuitInfo(circuit)
-# circuit.optimize()
+# circuit = Circuit(circuit_path)
+circuit = Circuit(circuit_path, optimize=False)
+circuit.optimize()
 
 # mapper.execute(circuit)
 # mapper.execute(circuit, strategy='MCM')
-# print(circuitInfo)
+# print(circuit.info)
+# circuit.optimize()
+# print(CircuitInfo(circuit))
+# print(circuit.info)
 # print(CircuitInfo.compute_depth(circuit, detail=True))
-# circuit.save('./circuit_after')
+circuit.save('./circuit_after')
 
 
 
 # QCPM = QCPatternMapper(log='./log.txt')
-QCPM = QCPatternMapper()
+# QCPM = QCPatternMapper()
 
 # solve single qasm file
 # QCPM.execute(circuit_path, './circuit_after')
 # QCPM.execute(circuit_path, './circuit_after', silence=True)
-QCPM.execute(circuit_path, strategy='MCM')
+# QCPM.execute(circuit_path, strategy='MCM')
 # QCPM.execute(circuit_path)
 # QCPM.execute(circuit_path, './circuit_after', strategy='MCM')
 

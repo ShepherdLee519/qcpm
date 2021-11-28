@@ -101,10 +101,6 @@ class Mapper:
                 if pos not in position:
                     operand = self.circuit[pos].operands
 
-                    # eg. [control, *targets] => *targets
-                    if len(operand) >= 2:
-                        operand = operand[1:]
-
                     # eg. [1, 4] => [4] => {4}
                     ops = set(operand)
                     
@@ -133,6 +129,7 @@ class Mapper:
 
         print("\nCandidates: \n")
         for position in validated_positions:
+            
             # keep candidates(=> Candidate object) in local _candidates[]
             self._candidates.append( Candidate(position, pattern) )
 
@@ -145,17 +142,16 @@ class Mapper:
             circuit: Circuit object which is the mapping target.
         """
         size_origin, size_after = circuit.origin.size, len(circuit.draft)
-        circuit_info = circuit.info
 
         print('-' * 15)
         print('>> Origin circuit: ')
         print(circuit.origin)
         print('\n>> Solved circuit: ')
-        print(circuit_info)
+        print(circuit.info)
 
         print(f'Reduced: \n - size: {size_origin - size_after}', 
             f'({(size_origin - size_after) / size_origin * 100:.2f}%)')
-        print(f' - depth: {circuit.origin.depth - circuit_info.depth}\n')
+        print(f' - depth: {circuit.origin.depth - circuit.info.depth}\n')
 
     @timerDecorator(description='Execute Mapping')
     def execute(self, circuit, *, strategy=None, silence=False):

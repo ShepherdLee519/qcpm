@@ -11,6 +11,7 @@ def optimizer(operators):
         call: optimizer(preprocess(path))
     """
 
-    return commutation(
-        reduction(operators)
-    )
+    # return commutation(
+    #     reduction(operators)
+    # )
+    return commutation(operators)

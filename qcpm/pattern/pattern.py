@@ -16,7 +16,7 @@ class PatternMeta:
         eg. [ ["rx", [1], "pi/2"], ["cx", [0, 1]], ["x", [1]] ]
 
         self.src/self.dst:
-        eg. {'operaror': 'Xcx', 'operands': 'abaa', 'angles': ["pi/2", None, None]}
+        eg. {'operaror': 'Xcx', 'operands': 'abaa', 'angles': ["pi/2", '', '']}
         
         """
         self.data = {
@@ -48,14 +48,17 @@ class PatternMeta:
         {
             "operator": "Xcx",
             "operands": "abaa",
-            "angles": ["pi/2", None, None]
+            "angles": ["pi/2", '', '']
         }
         
         """
         operator_pattern = [ Operator.convert_type(operation[0]) for operation in target ]
+        # [[1], [0, 1], [1]] => "abaa"
         operands_pattern = [ string.ascii_lowercase[int(operands)] 
             for operation in target for operands in operation[1] ]
-        angles_pattern = [  None if len(operation) == 2 else operation[-1] 
+        # operation: ["cx", [0, 1]] len = 2 => angle = ''
+        # operation: ["rx", [1], "pi/2"] len = 3 => angle = operation[-1] = pi/2
+        angles_pattern = [  '' if len(operation) == 2 else operation[-1] 
             for operation in target ]
 
         return {
@@ -108,10 +111,12 @@ class PatternMeta:
         #      cause operand a = c = 1 
         operands = set()
         operands_num = 0
+
         for k in self.books:
             if self.books[k] != -1:
                 operands.add(self.books[k])
                 operands_num += 1
+        
         # there are duplicated operands
         if len(operands) != operands_num:
             return False, None
@@ -120,10 +125,12 @@ class PatternMeta:
         angles = [ operators[positions[i]].angle for i in range(len(positions)) ]
 
         for i, angle in enumerate(angles):
-            if not angle == self.angles[0][i]:
+            if angle != self.angles[0][i]:
                 return False, None
 
-        # matched => select extra_obj to return
+        # MATCHED!
+        #   => select extra_obj to return
+        # remember the returned books should be copy object.
         if return_ == 'targets':
             extra_obj = targets
         elif return_ == 'books':

@@ -2,13 +2,13 @@ class operatorMixin:
 
     op_type_map = {
         'id': 'I',
-        
+        # control gates
         'cx': 'c',
         'cz': 'e',
 
         'tdg': 'T',
         'sdg': 'S',
-
+        # rotation gates
         'rx': 'X',
         'ry': 'Y',
         'rz': 'Z',
@@ -41,6 +41,9 @@ class operatorMixin:
 
     @classmethod
     def count_qubits(cls, op):
+        """ count the operands size of operator
+        
+        """
         # get original op_type
         if op not in cls.op_type_map:
             op = cls.convert_type(op, True)
@@ -50,6 +53,11 @@ class operatorMixin:
 
     @classmethod
     def is_rotation(cls, op):
+        """ check whether a operator is rotation gate.
+
+        if True => means that should solve the op.angle.
+        
+        """
         # get original op_type
         if op not in cls.op_type_map:
             op = cls.convert_type(op, True)

@@ -10,7 +10,7 @@ class MigrationPattern(ReductionPattern):
     """
     def __init__(self, src, dst):
         # self.src/dst = 
-        # eg. {'operaror': 'ccc', 'operands': 'abbcab', angles: [None, ...]}
+        # eg. {'operaror': 'ccc', 'operands': 'abbcab', angles: ['', ...]}
         super().__init__(src, dst)
 
     def map(self, ops):
@@ -41,7 +41,7 @@ class MigrationPattern(ReductionPattern):
         # Step 4. create and gather new(after mapping) operator and reutrn them.
         cur = 0
         results = []
-        # eg. dst_operator = 'xY', dst_operands = 'aa', dst_angles = [None, "-pi/2"]
+        # eg. dst_operator = 'xY', dst_operands = 'aa', dst_angles = ['', "-pi/2"]
         dst_operator, dst_operands = self.dst['operator'], self.dst['operands']
         dst_angles = self.dst['angles']
 
