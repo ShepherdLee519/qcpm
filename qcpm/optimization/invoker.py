@@ -12,7 +12,7 @@ class Invoker:
     """
     def __init__(self, name):
         # patterns data => self.rules
-        data = pkgutil.get_data(__package__, f'/rules/{name}.json')
+        data = pkgutil.get_data(__package__, f'/rules/IBM/{name}.json')
         self.rules = json.loads(data.decode())
 
         self.patterns = [] # should set by subclass

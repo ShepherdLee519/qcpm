@@ -13,10 +13,10 @@ class Migrater:
     """
     def __init__(self, source_type, target_type):
         # patterns data => self.rules
-        # TODO: 
         # 1. when [source_type]_to_[target_type] doesn't esist.
         # 2. if we have 'IBM_to_Surface.json', we can also load 'Surface_to_IBM'
-        #       by just shifting the src/dst in loaded self.rules
+        #       by just swapping the src/dst in loaded self.rules
+        # 
         swap = False
         try:
             path = f'/rules/{source_type}_to_{target_type}.json'
