@@ -23,6 +23,7 @@ class Circuit:
     @timerDecorator(description='Init Circuit')
     def __init__(self, path, *, optimize=True, system='IBM'):
         self.system = system
+
         self.operators = []
         self.draft = '' # solved circuit's gates string
 
@@ -184,6 +185,7 @@ class Circuit:
             migrated_operators = []
 
             for operator in migrate(self, self.system, to):
+                # cx = convert_type() => c
                 op_types.append( Operator.convert_type(operator.type) )
                 migrated_operators.append(operator)
 
@@ -192,6 +194,7 @@ class Circuit:
             self.operators = migrated_operators
             self.system = to
 
+        # default to save as qasm file.
         path = path + '.qasm' if os.path.splitext(path)[-1] == '' else path
 
         with open(path, 'w') as file:

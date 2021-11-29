@@ -17,8 +17,25 @@ class Migrater:
         # 1. when [source_type]_to_[target_type] doesn't esist.
         # 2. if we have 'IBM_to_Surface.json', we can also load 'Surface_to_IBM'
         #       by just shifting the src/dst in loaded self.rules
-        data = pkgutil.get_data(__package__, f'/rules/{source_type}_to_{target_type}.json')
+        swap = False
+        try:
+            path = f'/rules/{source_type}_to_{target_type}.json'
+            data = pkgutil.get_data(__package__, path)
+        except FileNotFoundError:
+            # For example: if we just give 'IBM_to_Surface.json'
+            # when try to load 'Surface_to_IBM.json', [FileNotFoundError] occur!
+            # 
+            # but we can change to load 'IBM_to_Surface.json'
+            # and then swap loaded data's src/dst.
+            # 
+            swap = True
+            path = f'/rules/{target_type}_to_{source_type}.json'
+            data = pkgutil.get_data(__package__, path)
+
         self.rules = json.loads(data.decode())
+        if swap:
+            self.rules = [ {'src': rule['dst'], 'dst': rule['src']} 
+                for rule in self.rules]
 
         self.patterns = [ MigrationPattern(**rule) for rule in self.rules ]
 
