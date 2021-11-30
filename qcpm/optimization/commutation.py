@@ -3,9 +3,12 @@ from collections import deque
 from qcpm.optimization.invoker import Commutator
 
 
-commutator = Commutator()
+commutators = {
+    # 'IBM': Commutator('IBM').
+    # set in commutation.
+}
 
-def commutation(operators):
+def commutation(operators, system='IBM'):
     """ Commutation Generator.
 
     apply Commutation Pattern Mapping and yield the Operator after mapping.
@@ -13,8 +16,16 @@ def commutation(operators):
     Args:
         operators: list of Operator / 
             or a generator which generates Operator thus can compose to be a pipe.
+        system: 'IBM' / 'Surface' etc.
     """
     buffer = deque()
+    # get/init Commutator by system
+    if system in commutators:
+        commutator = commutators[system]
+    else:
+        commutator = Commutator(system)
+        # memoized it
+        commutators[system] = commutator
 
     for operator in operators:
         buffer.append(operator)

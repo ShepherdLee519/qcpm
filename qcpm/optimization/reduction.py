@@ -3,10 +3,11 @@ from collections import deque
 from qcpm.optimization.invoker import Reducer
 
 
-_reductions = [
-    Reducer('reversible'),
-    Reducer('hadamard'),
-]
+_reductions = {
+   # should be set by getReductions(when first call)
+   # For example: 
+   # "IBM": [ Reducer('reversible'), Reducer('hadamard') ]   
+}
 
 ##########################
 #                        #
@@ -29,7 +30,41 @@ def getMaxRuleSize(reductions):
     
     return max(max_sizes)
 
-_rule_size_max = getMaxRuleSize(_reductions)
+# should be set by getReductions(system) like:
+# _rule_size_max = getMaxRuleSize(_reductions)
+_rule_size_max = 0
+
+def getReductions(system):
+    """ getReductions according to the system
+
+    init Reductions when first call it.
+    else return the memoized reductions by system
+
+    Args:
+        system: 'IBM' / 'Surface' etc.
+    -------
+    Returns:
+        reductions: list of Reducer
+    """
+    if system in _reductions:
+        return _reductions[system]
+
+    # each rule corresponding to a Reducer
+    reduction_rules = ['reversible', 'hadamard']
+    reductions = []
+
+    # init Reducers
+    for rule in reduction_rules:
+        reductions.append( Reducer(rule, system) )
+
+    # update global _reductions and _rule_size_max
+    _reductions[system] = reductions
+
+    global _rule_size_max
+    _rule_size_max = getMaxRuleSize(_reductions[system])
+
+    return _reductions[system]
+
 
 ###############################
 #                             #
@@ -37,7 +72,7 @@ _rule_size_max = getMaxRuleSize(_reductions)
 #                             #
 ###############################
 
-def reduction(operators):
+def reduction(operators, system='IBM'):
     """ Reduction Generator.
 
     apply Reduction Pattern Mapping and yield the Operator after mapping.
@@ -45,8 +80,10 @@ def reduction(operators):
     Args:
         operators: list of Operator / 
             or a generator which generates Operator thus can compose to be a pipe.
+        system: 'IBM' / 'Surface' etc.
     """
     buffer = deque()
+    reductions = getReductions(system)
 
     for operator in operators:
         buffer.append(operator)
@@ -60,7 +97,7 @@ def reduction(operators):
         if len(buffer) > _rule_size_max:
             yield buffer.popleft()
 
-        for reductionRule in _reductions:
+        for reductionRule in reductions:
             # remember that reduction will change buffer's size
             if len(buffer) >= reductionRule.min_size:
                 reductionRule(buffer)

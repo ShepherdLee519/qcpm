@@ -56,6 +56,7 @@ class PatternMeta:
         # [[1], [0, 1], [1]] => "abaa"
         operands_pattern = [ string.ascii_lowercase[int(operands)] 
             for operation in target for operands in operation[1] ]
+ 
         # operation: ["cx", [0, 1]] len = 2 => angle = ''
         # operation: ["rx", [1], "pi/2"] len = 3 => angle = operation[-1] = pi/2
         angles_pattern = [  '' if len(operation) == 2 else operation[-1] 

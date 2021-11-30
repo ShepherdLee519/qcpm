@@ -154,13 +154,14 @@ class Mapper:
         print(f' - depth: {circuit.origin.depth - circuit.info.depth}\n')
 
     @timerDecorator(description='Execute Mapping')
-    def execute(self, circuit, *, strategy=None, silence=False):
+    def execute(self, circuit, **kwargs):
         """ execute mapping on circuit object
 
         Args:
             circuit: A Circuit object. 
                 Recall that circuit containes [operators], and [draft].
             -------
+            kwargs:
             strategy: strategy to generate mapping plan.
                 None => exact mapping
                 'MCM' => Monte Carlo-based plan searching
@@ -171,6 +172,10 @@ class Mapper:
             changed[bool]: whether change the target circuit 
                 in this pattern mapping executation.
         """
+        # get parameters from kwargs.
+        strategy = kwargs.get('strategy', None)
+        silence = kwargs.get('silence', False)
+
         # if silence => close all output:
         stdout = sys.stdout
         if silence:

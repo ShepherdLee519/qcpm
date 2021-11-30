@@ -92,8 +92,10 @@ def _convert(source_patten, rules):
                 if ok:
                     matched_operators.append(pattern)
             
+            # matched_operators is the list of operators
+            #   => thus each elem in matched_operators is list of operator
             if len(matched_operators) == 0:
-                matched_operators.append(operator)
+                matched_operators.append([operator])
             elif target == 'dst':
                 matched_operators = matched_operators[:1]
 

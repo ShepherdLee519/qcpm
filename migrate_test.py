@@ -1,4 +1,4 @@
-from qcpm import Circuit
+# from qcpm import Circuit
 from qcpm.migration import convert
 import json
 

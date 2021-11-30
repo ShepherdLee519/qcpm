@@ -22,7 +22,7 @@ class Circuit:
     """
     @timerDecorator(description='Init Circuit')
     def __init__(self, path, *, optimize=True, system='IBM'):
-        self.system = system
+        self.system = system # may be 'IBM' / 'Surface'
 
         self.operators = []
         self.draft = '' # solved circuit's gates string
@@ -99,7 +99,7 @@ class Circuit:
         if optimizer == None:
             targets = operators
         else:
-            targets = optimizer(operators)
+            targets = optimizer(operators, self.system)
 
         # solve each operator
         for operator in targets:
