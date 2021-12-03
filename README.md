@@ -1,5 +1,40 @@
 # qcpm
 
+## 调用：
+
+1. 逐步
+   
+   + `Circuit`: 设置 `optimize=False` 则读入完全不优化的线路(默认为 True)，`system`: "IBM" 或者 "Surface"，**读入的**数据的平台信息
+   + `mapper.execute` 时候不设置 `strategy` 默认精确匹配
+   + `circuit.save`: 新加 `to` 参数指定输出平台的
+```python
+from qcpm import Mapper, Circuit
+
+# Step 1. init mapper
+mapper = Mapper()
+
+# Step 2. load and int circuit
+circuit = Circuit('data.qasm', optimize=True, system='IBM')
+
+# Step 3. execute mapping
+mapper.execute(circuit, strategy='MCM')
+
+# Step 4. save results.
+circuit.save('data_mapped.qasm', to='Surface')
+```
+
+2. `QCPM.execute` 的参数: `from`, `to` 可以是文件也可以是文件夹路径。`strategy` 默认不指定为精确匹配。`system` 可以：1. `system="IBM"` 指定一个平台格式，这时候输入输出都为同一格式，不指定默认为 "IBM"。2. `system=["IBM", "Surface"]`，列表，分别是读入格式与输出格式。
+```python
+from qcpm import QCPatternMapper
+QCPM = QCPatternMapper()
+QCPM.execute(circuit_path, './circuit_after', 
+    strategy='MCM', system=['IBM', 'Surface'])
+# QCPM.execute(circuit_path, './circuit_after', 
+#     strategy='MCM', system='IBM')
+```
+
+---
+
 ## 输入格式：
 
 + circuit data: (.qasm)

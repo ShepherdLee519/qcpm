@@ -167,8 +167,30 @@ class Pattern(PatternMeta):
     def __repr__(self):
         INDENT = ' ' * 4
 
-        return 'Pattern: ' + str(self.index + 1) + '\n' \
-            + '\n'.join([INDENT + op[0] + ' ' + str(op[1]) for op in self.data['src']]) \
-            + "\n" + INDENT + "=> \n" \
-            + ('\n'.join([INDENT + op[0] + ' ' + str(op[1]) for op in self.data['dst']]) \
-                or f'{INDENT}I')
+        info = 'Pattern: ' + str(self.index + 1) + '\n'
+
+        for i, op in enumerate(self.data['src']):
+            info += f'{INDENT}{op[0]}'
+
+            if self.angles[0][i] != '':
+                info += f'({self.angles[0][i]})'
+
+            info += ' ' + str(op[1])
+            info += '\n'
+        
+        info += INDENT + "=> \n"
+        
+        for i, op in enumerate(self.data['dst']):
+            info += INDENT
+            info += op[0]
+            
+            if self.angles[1][i] != '':
+                info += f'({self.angles[1][i]})'
+            
+            info += ' ' + str(op[1])
+            info += '\n'
+
+        if len(self.data['dst']) == 0:
+            info += f'{INDENT}I\n'
+
+        return info

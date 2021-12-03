@@ -168,23 +168,23 @@ class Circuit:
         self.draft = ''.join(op_types)
         self._info = None # reset circuitInfo
     
-    def save(self, path, to=None):
+    def save(self, path, system=None):
         """ save code of this circuit to path
 
         save self.QASM to file(given by path)
 
         Args:
             path: like ./circuit (default extension: .qasm)
-            to: target system type, default None. maybe 'IBM'/'Surface'...
+            system: target system type, default None. maybe 'IBM'/'Surface'...
         """
-        if to != None and to != self.system:
+        if system != None and system != self.system:
             # maigration self.system to [to]
             # eg. 'IBM' => 'Surface'
             # 
             op_types = []
             migrated_operators = []
 
-            for operator in migrate(self, self.system, to):
+            for operator in migrate(self, self.system, system):
                 # cx = convert_type() => c
                 op_types.append( Operator.convert_type(operator.type) )
                 migrated_operators.append(operator)
@@ -192,7 +192,7 @@ class Circuit:
             # update circuit's draft representation.
             self.draft = ''.join(op_types)
             self.operators = migrated_operators
-            self.system = to
+            self.system = system
 
         # default to save as qasm file.
         path = path + '.qasm' if os.path.splitext(path)[-1] == '' else path

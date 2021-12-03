@@ -3088,3 +3088,515 @@ Solved Circuit: xchxccccxxcccchcRhcccchRhhcccch - size: 31
 change: 19 (38.00%)
 End Timer [Execute Mapping]:  0.04387950897216797
 
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.07523393630981445
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+[40, 42]
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+[39, 41]
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+[37, 38, 39]
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+[26, 27, 31]
+----End Timer [Find Candidates]:  0.21941471099853516
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [26, 27, 31] ccc => cc, Pos: [37, 38, 39] xcx => c, Pos: [39, 41] xx => I, Pos: [40, 42] cc => I]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 1
+
+Pos: [26, 27, 31] ccc => cc
+
+Selected: Pos: [26, 27, 31] ccc => cc
+    ... cchZhchxcccxcxcxccch ... 
+target: ^^   ^              
+
+----------
+
+Expansion: Candidates size: 2
+
+Pos: [37, 38, 39] xcx => c
+Pos: [39, 41] xx => I
+
+Selected: Pos: [37, 38, 39] xcx => c
+    ... xcxcxccch ... 
+target: ^^^      
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [40, 42] cc => I
+
+Selected: Pos: [40, 42] cc => I
+    ... cxccch ... 
+target: ^ ^   
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [26, 27, 31] ccc => cc
+Pos: [37, 38, 39] xcx => c
+Pos: [40, 42] cc => I
+
+Total Saving: 8
+
+
+----End Timer [Generate Plans]:  0.001994609832763672
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [26, 27, 31] ccc => cc, Pos: [37, 38, 39] xcx => c, Pos: [40, 42] cc => I]
+Change: 3, Saving: 8
+
+Circuit before: xchxccccccccxxccchZchcxccxcchZhchxcccxcxcxccch
+---------------
+Apply:  Pos: [26, 27, 31] ccc => cc
+Apply:  Pos: [37, 38, 39] xcx => c
+Apply:  Pos: [40, 42] cc => I
+---------------
+Circuit after: xchxccccccccxxccchZchcxccxcchZhhxccccxcch
+
+----End Timer [apply mapping plan]:  0.0
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: x-cx-h-x-cx-cx-cx-cx-cx-cx-cx-cx-x-x-cx-cx-cx-h-rz-h-cx-h-cx-h-x-cx-cx-x-cx-cx-h-rz-h-cx-h-x-cx-cx-cx-cx-cx-x-cx-x-cx-x-cx-cx-cx-h 
+     => total size: [50]
+ --------------------
+ - qubits_num: 4, using gates: [h,x,cx,rz]
+ - circuit depth: 36 - (small)
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: x-cx-h-x-cx-cx-cx-cx-cx-cx-cx-cx-x-x-cx-cx-cx-h-rz-cx-h-cx-x-cx-cx-x-cx-cx-h-rz-h-h-x-cx-cx-cx-cx-x-cx-cx-h 
+     => total size: [41]
+ --------------------
+ - qubits_num: 4, using gates: [h,x,cx,rz]
+ - circuit depth: 27 - (small)
+
+Reduced: 
+ - size: 9 (18.00%)
+ - depth: 9
+
+End Timer [Execute Mapping]:  0.22140932083129883
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+[36, 38]
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+----End Timer [Find Candidates]:  0.09075760841369629
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [36, 38] cc => I]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 1
+
+Pos: [36, 38] cc => I
+
+Selected: Pos: [36, 38] cc => I
+    ... cxcch ... 
+target: ^ ^  
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [36, 38] cc => I
+
+Total Saving: 4
+
+
+----End Timer [Generate Plans]:  0.0
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [36, 38] cc => I]
+Change: 1, Saving: 4
+
+Circuit before: xchxccccccccxxccchZchcxccxcchZhhxccccxcch
+---------------
+Apply:  Pos: [36, 38] cc => I
+---------------
+Circuit after: xchxccccccccxxccchZchcxccxcchZhhxcccxch
+
+----End Timer [apply mapping plan]:  0.0
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: x-cx-h-x-cx-cx-cx-cx-cx-cx-cx-cx-x-x-cx-cx-cx-h-rz-h-cx-h-cx-h-x-cx-cx-x-cx-cx-h-rz-h-cx-h-x-cx-cx-cx-cx-cx-x-cx-x-cx-x-cx-cx-cx-h 
+     => total size: [50]
+ --------------------
+ - qubits_num: 4, using gates: [h,x,cx,rz]
+ - circuit depth: 36 - (small)
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: x-cx-h-x-cx-cx-cx-cx-cx-cx-cx-cx-x-x-cx-cx-cx-h-rz-cx-h-cx-x-cx-cx-x-cx-cx-h-rz-h-h-x-cx-cx-cx-x-cx-h 
+     => total size: [39]
+ --------------------
+ - qubits_num: 4, using gates: [h,x,cx,rz]
+ - circuit depth: 27 - (small)
+
+Reduced: 
+ - size: 11 (22.00%)
+ - depth: 9
+
+End Timer [Execute Mapping]:  0.09175491333007812
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+----End Timer [Find Candidates]:  0.1466081142425537
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+----End Timer [Generate Plans]:  0.0
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: xchxccccccccxxccchZchcxccxcchZhhxcccxch
+---------------
+---------------
+Circuit after: xchxccccccccxxccchZchcxccxcchZhhxcccxch
+
+----End Timer [apply mapping plan]:  0.0
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: x-cx-h-x-cx-cx-cx-cx-cx-cx-cx-cx-x-x-cx-cx-cx-h-rz-h-cx-h-cx-h-x-cx-cx-x-cx-cx-h-rz-h-cx-h-x-cx-cx-cx-cx-cx-x-cx-x-cx-x-cx-cx-cx-h 
+     => total size: [50]
+ --------------------
+ - qubits_num: 4, using gates: [h,x,cx,rz]
+ - circuit depth: 36 - (small)
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: x-cx-h-x-cx-cx-cx-cx-cx-cx-cx-cx-x-x-cx-cx-cx-h-rz-cx-h-cx-x-cx-cx-x-cx-cx-h-rz-h-h-x-cx-cx-cx-x-cx-h 
+     => total size: [39]
+ --------------------
+ - qubits_num: 4, using gates: [h,x,cx,rz]
+ - circuit depth: 26 - (small)
+
+Reduced: 
+ - size: 11 (22.00%)
+ - depth: 10
+
+End Timer [Execute Mapping]:  0.16851043701171875
+

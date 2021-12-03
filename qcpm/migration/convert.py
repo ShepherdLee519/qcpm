@@ -1,3 +1,5 @@
+import copy
+
 from qcpm.migration.migrate import Migrater
 
 
@@ -91,6 +93,7 @@ def _convert(source_patten, rules):
                 ok, pattern = _match(operator, rule)
                 if ok:
                     matched_operators.append(pattern)
+                    break
             
             # matched_operators is the list of operators
             #   => thus each elem in matched_operators is list of operator
@@ -176,14 +179,16 @@ def _match(operator, rule):
     # so books[0] = 2
     for (convert_to_opd, input_opd) in zip(rule['src'][0][1], operator[1]):
         books[convert_to_opd] = input_opd
-    
+
     # Step 3. change the operands in dst.
     # ------------------------------------
     # eg. "dst": [ ["x", [0]], ["y", [0]] ]
-    dst = rule['dst']
-    for operator in dst:
-        # eg. ["x", [0]]
-        for i, opd in enumerate(operator[1]):
-            operator[1][i] = books[opd]
+    dst = copy.deepcopy(rule['dst'])
 
-    return True, dst
+    for i in range(len(dst)):
+        # eg. ["x", [0]]
+        # for i, opd in enumerate(operator[1]):
+        #     operator[1][i] = books[opd]
+        dst[i][1] = [ books[opd] for opd in dst[i][1] ]
+    
+    return True, dst[:]

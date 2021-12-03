@@ -778,3 +778,157 @@ Solved Circuit: cxhcch - size: 6
 change: 0 (0.00%)
 End Timer [Execute Mapping]:  0.0010001659393310547
 
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.018947839736938477
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+----End Timer [Find Candidates]:  0.000997304916381836
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+----End Timer [Generate Plans]:  0.0
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: cxhcch
+---------------
+---------------
+Circuit after: cxhcch
+
+----End Timer [apply mapping plan]:  0.0
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: cx-x-h-cx-cx-h 
+     => total size: [6]
+ --------------------
+ - qubits_num: 4, using gates: [h,x,cx]
+ - circuit depth: 2 - (small)
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: cx-x-h-cx-cx-h 
+     => total size: [6]
+ --------------------
+ - qubits_num: 4, using gates: [h,x,cx]
+ - circuit depth: 2 - (small)
+
+Reduced: 
+ - size: 0 (0.00%)
+ - depth: 0
+
+End Timer [Execute Mapping]:  0.000997304916381836
+

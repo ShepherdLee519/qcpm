@@ -85,24 +85,25 @@ class Candidate:
         # example 1:
         # --------------------
         # self.pos: eg. [1, 6]
-        # self.pattern.src: eg. {'operator': 'cc', 'operands': 'abab'}
-        # self.pattern.dst: eg. {'operator': '', 'operands': ''}
+        # self.pattern.src: eg. {'operator': 'cc', 'operands': 'abab', 'angles': ['', '']}
+        # self.pattern.dst: eg. {'operator': '', 'operands': '', 'angles': ['', '']}
         # 
         # example 2:
         # --------------------
         # self.pos: eg. [1, 4]
-        # self.pattern.src: eg. {'operator': 'cc', 'operands': 'abbc'}
-        # self.pattern.dst: eg. {'operator': 'c', 'operands': 'ac'}
+        # self.pattern.src: eg. {'operator': 'cc', 'operands': 'abbc', 'angles': ['', '']}
+        # self.pattern.dst: eg. {'operator': 'c', 'operands': 'ac', 'angles': ['', '']}
         #
         _, books = self.pattern.match(circuit, self.pos, return_='books')
 
         cur = 0
         ops_from, ops_to = self.pattern.opr
         operands_to = self.pattern.dst['operands']
+        angles_to = self.pattern.angles[1]
 
         print('Apply: ', self.__repr__())
 
-        for i, (op_from, op_to) in enumerate(zip_longest(ops_from, ops_to)):
+        for i, (op_from, op_to, angle_to) in enumerate(zip_longest(ops_from, ops_to, angles_to)):
             # eg. h => 1, c => 2 ...
             size = Operator.count_qubits(op_to)
             # eg. 'ab' => [1, 4]
@@ -115,7 +116,8 @@ class Candidate:
             # apply => change this operator in circuit.
             circuit[self.pos[i]].change(
                 op_to, # new operator
-                operands
+                operands,
+                angle_to
             )
 
             cur += size

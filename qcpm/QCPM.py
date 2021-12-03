@@ -80,6 +80,7 @@ class QCPatternMapper:
         # else execute mapping on target circuit
         # first => get needed parameters from kwargs
         system = kwargs.get('system', 'IBM')
+        strategy = kwargs.get('strategy', None)
 
         if isinstance(system, list):
             # eg. system = ["IBM", "Surface"]
@@ -100,17 +101,19 @@ class QCPatternMapper:
             turn = 1
             # first turn should initial circuit(default call optimization.)
             circuit = Circuit(input_path, system=system_input)
-            changed = self.mapper.execute(circuit, **kwargs)
+            changed = self.mapper.execute(circuit, 
+                system=system_input, strategy=strategy)
 
             while changed and turn < LIMIT:
                 circuit.optimize()
-                changed = self.mapper.execute(circuit, **kwargs)
+                changed = self.mapper.execute(circuit,
+                    system=system_input, strategy=strategy)
 
                 turn += 1
 
             if output_path != '':
                 # save qasm file (after mapping)
-                circuit.save(output_path, to=system_output)
+                circuit.save(output_path, system=system_output)
 
             if kwargs.get('silence', False):
                 self.mapper.result(circuit)

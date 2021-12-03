@@ -1,15 +1,7 @@
 from qcpm import Mapper, Circuit, QCPatternMapper
 from qcpm.circuit.info import CircuitInfo
 
-# pattern_path = './data/pattern.json'
-# pattern_path = './data/pattern_subtitute.json'
-
 # circuit_path = './data/example'
-# circuit_path = './data/example_reduction'
-# circuit_path = './data/example_reduction_3'
-# circuit_path = './data/example_reduction_4'
-# circuit_path = './data/example_rz'
-# circuit_path = './data/example_substitute'
 # circuit_path = './BIGD/20QBT_45CYC_.7D1_.1D2_9.qasm' # 600
 # circuit_path = './BIGD/20QBT_45CYC_.2D1_.4D2_4.qasm' # 300
 # circuit_path = './BIGD/20QBT_45CYC_.2D1_.1D2_7.qasm' # 200
@@ -17,37 +9,40 @@ from qcpm.circuit.info import CircuitInfo
 circuit_path = './data/test'
 # circuit_path = './data/test_surface'
 
-mapper = Mapper()
-circuit = Circuit(circuit_path)
-# circuit = Circuit(circuit_path, system='Surface', optimize=True)
+
+# Step 1. init mapper: eg. mapper = Mapper()
+# Step 2. load and init Circuit: eg. circuit = Circuit(path)
+# Step 3. execute map on circuit: mapper.execute(circuit)
+# Step 4. save results to qasm file: cricuit.save(save_path)
+# 
+# mapper = Mapper()
+"""
+    params:
+        - optimize: Whether to optimize, default: True
+        - system: input format, "IBM" or "Surface"
+"""
+# circuit = Circuit(circuit_path)
+# circuit = Circuit(circuit_path, system='Surface')
 # circuit = Circuit(circuit_path, optimize=False)
-# circuit.optimize()
 
 # mapper.execute(circuit)
-mapper.execute(circuit, strategy='MCM')
-# print(circuit.info)
-# print(CircuitInfo.compute_depth(circuit, detail=True))
-# circuit.save('./circuit_after')
-circuit.save('./circuit_after', to='Surface')
-# circuit.save('./circuit_after', to='IBM')
+# mapper.execute(circuit, strategy='MCM')
 
-# circuit.save('./circuit_after_surface', to='Surface')
+# circuit.save('./circuit_after')
+# circuit.save('./circuit_after', system='Surface')
 
 
 
 # QCPM = QCPatternMapper(log='./log.txt')
-# QCPM = QCPatternMapper()
+QCPM = QCPatternMapper()
 
 # solve single qasm file
 # QCPM.execute(circuit_path, './circuit_after')
-# QCPM.execute(circuit_path, './circuit_after', silence=True)
-# QCPM.execute(circuit_path, strategy='MCM')
-# QCPM.execute(circuit_path)
-# QCPM.execute(circuit_path, './circuit_after', 
-#     strategy='MCM', system=['Surface', 'IBM'])
+QCPM.execute(circuit_path, './circuit_after', 
+    strategy='MCM', system=['IBM', 'Surface'])
 # QCPM.execute(circuit_path, './circuit_after', 
 #     strategy='MCM', system='Surface')
 
 # input_dir / output_dir
-# QCPM.execute('./data/', './output/', strategy='MCM')
+# QCPM.execute('./data/', './output/', strategy='MCM', system='IBM')
 # QCPM.execute('./BIGD/', './BIGD_output', strategy='MCM')

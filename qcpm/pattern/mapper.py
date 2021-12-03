@@ -39,39 +39,39 @@ class Mapper:
             which [circuit] is a Circuit object.
     """
     @timerDecorator(description='Init Mapper')
-    def __init__(self, path=None):
-        self.patterns = [] # contains Pattern object.
-        self._init_patterns(path)
+    def __init__(self):
+        self.patterns = {} # contains Pattern object.
+        self._init_patterns()
 
         # dynamically set when [execute()] call.
         self.circuit = None # should be Circuit object
         self._candidates = [] # contains temp Candidates (Candidate object)
         self.plans = [] # candidates mapping plan (Plan object)
         
-    def _init_patterns(self, path):
+    def _init_patterns(self):
         """ load pattern file and initiate
 
         load pattern json file and init self.patterns
+        will load all system's pattern info in advance.
 
-        Args:
-            path: should be path about pattern file(json file).
-                => while path is None, using ./rules/pattern.json
         """
-        if path == None:
-            data = pkgutil.get_data(__package__, '/rules/pattern.json')
-            patterns_data = json.loads(data.decode())
-        else:
-            with open(path, 'r') as file:
-                patterns_data = json.load(file)
+        systems = ['IBM', 'Surface']
+        self.patterns = {} # reset to empty
 
-        # pattern: 
-        # {
-        #     "src": [ ["x", [1]], ["cx", [0, 1]], ["x", [1]] ],
-        #     "dst": [ ["cx", [0, 1]] ]
-        # }
-        for pattern in patterns_data:
-            # Pattern(src, dst)
-            self.patterns.append( Pattern(**pattern) )
+        for system in systems:
+            data = pkgutil.get_data(__package__, f'/rules/{system}/pattern.json')
+            patterns_data = json.loads(data.decode())
+
+            self.patterns[system] = []
+
+            # pattern: 
+            # {
+            #     "src": [ ["x", [1]], ["cx", [0, 1]], ["x", [1]] ],
+            #     "dst": [ ["cx", [0, 1]] ]
+            # }
+            for pattern in patterns_data:
+                # Pattern(src, dst)
+                self.patterns[system].append( Pattern(**pattern) )
 
     def _validate(self, pattern):
         """ Return a a validater function
@@ -175,6 +175,7 @@ class Mapper:
         # get parameters from kwargs.
         strategy = kwargs.get('strategy', None)
         silence = kwargs.get('silence', False)
+        system = kwargs.get('system', 'IBM')
 
         # if silence => close all output:
         stdout = sys.stdout
@@ -190,7 +191,7 @@ class Mapper:
         # 1. collect possible candidates
         print('\n' + title('Pattern & Candidates'))
         with Timer('Find Candidates'):
-            for i, pattern in enumerate(self.patterns):
+            for i, pattern in enumerate(self.patterns[system]):
                 print('\n' + '-' * 12 + f" {i + 1} " + '-' * 12)
                 print(pattern)
 
