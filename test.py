@@ -6,9 +6,9 @@ from qcpm.circuit.info import CircuitInfo
 # circuit_path = './BIGD/20QBT_45CYC_.2D1_.4D2_4.qasm' # 300
 # circuit_path = './BIGD/20QBT_45CYC_.2D1_.1D2_7.qasm' # 200
 # circuit_path = './BIGD/20QBT_45CYC_.0D1_.2D2_0.qasm' # 100
-circuit_path = './data/test'
-# circuit_path = './data/test_surface'
-
+# circuit_path = './data/test'
+circuit_path = './data/test_surface'
+# circuit_path = './depth_data/large_1.qasm'
 
 # Step 1. init mapper: eg. mapper = Mapper()
 # Step 2. load and init Circuit: eg. circuit = Circuit(path)
@@ -38,8 +38,8 @@ QCPM = QCPatternMapper()
 
 # solve single qasm file
 # QCPM.execute(circuit_path, './circuit_after')
-QCPM.execute(circuit_path, './circuit_after', 
-    strategy='MCM', system=['IBM', 'Surface'])
+# QCPM.execute(circuit_path, './circuit_after', 
+#     strategy='MCM', system=['IBM', 'Surface'])
 # QCPM.execute(circuit_path, './circuit_after', 
 #     strategy='MCM', system=['Surface', 'IBM'])
 # QCPM.execute(circuit_path, './circuit_after', 
@@ -50,3 +50,13 @@ QCPM.execute(circuit_path, './circuit_after',
 # input_dir / output_dir
 # QCPM.execute('./data/', './output/', strategy='MCM', system='IBM')
 # QCPM.execute('./BIGD/', './BIGD_output', strategy='MCM')
+
+config = {
+    # 'log': 'log.txt', # for single file
+    # 'logs': './logs/', # for files
+    'strategy': 'MCM',
+    'system': 'IBM', # ['IBM', 'Surface]
+    'depth_size': 'medium' # default all
+}
+
+QCPM.execute('./depth_data/', './depth_data_output/', **config)

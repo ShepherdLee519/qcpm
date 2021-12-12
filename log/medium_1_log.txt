@@ -1,0 +1,320 @@
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.19846844673156738
+
+depth size: medium, ignore.
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+----End Timer [Find Candidates]:  0.5505630970001221
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+----End Timer [Generate Plans]:  0.0
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: xcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshc
+---------------
+---------------
+Circuit after: xcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshc
+
+----End Timer [apply mapping plan]:  0.0
+
+End Timer [Execute Mapping]:  0.5505630970001221
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx 
+     => total size: [300] (IBM)
+ --------------------
+ - qubits_num: 7, using gates: [x,sdg,t,s,cx,y,h]
+ - circuit depth: 299 - (medium)
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx 
+     => total size: [300] (IBM)
+ --------------------
+ - qubits_num: 7, using gates: [x,sdg,t,s,cx,y,h]
+ - circuit depth: 299 - (medium)
+
+Reduced: 
+ - size: 0 (0.00%)
+ - depth: 0
+
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.16655349731445312
+
+depth size: medium, ignore.
+looooooooooooooooooooooook
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.27526426315307617
+
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.13068389892578125
+
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.16256499290466309
+
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+----End Timer [Find Candidates]:  0.5974013805389404
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+----End Timer [Generate Plans]:  0.0
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: xcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshc
+---------------
+---------------
+Circuit after: xcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshc
+
+----End Timer [apply mapping plan]:  0.0
+
+End Timer [Execute Mapping]:  0.5983989238739014
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx 
+     => total size: [300] (IBM)
+ --------------------
+ - qubits_num: 7, using gates: [t,s,cx,x,sdg,h,y]
+ - circuit depth: 299 - (medium)
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx 
+     => total size: [300] (IBM)
+ --------------------
+ - qubits_num: 7, using gates: [t,s,cx,x,sdg,h,y]
+ - circuit depth: 299 - (medium)
+
+Reduced: 
+ - size: 0 (0.00%)
+ - depth: 0
+

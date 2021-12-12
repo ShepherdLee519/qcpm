@@ -188,9 +188,7 @@ class Circuit:
         """ show final result of circuit
 
         called when saving the final circuit
-
-        Args:
-            circuit: Circuit object which is the mapping target.
+        
         """
         size_origin, size_after = self.origin.size, len(self.draft)
 

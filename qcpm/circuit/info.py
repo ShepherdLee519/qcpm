@@ -26,6 +26,7 @@ class CircuitInfo:
         #   => depth_detail = [20, 22] => depth = max(..) = 22
         self.depth_detail = self.compute_depth(operators, detail=True)[:self.qubits_num]
         self.depth = max(self.depth_detail)
+        self.depth_size = self.evaluate_depth(self.depth)
         
     def _solve(self, operators):
         """ Solve operators to init circuitInfo
@@ -69,7 +70,7 @@ class CircuitInfo:
         Returns:
             max depth of each layers.
         """
-        MAX_QUBITS = 25
+        MAX_QUBITS = 64
 
         last_layer = [-1] * MAX_QUBITS
 
@@ -142,6 +143,6 @@ class CircuitInfo:
         info += f' - circuit: {self.circuit} \n     => total size: [{self.size}] ({self.system})\n'
         info += ' ' + '-' * 20 + '\n'
         info += f' - qubits_num: {self.qubits_num}, using gates: [{",".join(self.gates_group)}]\n'
-        info += f' - circuit depth: {self.depth} - ({self.evaluate_depth(self.depth)})\n'
+        info += f' - circuit depth: {self.depth} - ({self.depth_size})\n'
 
         return info

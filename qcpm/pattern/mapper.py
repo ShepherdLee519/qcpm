@@ -135,24 +135,6 @@ class Mapper:
 
             print(position)
 
-    def result(self, circuit):
-        """ show final result of mapping
-
-        Args:
-            circuit: Circuit object which is the mapping target.
-        """
-        size_origin, size_after = circuit.origin.size, len(circuit.draft)
-
-        print('-' * 15)
-        print('>> Origin circuit: ')
-        print(circuit.origin)
-        print('\n>> Solved circuit: ')
-        print(circuit.info)
-
-        print(f'Reduced: \n - size: {size_origin - size_after}', 
-            f'({(size_origin - size_after) / size_origin * 100:.2f}%)')
-        print(f' - depth: {circuit.origin.depth - circuit.info.depth}\n')
-
     @timerDecorator(description='Execute Mapping')
     def execute(self, circuit, **kwargs):
         """ execute mapping on circuit object
@@ -221,9 +203,8 @@ class Mapper:
         else:
             print("There's no mapping plan.")
 
-        # 4. show the result.
+        # 4. judge whether changed
         changed = size_before != len(circuit.draft)
-        # self.result(circuit)
 
         # recover sys.stdout if silence
         if silence:

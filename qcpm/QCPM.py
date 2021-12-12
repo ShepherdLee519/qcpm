@@ -30,6 +30,12 @@ def logging(log_path, mode='a'):
         
         sys.stdout = stdout
 
+class DepthSizeError(ValueError):
+    """ when solving qasm file's depth size(small/medium/large)
+        dismatch the expected depth size, this error will occur.
+    """
+    pass
+
 
 ############################
 #                          #
@@ -79,6 +85,7 @@ class QCPatternMapper:
 
         # else execute mapping on target circuit
         # first => get needed parameters from kwargs
+        depth_size = kwargs.get('depth_size', 'all') # small/medium/large
         system = kwargs.get('system', 'IBM')
         strategy = kwargs.get('strategy', None)
 
@@ -101,6 +108,12 @@ class QCPatternMapper:
             turn = 1
             # first turn should initial circuit(default call optimization.)
             circuit = Circuit(input_path, system=system_input)
+
+            # after loading circuir, check the depth size
+            circuit_depth_size = circuit.origin.depth_size
+            if depth_size != 'all' and circuit_depth_size != depth_size:
+                raise DepthSizeError(circuit_depth_size)
+            
             changed = self.mapper.execute(circuit, 
                 system=system_input, strategy=strategy)
 
@@ -116,7 +129,7 @@ class QCPatternMapper:
                 circuit.save(output_path, system=system_output)
 
             if kwargs.get('silence', False):
-                self.mapper.result(circuit)
+                circuit.result()
 
     def _executeDir(self, input_dir, output_dir, **kwargs):
         """ execute when call batch work form dir to dir.
@@ -140,12 +153,16 @@ class QCPatternMapper:
             # default log file will be ./log/example_log.txt
             self.log = f'{self.logs}{filename}_log.txt'
             
-            # call self.execute to solve single file.
-            self.execute(
-                os.path.join(input_dir, f'{filename}.qasm'),
-                os.path.join(output_dir, f'{output_name}.qasm'),
-                **kwargs
-            )
+            try:
+                # call self.execute to solve single file.
+                self.execute(
+                    os.path.join(input_dir, f'{filename}.qasm'),
+                    os.path.join(output_dir, f'{output_name}.qasm'),
+                    **kwargs
+                )
 
-            print(f'-- finished! output: <{output_dir}{output_name}>.')
-            print(f'---- log file in [{self.log}].\n')
+                print(f'-- finished! output: <{output_dir}{output_name}>.')
+                print(f'---- log file in [{self.log}].\n')
+
+            except DepthSizeError as e:
+                print(f'-- depth size: [{e}] IGNORE it.\n')

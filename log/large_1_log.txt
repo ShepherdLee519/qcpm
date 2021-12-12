@@ -1,0 +1,172 @@
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.6113650798797607
+
+depth size: large, ignore.
+Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+----Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+----End Timer [Find Candidates]:  3.170525550842285
+
+----Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+----End Timer [Generate Plans]:  0.0
+
+----Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: xcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshc
+---------------
+---------------
+Circuit after: xcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshcxcxschchychxychxyScxtSshc
+
+----End Timer [apply mapping plan]:  0.0010323524475097656
+
+End Timer [Execute Mapping]:  3.171557903289795
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-sdg-t-s-h-cx 
+     => total size: [1066] (IBM)
+ --------------------
+ - qubits_num: 7, using gates: [x,sdg,t,s,cx,y,h]
+ - circuit depth: 1058 - (large)
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx-x-cx-x-s-cx-h-cx-h-y-cx-h-x-y-cx-h-x-y-sdg-cx-x-t-sdg-s-h-cx 
+     => total size: [1066] (IBM)
+ --------------------
+ - qubits_num: 7, using gates: [x,sdg,t,s,cx,y,h]
+ - circuit depth: 1058 - (large)
+
+Reduced: 
+ - size: 0 (0.00%)
+ - depth: 0
+
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.5136256217956543
+
+depth size: large, ignore.
+looooooooooooooooooooooook
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.5475361347198486
+
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.6901535987854004
+
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.47074007987976074
+
+Start Timer: [Init Circuit]
+End Timer [Init Circuit]:  0.5934114456176758
+
