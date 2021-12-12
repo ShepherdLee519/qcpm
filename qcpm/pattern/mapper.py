@@ -1,3 +1,4 @@
+from copy import Error
 import sys
 import json
 import pkgutil
@@ -147,6 +148,8 @@ class Mapper:
             strategy: strategy to generate mapping plan.
                 None => exact mapping
                 'MCM' => Monte Carlo-based plan searching
+            metric: cycle / depth used to calculate value of candidate.
+                default [cycle]
             silence: whether print log info. 
                 True => do not print (default False: print)
         -------
@@ -158,6 +161,7 @@ class Mapper:
         strategy = kwargs.get('strategy', None)
         silence = kwargs.get('silence', False)
         system = kwargs.get('system', 'IBM')
+        self.metric = kwargs.get('metric', 'cycle')
 
         # if silence => close all output:
         stdout = sys.stdout
@@ -190,7 +194,7 @@ class Mapper:
 
             # should return a Plans object
             if strategy == 'MCM':
-                self.plans = SearchPlan(circuit, self._candidates)()
+                self.plans = SearchPlan(circuit, self._candidates, self.metric)()
             else:
                 self.plans = filterCandidates(self._candidates)
         
@@ -211,3 +215,27 @@ class Mapper:
             sys.stdout = stdout
 
         return changed
+
+    def result(self):
+        """ show final result of circuit
+
+        called when saving the final circuit
+        
+        """
+        size_origin, size_after = self.circuit.origin.size, len(self.circuit.draft)
+
+        print('-' * 15)
+        print('>> Origin circuit: ')
+        print(self.circuit.origin)
+        print('\n>> Solved circuit: ')
+        print(self.circuit.info)
+
+        print(f'Reduced: \n - size: {size_origin - size_after}', 
+            f'({(size_origin - size_after) / size_origin * 100:.2f}%)')
+        
+        if self.metric == 'cycle':
+            print(f' - cycle: {self.circuit.origin.cycle - self.circuit.info.cycle}',
+                f'({(self.circuit.origin.cycle - self.circuit.info.cycle) / self.circuit.origin.cycle * 100:.2f}%)\n')
+        elif self.metric == 'depth':
+            print(f' - depth: {self.circuit.origin.depth - self.circuit.info.depth}',
+                f'({(self.circuit.origin.depth - self.circuit.info.depth) / self.circuit.origin.depth * 100:.2f}%)\n')

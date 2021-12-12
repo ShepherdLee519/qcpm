@@ -1,6 +1,5 @@
 from qcpm.operator import Operator
 
-
 class CircuitInfo:
     """ represent Circuit's detail info
 
@@ -27,6 +26,8 @@ class CircuitInfo:
         self.depth_detail = self.compute_depth(operators, detail=True)[:self.qubits_num]
         self.depth = max(self.depth_detail)
         self.depth_size = self.evaluate_depth(self.depth)
+
+        self.cycle = sum(map(Operator.count_qubits, [op.type for op in operators]))
         
     def _solve(self, operators):
         """ Solve operators to init circuitInfo
@@ -144,5 +145,6 @@ class CircuitInfo:
         info += ' ' + '-' * 20 + '\n'
         info += f' - qubits_num: {self.qubits_num}, using gates: [{",".join(self.gates_group)}]\n'
         info += f' - circuit depth: {self.depth} - ({self.depth_size})\n'
+        info += f' - circuit cycle: {self.cycle}\n'
 
         return info

@@ -1,4 +1,5 @@
 from itertools import zip_longest
+from copy import Error, copy, deepcopy
 
 from qcpm.operator import Operator
 class Candidate:
@@ -65,16 +66,52 @@ class Candidate:
             # int positions list / set
             return len(set(self.pos) & set(other)) != 0
 
+    def delta(self, metric, circuit=None):
+        if metric == 'cycle':
+            return self.delta_cycle
+        elif metric == 'depth':
+            return self.delta_depth(circuit)
+
     @property
-    def delta(self):
+    def delta_cycle(self):
         """ calculate cost saving.
 
         calculate delta cost-saving after using this candidate
 
         """
-        return self.pattern.delta
+        return self.pattern.delta_cycle
     
-    def apply(self, circuit):
+    def delta_depth(self, circuit):
+        """ calculate the delta depth after apply this candidate in a sub circuit.
+
+        """
+        # sub size before and after circuit
+        SUB_SIZE = 20
+
+        # cut sub-circuit
+        sub_circuit = copy(circuit)
+        sub_begin = self.begin - SUB_SIZE if self.begin - SUB_SIZE>= 0 else 0
+        sub_end = self.end + SUB_SIZE if self.end + SUB_SIZE < len(circuit) else len(circuit) - 1
+        sub_circuit.operators = deepcopy(circuit[sub_begin:sub_end + 1])
+
+        # adjust the candidate's position according to the new beginning of subcircuit
+        self.begin -= sub_begin
+        self.end -= sub_begin
+        self.pos = [p - sub_begin for p in self.pos]
+
+        # apply this candidate on subcircuit to calculate delta of depth
+        depth_before = sub_circuit.depth
+        self.apply(sub_circuit, silence=True)
+        depth_after = sub_circuit.depth
+
+        # ! recover the origin positions
+        self.begin += sub_begin
+        self.end += sub_begin
+        self.pos = [p + sub_begin for p in self.pos]
+
+        return depth_after - depth_before
+
+    def apply(self, circuit, silence=False):
         """ apply this candidated-mapping in the Circuit.
 
         called by Mapper.execute => Plans.apply
@@ -101,7 +138,7 @@ class Candidate:
         operands_to = self.pattern.dst['operands']
         angles_to = self.pattern.angles[1]
 
-        print('Apply: ', self.__repr__())
+        silence or print('Apply: ', self.__repr__())
 
         for i, (op_from, op_to, angle_to) in enumerate(zip_longest(ops_from, ops_to, angles_to)):
             # eg. h => 1, c => 2 ...

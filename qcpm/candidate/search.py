@@ -1,4 +1,5 @@
-from qcpm.candidate.candidate import Candidate
+import random
+
 from qcpm.candidate.simulation import Simulation
 from qcpm.candidate.plan import Plan, Plans
 
@@ -130,7 +131,7 @@ class SearchPlan:
     SIMULATION_SIZE = 10
     SIMULATION_TIMES = 10
 
-    def __init__(self, circuit, candidates):
+    def __init__(self, circuit, candidates, metric):
         """
         Args:
             circuit: Circuit object.
@@ -140,9 +141,11 @@ class SearchPlan:
                     =>
                 pos: eg. [1, 4]
                 pattern: eg. pattern.src/dst => {'operator': 'xx', 'operands': 'aa'}
+            metric: cycle or depth which used to calculate value of candidate.
         """
         self.circuit = circuit
         self.candidates = candidates
+        self.metric = metric
 
         self.log = logger(self)
 
@@ -192,7 +195,7 @@ class SearchPlan:
         Returns:
             values: list of int value
         """
-        return [ Simulation(self)(candidate) + candidate.delta 
+        return [ Simulation(self)(candidate) + candidate.delta(self.metric, self.circuit) 
                     for candidate in candidates ]
     
     def reset(self):
@@ -234,7 +237,10 @@ class SearchPlan:
             else:
                 values = self.simulation(targets)
                 # choose the target with max value
-                target = targets[ values.index(max(values)) ]
+                max_value = max(values)
+                max_values = list(filter(lambda x:x == max_value, values))
+                max_index = random.randint(0, len(max_values) - 1)
+                target = targets[max_index]
             self.pos = target.begin
             
             self.log('selected')(target)
@@ -243,7 +249,7 @@ class SearchPlan:
             ## append selected candidate to self.selected
             ## real call will delay to self.plans.best().apply(circuit) in mapper
             self.selected.append(target)
-            self.saving += target.delta
+            self.saving += target.delta(self.metric, self.circuit)
             self.pos = target.end + 1
 
             # Step 4. filter candidates that guarantee 

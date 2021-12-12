@@ -153,7 +153,7 @@ class Pattern(PatternMeta):
         self.index = index
     
     @property
-    def delta(self):
+    def delta_cycle(self):
         """ calculate cost saving.
 
         calculate delta cost-saving after using this pattern

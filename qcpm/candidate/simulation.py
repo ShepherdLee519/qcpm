@@ -90,7 +90,7 @@ class Simulation:
 
             # list of candidate that already choose to apply.
             applied = [ candidate ]
-            value = candidate.delta
+            value = candidate.delta(self.searcher.metric, self.searcher.circuit)
 
             # filter that guarantee there is no conflict with current candidate
             targets = list(filter(lambda c: not (c & applied), targets))
@@ -106,8 +106,8 @@ class Simulation:
                 targets.remove(selected)
 
                 applied.append(selected)
-                value += selected.delta
-
+                value += selected.delta(self.searcher.metric, self.searcher.circuit)
+                
                 # Step 3. update candidates that guarantee that selected one 
                 # will not be conflict with candidates in [candidates].  
                 targets = list(filter(lambda c: not (c & applied), targets))

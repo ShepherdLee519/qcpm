@@ -33,6 +33,7 @@ def logging(log_path, mode='a'):
 class DepthSizeError(ValueError):
     """ when solving qasm file's depth size(small/medium/large)
         dismatch the expected depth size, this error will occur.
+    
     """
     pass
 
@@ -88,6 +89,7 @@ class QCPatternMapper:
         depth_size = kwargs.get('depth_size', 'all') # small/medium/large
         system = kwargs.get('system', 'IBM')
         strategy = kwargs.get('strategy', None)
+        metric = kwargs.get('metric', 'cycle')
 
         if isinstance(system, list):
             # eg. system = ["IBM", "Surface"]
@@ -115,21 +117,20 @@ class QCPatternMapper:
                 raise DepthSizeError(circuit_depth_size)
             
             changed = self.mapper.execute(circuit, 
-                system=system_input, strategy=strategy)
+                system=system_input, strategy=strategy, metric=metric)
 
             while changed and turn < LIMIT:
                 circuit.optimize()
                 changed = self.mapper.execute(circuit,
-                    system=system_input, strategy=strategy)
+                    system=system_input, strategy=strategy, metric=metric)
 
                 turn += 1
 
             if output_path != '':
                 # save qasm file (after mapping)
                 circuit.save(output_path, system=system_output)
-
-            if kwargs.get('silence', False):
-                circuit.result()
+            
+            self.mapper.result()
 
     def _executeDir(self, input_dir, output_dir, **kwargs):
         """ execute when call batch work form dir to dir.

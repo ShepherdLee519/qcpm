@@ -183,24 +183,6 @@ class Circuit:
         # update circuit's draft representation.
         self.draft = ''.join(op_types)
         self._info = None # reset circuitInfo
-
-    def result(self):
-        """ show final result of circuit
-
-        called when saving the final circuit
-        
-        """
-        size_origin, size_after = self.origin.size, len(self.draft)
-
-        print('-' * 15)
-        print('>> Origin circuit: ')
-        print(self.origin)
-        print('\n>> Solved circuit: ')
-        print(self.info)
-
-        print(f'Reduced: \n - size: {size_origin - size_after}', 
-            f'({(size_origin - size_after) / size_origin * 100:.2f}%)')
-        print(f' - depth: {self.origin.depth - self.info.depth}\n')
     
     def save(self, path, system=None):
         """ save code of this circuit to path
@@ -234,13 +216,15 @@ class Circuit:
         with open(path, 'w') as file:
             file.write(self.QASM)
 
-        self.result()
-    
     ######################
     #                    #
     #     Properties     #
     #                    #
     ######################
+
+    @property
+    def cycle(self):
+        return sum(map(Operator.count_qubits, [op.type for op in self.operators]))
 
     @property
     def depth(self):
