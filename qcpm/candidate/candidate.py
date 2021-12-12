@@ -79,12 +79,18 @@ class Candidate:
         calculate delta cost-saving after using this candidate
 
         """
-        return self.pattern.delta_cycle
+        if '_cycle' not in self.__dict__:
+            self._cycle = self.pattern.delta_cycle
+
+        return self._cycle
     
     def delta_depth(self, circuit):
         """ calculate the delta depth after apply this candidate in a sub circuit.
 
         """
+        if '_depth' in self.__dict__:
+            return self._depth
+
         # sub size before and after circuit
         SUB_SIZE = 20
 
@@ -109,7 +115,8 @@ class Candidate:
         self.end += sub_begin
         self.pos = [p + sub_begin for p in self.pos]
 
-        return depth_after - depth_before
+        self._depth = depth_after - depth_before + 1
+        return self._depth
 
     def apply(self, circuit, silence=False):
         """ apply this candidated-mapping in the Circuit.

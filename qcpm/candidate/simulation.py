@@ -98,7 +98,7 @@ class Simulation:
             # start simulation
             while len(targets) != 0:
                 # Step 1. calculate probabilities acoording to saving of each candidate
-                probs = [ t.delta for t in targets ]
+                probs = [ t.delta(self.searcher.metric, self.searcher.circuit) for t in targets ]
                 probs = np.array(probs) / sum(probs)
 
                 # Step 2. sample a candidate
