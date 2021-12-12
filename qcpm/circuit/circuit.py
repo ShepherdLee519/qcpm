@@ -61,7 +61,23 @@ class Circuit:
             optimize or op_types.append( Operator.convert_type(operator.type) )
         
         # keep the origin ciruit's info object
-        self.origin = CircuitInfo(operators)
+        self.origin = CircuitInfo(operators, self.system)
+
+        # if system type is not IBM => migrate right now
+        if self.system != 'IBM':
+            # maigration self.system to [IBM]
+            # eg. 'Surface' => 'IBM'
+            # 
+            op_types = []
+            migrated_operators = []
+
+            for operator in migrate(operators, self.system, 'IBM'):
+                # cx = convert_type() => c
+                op_types.append( Operator.convert_type(operator.type) )
+                migrated_operators.append(operator)
+
+            operators = migrated_operators
+            self.system = 'IBM'
 
         if optimize:
             # optimize will save the self.operators and self.draft
@@ -167,6 +183,26 @@ class Circuit:
         # update circuit's draft representation.
         self.draft = ''.join(op_types)
         self._info = None # reset circuitInfo
+
+    def result(self):
+        """ show final result of circuit
+
+        called when saving the final circuit
+
+        Args:
+            circuit: Circuit object which is the mapping target.
+        """
+        size_origin, size_after = self.origin.size, len(self.draft)
+
+        print('-' * 15)
+        print('>> Origin circuit: ')
+        print(self.origin)
+        print('\n>> Solved circuit: ')
+        print(self.info)
+
+        print(f'Reduced: \n - size: {size_origin - size_after}', 
+            f'({(size_origin - size_after) / size_origin * 100:.2f}%)')
+        print(f' - depth: {self.origin.depth - self.info.depth}\n')
     
     def save(self, path, system=None):
         """ save code of this circuit to path
@@ -199,6 +235,8 @@ class Circuit:
 
         with open(path, 'w') as file:
             file.write(self.QASM)
+
+        self.result()
     
     ######################
     #                    #
@@ -224,7 +262,7 @@ class Circuit:
                 there's thus no need to re-call CircuitInfo() but return stored object. 
         """
         if '_info' not in self.__dict__ or self._info == None:
-            self._info = CircuitInfo(self)
+            self._info = CircuitInfo(self, self.system)
         
         return self._info
 

@@ -41,7 +41,11 @@ QCPM = QCPatternMapper()
 QCPM.execute(circuit_path, './circuit_after', 
     strategy='MCM', system=['IBM', 'Surface'])
 # QCPM.execute(circuit_path, './circuit_after', 
+#     strategy='MCM', system=['Surface', 'IBM'])
+# QCPM.execute(circuit_path, './circuit_after', 
 #     strategy='MCM', system='Surface')
+# QCPM.execute(circuit_path, './circuit_after', 
+#     strategy='MCM', system='IBM')
 
 # input_dir / output_dir
 # QCPM.execute('./data/', './output/', strategy='MCM', system='IBM')

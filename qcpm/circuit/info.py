@@ -12,12 +12,13 @@ class CircuitInfo:
         qubits_num: 2, depth: 22, depth_detail = [20, 22]
 
     """
-    def __init__(self, operators):
+    def __init__(self, operators, system):
         self.size = len(operators)
         
         self.circuit = ''
         self.gates_group = []
         self.qubits_num = 0
+        self.system = system
         # circuit/gates_group/qubtis_num will be set in _solve()
         self._solve(operators)
 
@@ -138,7 +139,7 @@ class CircuitInfo:
 
     def __repr__(self):
         info = 'Circuit Info: \n'
-        info += f' - circuit: {self.circuit} \n     => total size: [{self.size}]\n'
+        info += f' - circuit: {self.circuit} \n     => total size: [{self.size}] ({self.system})\n'
         info += ' ' + '-' * 20 + '\n'
         info += f' - qubits_num: {self.qubits_num}, using gates: [{",".join(self.gates_group)}]\n'
         info += f' - circuit depth: {self.depth} - ({self.evaluate_depth(self.depth)})\n'

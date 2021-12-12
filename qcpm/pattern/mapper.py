@@ -223,7 +223,7 @@ class Mapper:
 
         # 4. show the result.
         changed = size_before != len(circuit.draft)
-        self.result(circuit)
+        # self.result(circuit)
 
         # recover sys.stdout if silence
         if silence:
