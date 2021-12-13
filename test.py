@@ -40,9 +40,9 @@ circuit_path = './data/example'
 QCPM = QCPatternMapper()
 
 # solve single qasm file
-# QCPM.execute(circuit_path, './circuit_after')
-QCPM.execute(circuit_path, './circuit_after', 
-    strategy='MCM', system=['IBM', 'Surface'], metric='depth')
+QCPM.execute(circuit_path, './circuit_after')
+# QCPM.execute(circuit_path, './circuit_after', 
+#     strategy='MCM', system=['IBM', 'Surface'], metric='depth')
 # QCPM.execute(circuit_path, './circuit_after', 
 #     strategy='MCM', system=['Surface', 'IBM'], metric='cycle')
 # QCPM.execute(circuit_path, './circuit_after', 

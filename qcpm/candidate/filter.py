@@ -1,11 +1,15 @@
 from qcpm.candidate.plan import Plan, Plans
 
 
-def filterCandidates(candidates):
+def filterCandidates(circuit, candidates, metric):
     """ filter candidates(without conflict occurance) and generate Plans.
 
+    args are corresponding to the args in SearchPlan(circuit, candidates, metric):
+
     Args: 
+        circuit: Circuit object, just may be used in calculate delta_depth.
         candidates: list of Candidate object.
+        metric: cycle or depth which used to calculate value of candidate.
     -------
     Returns:
         Plans object contains <ALL> possible mapping plans.
@@ -18,13 +22,13 @@ def filterCandidates(candidates):
         target = candidates[i]
         temp = [target]
         s = set(target.pos) # eg. like {1, 4}
-        delta_cost = target.pattern.delta
+        delta_cost = target.delta(metric, circuit)
 
         for j in range(i + 1, size):
             # if no conflict => add this candidate
             if not (candidates[j] & s):
                 temp.append(candidates[j])
-                delta_cost += candidates[j].pattern.delta
+                delta_cost += candidates[j].delta(metric, circuit)
                 # eg. [1, 4] no conflict with [3, 7]
                 #   => {1, 4} | {3, 7} => {1, 3, 4, 7}
                 # 

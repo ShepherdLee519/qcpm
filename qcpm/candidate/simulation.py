@@ -105,10 +105,11 @@ class Simulation:
                 selected = sample(targets, probs)
                 targets.remove(selected)
 
+                # Step 3. decide to apply it => calculate delta value
                 applied.append(selected)
                 value += selected.delta(self.searcher.metric, self.searcher.circuit)
                 
-                # Step 3. update candidates that guarantee that selected one 
+                # Step 4. update candidates that guarantee that selected one 
                 # will not be conflict with candidates in [candidates].  
                 targets = list(filter(lambda c: not (c & applied), targets))
             

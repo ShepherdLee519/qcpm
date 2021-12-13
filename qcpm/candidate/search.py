@@ -237,10 +237,12 @@ class SearchPlan:
             else:
                 values = self.simulation(targets)
                 # choose the target with max value
+                # ! values may be the same, should randomly choose one
                 max_value = max(values)
                 max_values = list(filter(lambda x:x == max_value, values))
                 max_index = random.randint(0, len(max_values) - 1)
                 target = targets[max_index]
+            
             self.pos = target.begin
             
             self.log('selected')(target)

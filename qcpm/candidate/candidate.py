@@ -67,6 +67,13 @@ class Candidate:
             return len(set(self.pos) & set(other)) != 0
 
     def delta(self, metric, circuit=None):
+        """ calculate delta value of applying this candidate.
+
+        Args:
+            metric: cycle / depth using to calculate value of this candidate
+            circuit: calculate delta_depth may need to use circuit info. 
+                => default None, won't be used in calculate delta_cycle
+        """
         if metric == 'cycle':
             return self.delta_cycle
         elif metric == 'depth':
@@ -87,6 +94,9 @@ class Candidate:
     def delta_depth(self, circuit):
         """ calculate the delta depth after apply this candidate in a sub circuit.
 
+        Args:
+            circuit: a Circuit object corresponding to the total circuit
+                => will cut a sub-circuit to calculate delta_depth value.
         """
         if '_depth' in self.__dict__:
             return self._depth
@@ -94,28 +104,30 @@ class Candidate:
         # sub size before and after circuit
         SUB_SIZE = 20
 
-        # cut sub-circuit
+        # Step 1. cut sub-circuit
         sub_circuit = copy(circuit)
         sub_begin = self.begin - SUB_SIZE if self.begin - SUB_SIZE>= 0 else 0
         sub_end = self.end + SUB_SIZE if self.end + SUB_SIZE < len(circuit) else len(circuit) - 1
         sub_circuit.operators = deepcopy(circuit[sub_begin:sub_end + 1])
 
-        # adjust the candidate's position according to the new beginning of subcircuit
+        # Step 2. adjust the candidate's position according to the new beginning of subcircuit
         self.begin -= sub_begin
         self.end -= sub_begin
         self.pos = [p - sub_begin for p in self.pos]
 
-        # apply this candidate on subcircuit to calculate delta of depth
+        # Step 3. apply this candidate on subcircuit to calculate delta of depth
         depth_before = sub_circuit.depth
         self.apply(sub_circuit, silence=True)
         depth_after = sub_circuit.depth
 
-        # ! recover the origin positions
+        # Step 4. ! recover the origin positions
         self.begin += sub_begin
         self.end += sub_begin
         self.pos = [p + sub_begin for p in self.pos]
 
+        # Step 5. calculate self delta_depth and memoize it.
         self._depth = depth_after - depth_before + 1
+        
         return self._depth
 
     def apply(self, circuit, silence=False):
@@ -125,6 +137,7 @@ class Candidate:
 
         Args:
             circuit: Circuit object
+            silence: [True] that ignore the apply info output. default [False].
         """
         # example 1:
         # --------------------
@@ -145,6 +158,7 @@ class Candidate:
         operands_to = self.pattern.dst['operands']
         angles_to = self.pattern.angles[1]
 
+        # Output apply info.
         silence or print('Apply: ', self.__repr__())
 
         for i, (op_from, op_to, angle_to) in enumerate(zip_longest(ops_from, ops_to, angles_to)):

@@ -196,7 +196,7 @@ class Mapper:
             if strategy == 'MCM':
                 self.plans = SearchPlan(circuit, self._candidates, self.metric)()
             else:
-                self.plans = filterCandidates(self._candidates)
+                self.plans = filterCandidates(circuit, self._candidates, self.metric)
         
         # 3. apply the best plan
         if len(self.plans) != 0:
