@@ -1,9 +1,8 @@
-from copy import Error
 import sys
 import json
 import pkgutil
 
-from qcpm.candidate import Candidate, filterCandidates, SearchPlan
+from qcpm.candidate import Candidate, filterCandidates, SearchPlan, RandomlySearchPlan
 from qcpm.pattern.pattern import Pattern
 from qcpm.pattern.positioning import positioning
 
@@ -195,6 +194,8 @@ class Mapper:
             # should return a Plans object
             if strategy == 'MCM':
                 self.plans = SearchPlan(circuit, self._candidates, self.metric)()
+            elif strategy == 'random':
+                self.plans = RandomlySearchPlan(circuit, self._candidates, self.metric)
             else:
                 self.plans = filterCandidates(circuit, self._candidates, self.metric)
         

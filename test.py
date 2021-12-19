@@ -1,9 +1,9 @@
-from qcpm import Mapper, Circuit, QCPatternMapper
+from qcpm import Mapper, Circuit, QCPatternMapper, circuit
 from qcpm.circuit.info import CircuitInfo
 
-circuit_path = './data/example'
+# circuit_path = './data/example'
 # circuit_path = './data/example_reduction'
-# circuit_path = './BIGD/20QBT_45CYC_.7D1_.1D2_9.qasm' # 600
+circuit_path = './benchmark/BIGD/20QBT_45CYC_.7D1_.1D2_9.qasm' # 600
 # circuit_path = './BIGD/20QBT_45CYC_.2D1_.4D2_4.qasm' # 300
 # circuit_path = './BIGD/20QBT_45CYC_.2D1_.1D2_7.qasm' # 200
 # circuit_path = './BIGD/20QBT_45CYC_.0D1_.2D2_0.qasm' # 100
@@ -30,6 +30,8 @@ circuit_path = './data/example'
 # mapper.execute(circuit)
 # mapper.execute(circuit, strategy='MCM', metric='cycle')
 # mapper.execute(circuit, strategy='MCM', metric='depth')
+# mapper.execute(circuit, strategy='random', metric='depth')
+# mapper.result()
 
 # circuit.save('./circuit_after')
 # circuit.save('./circuit_after', system='Surface')
@@ -40,7 +42,8 @@ circuit_path = './data/example'
 QCPM = QCPatternMapper()
 
 # solve single qasm file
-QCPM.execute(circuit_path, './circuit_after')
+QCPM.execute(circuit_path, './circuit_after',  metric='depth')
+# QCPM.execute(circuit_path, './circuit_after',  metric='depth', strategy='random')
 # QCPM.execute(circuit_path, './circuit_after', 
 #     strategy='MCM', system=['IBM', 'Surface'], metric='depth')
 # QCPM.execute(circuit_path, './circuit_after', 
