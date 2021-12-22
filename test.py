@@ -42,7 +42,8 @@ circuit_path = './benchmark/BIGD/20QBT_45CYC_.7D1_.1D2_9.qasm' # 600
 QCPM = QCPatternMapper()
 
 # solve single qasm file
-QCPM.execute(circuit_path, './circuit_after',  metric='depth')
+# QCPM.execute(circuit_path, './circuit_after',  metric='depth')
+QCPM.execute(circuit_path, './circuit_after',  metric='depth', optimize=False)
 # QCPM.execute(circuit_path, './circuit_after',  metric='depth', strategy='random')
 # QCPM.execute(circuit_path, './circuit_after', 
 #     strategy='MCM', system=['IBM', 'Surface'], metric='depth')

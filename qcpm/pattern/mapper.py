@@ -2,7 +2,7 @@ import sys
 import json
 import pkgutil
 
-from qcpm.candidate import Candidate, filterCandidates, SearchPlan, RandomlySearchPlan
+from qcpm.candidate import Candidate, GreedySearchPlan, SearchPlan, RandomlySearchPlan
 from qcpm.pattern.pattern import Pattern
 from qcpm.pattern.positioning import positioning
 
@@ -197,7 +197,7 @@ class Mapper:
             elif strategy == 'random':
                 self.plans = RandomlySearchPlan(circuit, self._candidates, self.metric)
             else:
-                self.plans = filterCandidates(circuit, self._candidates, self.metric)
+                self.plans = GreedySearchPlan(circuit, self._candidates, self.metric)
         
         # 3. apply the best plan
         if len(self.plans) != 0:

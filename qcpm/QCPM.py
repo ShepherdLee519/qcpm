@@ -87,6 +87,7 @@ class QCPatternMapper:
         # else execute mapping on target circuit
         # first => get needed parameters from kwargs
         depth_size = kwargs.get('depth_size', 'all') # small/medium/large
+        optimize = kwargs.get('optimize', True)
         system = kwargs.get('system', 'IBM')
         strategy = kwargs.get('strategy', None)
         metric = kwargs.get('metric', 'cycle')
@@ -109,7 +110,7 @@ class QCPatternMapper:
 
             turn = 1
             # first turn should initial circuit(default call optimization.)
-            circuit = Circuit(input_path, system=system_input)
+            circuit = Circuit(input_path, system=system_input, optimize=optimize)
 
             # after loading circuir, check the depth size
             circuit_depth_size = circuit.origin.depth_size

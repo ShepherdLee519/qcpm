@@ -1,7 +1,7 @@
 from qcpm.candidate.plan import Plan, Plans
 
 
-def filterCandidates(circuit, candidates, metric):
+def GreedySearchPlan(circuit, candidates, metric):
     """ filter candidates(without conflict occurance) and generate Plans.
 
     args are corresponding to the args in SearchPlan(circuit, candidates, metric):
