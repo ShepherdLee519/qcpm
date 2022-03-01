@@ -1,9 +1,12 @@
+from ast import operator
+from lib2to3.pgen2.token import OP
 import sys
 import json
 import pkgutil
 
 from qcpm.candidate import Candidate, GreedySearchPlan, SearchPlan, RandomlySearchPlan
 from qcpm.pattern.pattern import Pattern
+from qcpm.operator import Operator
 from qcpm.pattern.positioning import positioning
 
 from qcpm.common import timerDecorator, Timer
@@ -86,6 +89,20 @@ class Mapper:
                 the [pattern] also check conflict-free.
         """
 
+        # generate control-target flags
+        operators = pattern.src['operator']
+        ## control: 0, target: 1
+        flags = [] # cc => [0, 1, 0, 1] / xcx => [1, 0, 1, 1]
+ 
+        for op in operators:
+            qubits_num = Operator.count_qubits(op)
+
+            if qubits_num == 2:
+                flags.append(0)
+                flags.append(1)
+            elif qubits_num == 1:
+                flags.append(1)
+
         def validater(position):
             # 1. Validate Operands
             ok, targets = pattern.match(self.circuit, position)
@@ -93,7 +110,13 @@ class Mapper:
                 return False
 
             # 2. Validate no conflicts
-            targets = set(targets) # [4, 1, 1, 2] => {4, 1, 2}
+            targets_qubits = set()
+            # targets: [5, 2, 5, 2], flags: [0, 1, 0, 1] => {2}
+            for i, qubit in enumerate(targets):
+                if flags[i]:
+                    targets_qubits.add(qubit)
+            
+            targets_set = set(targets) # [4, 1, 1, 2] => {4, 1, 2}
 
             # eg. position: [4, 7, 10]
             # => check range(4, 10) (without 7) that has no conflict with targets
@@ -101,12 +124,12 @@ class Mapper:
                 if pos not in position:
                     operand = self.circuit[pos].operands
 
-                    # eg. [1, 4] => [4] => {4}
-                    ops = set(operand)
-                    
-                    # eg. have no intersection => no conflict
-                    if len(targets & ops) != 0:
-                        return False
+                    if len(operand) == 2:
+                        if operand[1] in targets_set:
+                            return False
+                    elif len(operand) == 1:
+                        if operand[0] in targets_set:
+                            return False
 
             return True
         

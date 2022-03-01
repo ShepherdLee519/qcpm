@@ -1,5 +1,5 @@
 from itertools import zip_longest
-from copy import Error, copy, deepcopy
+from copy import copy, deepcopy
 
 from qcpm.operator import Operator
 class Candidate:
