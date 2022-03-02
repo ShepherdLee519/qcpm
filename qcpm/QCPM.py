@@ -121,7 +121,8 @@ class QCPatternMapper:
                 system=system_input, strategy=strategy, metric=metric)
 
             while changed and turn < LIMIT:
-                circuit.optimize()
+                optimize and circuit.optimize()
+                
                 changed = self.mapper.execute(circuit,
                     system=system_input, strategy=strategy, metric=metric)
 
@@ -132,6 +133,8 @@ class QCPatternMapper:
                 circuit.save(output_path, system=system_output)
             
             self.mapper.result()
+
+        print(circuit)
 
     def _executeDir(self, input_dir, output_dir, **kwargs):
         """ execute when call batch work form dir to dir.

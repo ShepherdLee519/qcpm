@@ -1,5 +1,4 @@
 from ast import operator
-from lib2to3.pgen2.token import OP
 import sys
 import json
 import pkgutil
@@ -126,6 +125,8 @@ class Mapper:
 
                     if len(operand) == 2:
                         if operand[1] in targets_set:
+                            return False
+                        if operand[0] in targets_qubits:
                             return False
                     elif len(operand) == 1:
                         if operand[0] in targets_set:

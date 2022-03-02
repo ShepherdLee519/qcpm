@@ -16,30 +16,32 @@ circuit_path = './data/example2'
 # Step 3. execute map on circuit: mapper.execute(circuit)
 # Step 4. save results to qasm file: cricuit.save(save_path)
 # 
-mapper = Mapper()
+# mapper = Mapper()
 """
     params:
         - optimize: Whether to optimize, default: True
         - system: input format, "IBM" or "Surface"
 """
 # circuit = Circuit(circuit_path)
-circuit = Circuit(circuit_path, system='IBM', optimize=False)
+# circuit = Circuit(circuit_path, system='IBM', optimize=False)
 # circuit = Circuit(circuit_path, optimize=False)
 
 
-mapper.execute(circuit)
-mapper.execute(circuit, strategy='MCM', metric='cycle')
+# mapper.execute(circuit)
+# mapper.execute(circuit, strategy='MCM', metric='cycle')
 # mapper.execute(circuit, strategy='MCM', metric='depth')
 # mapper.execute(circuit, strategy='random', metric='depth')
 # mapper.result()
 
-circuit.save('./circuit_after')
+# circuit.save('./circuit_after')
 # circuit.save('./circuit_after', system='Surface')
 
 
 
 # QCPM = QCPatternMapper(log='./log.txt')
-# QCPM = QCPatternMapper()
+QCPM = QCPatternMapper()
+circuit_path = './benchmark/BIGD/20QBT_45CYC_.0D1_.1D2_0.qasm'
+QCPM.execute(circuit_path, './circuit_after',  metric='depth', optimize=False)
 
 # solve single qasm file
 # QCPM.execute(circuit_path, './circuit_after',  metric='depth', optimize=False)
