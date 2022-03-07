@@ -18,7 +18,12 @@ class CircuitInfo:
         self.gates_group = []
         self.qubits_num = 0
         self.system = system
-        # circuit/gates_group/qubtis_num will be set in _solve()
+
+        self.SQG = set()
+        self.MQG = set()
+        self.SQG_num = 0
+        self.MQG_num = 0
+        # circuit/gates_group/qubtis_num/SQG/MQG will be set in _solve()
         self._solve(operators)
 
         # eg. depth_detail = [20, 22, -1, -1 ...] , qubits_num = 2
@@ -45,11 +50,19 @@ class CircuitInfo:
         for operator in operators:
             # op_type: cx / h ...
             op_type = operator.type
+            if Operator.count_qubits(op_type) == 1:
+                self.SQG.add(op_type)
+                self.SQG_num += 1
+            else:
+                self.MQG.add(op_type)
+                self.MQG_num += 1
 
             op_types.append(op_type)
             gates.add(op_type)
             qubits = qubits | set(operator.operands)
         
+        self.SQG = list(self.SQG)
+        self.MQG = list(self.MQG)
         self.gates_group = list(gates)
         self.qubits_num = len(qubits)
         self.circuit = '-'.join(op_types)
@@ -73,7 +86,7 @@ class CircuitInfo:
         """
         MAX_QUBITS = 64
 
-        last_layer = [-1] * MAX_QUBITS
+        last_layer = [0] * MAX_QUBITS
 
         for operator in operators:
             opds = operator.operands

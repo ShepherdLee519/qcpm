@@ -1,0 +1,3432 @@
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.0219423770904541
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+[0, 2, 3]
+[6, 8, 9]
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.007978439331054688
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 1
+
+Pos: [0, 2, 3] ccc => cc
+
+Selected: Pos: [0, 2, 3] ccc => cc
+    ... chccxhcxcchc ... 
+target: ^ ^^        
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [6, 8, 9] ccc => cc
+
+Selected: Pos: [6, 8, 9] ccc => cc
+    ... cxcchc ... 
+target: ^ ^^  
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [0, 2, 3] ccc => cc
+Pos: [6, 8, 9] ccc => cc
+
+Total Saving: 4
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+Change: 2, Saving: 4
+
+Circuit before: chccxhcxcchc
+---------------
+Apply:  Pos: [0, 2, 3] ccc => cc
+Apply:  Pos: [6, 8, 9] ccc => cc
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0009970664978027344
+
+----End Timer [Execute Mapping]:  0.008975505828857422
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.001993894577026367
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: chcxhcxchc
+---------------
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.001993894577026367
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-cx-x-h-cx-x-cx-cx-h-cx 
+     => total size: [12] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [cx,h,x]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 19
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-x-h-cx-x-cx-h-cx 
+     => total size: [10] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [cx,h,x]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 15
+
+Reduced: 
+ - size: 2 (16.67%)
+ - cycle: 4 (21.05%)
+
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.01795172691345215
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+[0, 2, 3]
+[6, 8, 9]
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.008975744247436523
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 1
+
+Pos: [0, 2, 3] ccc => cc
+
+Selected: Pos: [0, 2, 3] ccc => cc
+    ... chccxhcxcchc ... 
+target: ^ ^^        
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [6, 8, 9] ccc => cc
+
+Selected: Pos: [6, 8, 9] ccc => cc
+    ... cxcchc ... 
+target: ^ ^^  
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [0, 2, 3] ccc => cc
+Pos: [6, 8, 9] ccc => cc
+
+Total Saving: 4
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+Change: 2, Saving: 4
+
+Circuit before: chccxhcxcchc
+---------------
+Apply:  Pos: [0, 2, 3] ccc => cc
+Apply:  Pos: [6, 8, 9] ccc => cc
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0009989738464355469
+
+----End Timer [Execute Mapping]:  0.00997471809387207
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.002992868423461914
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: chcxhcxchc
+---------------
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0009970664978027344
+
+----End Timer [Execute Mapping]:  0.0039899349212646484
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-cx-x-h-cx-x-cx-cx-h-cx 
+     => total size: [12] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [x,h,cx]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 19
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-x-h-cx-x-cx-h-cx 
+     => total size: [10] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [x,h,cx]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 15
+
+Reduced: 
+ - size: 2 (16.67%)
+ - cycle: 4 (21.05%)
+
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.01795363426208496
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+[0, 2, 3]
+[6, 8, 9]
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.006981372833251953
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 1
+
+Pos: [0, 2, 3] ccc => cc
+
+Selected: Pos: [0, 2, 3] ccc => cc
+    ... chccxhcxcchc ... 
+target: ^ ^^        
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [6, 8, 9] ccc => cc
+
+Selected: Pos: [6, 8, 9] ccc => cc
+    ... cxcchc ... 
+target: ^ ^^  
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [0, 2, 3] ccc => cc
+Pos: [6, 8, 9] ccc => cc
+
+Total Saving: 4
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+Change: 2, Saving: 4
+
+Circuit before: chccxhcxcchc
+---------------
+Apply:  Pos: [0, 2, 3] ccc => cc
+Apply:  Pos: [6, 8, 9] ccc => cc
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.008977174758911133
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.003937721252441406
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: chcxhcxchc
+---------------
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.004940032958984375
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-cx-x-h-cx-x-cx-cx-h-cx 
+     => total size: [12] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [x,h,cx]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 19
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-x-h-cx-x-cx-h-cx 
+     => total size: [10] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [x,h,cx]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 15
+
+Reduced: 
+ - size: 2 (16.67%)
+ - cycle: 4 (21.05%)
+
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.017004013061523438
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+[0, 2, 3]
+[6, 8, 9]
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.009015798568725586
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 1
+
+Pos: [0, 2, 3] ccc => cc
+
+Selected: Pos: [0, 2, 3] ccc => cc
+    ... chccxhcxcchc ... 
+target: ^ ^^        
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [6, 8, 9] ccc => cc
+
+Selected: Pos: [6, 8, 9] ccc => cc
+    ... cxcchc ... 
+target: ^ ^^  
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [0, 2, 3] ccc => cc
+Pos: [6, 8, 9] ccc => cc
+
+Total Saving: 4
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+Change: 2, Saving: 4
+
+Circuit before: chccxhcxcchc
+---------------
+Apply:  Pos: [0, 2, 3] ccc => cc
+Apply:  Pos: [6, 8, 9] ccc => cc
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0009965896606445312
+
+----End Timer [Execute Mapping]:  0.010012388229370117
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.0069811344146728516
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: chcxhcxchc
+---------------
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.007987737655639648
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-cx-x-h-cx-x-cx-cx-h-cx 
+     => total size: [12] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [cx,x,h]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 19
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-x-h-cx-x-cx-h-cx 
+     => total size: [10] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [cx,x,h]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 15
+
+Reduced: 
+ - size: 2 (16.67%)
+ - cycle: 4 (21.05%)
+
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.016956090927124023
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+[0, 2, 3]
+[6, 8, 9]
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.010969400405883789
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 1
+
+Pos: [0, 2, 3] ccc => cc
+
+Selected: Pos: [0, 2, 3] ccc => cc
+    ... chccxhcxcchc ... 
+target: ^ ^^        
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [6, 8, 9] ccc => cc
+
+Selected: Pos: [6, 8, 9] ccc => cc
+    ... cxcchc ... 
+target: ^ ^^  
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [0, 2, 3] ccc => cc
+Pos: [6, 8, 9] ccc => cc
+
+Total Saving: 4
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+Change: 2, Saving: 4
+
+Circuit before: chccxhcxcchc
+---------------
+Apply:  Pos: [0, 2, 3] ccc => cc
+Apply:  Pos: [6, 8, 9] ccc => cc
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.010969400405883789
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.0029926300048828125
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: chcxhcxchc
+---------------
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.0029926300048828125
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-cx-x-h-cx-x-cx-cx-h-cx 
+     => total size: [12] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [x,cx,h]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 19
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-x-h-cx-x-cx-h-cx 
+     => total size: [10] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [x,cx,h]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 15
+
+Reduced: 
+ - size: 2 (16.67%)
+ - cycle: 4 (21.05%)
+
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.014960050582885742
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+[0, 2, 3]
+[6, 8, 9]
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.010506629943847656
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 1
+
+Pos: [0, 2, 3] ccc => cc
+
+Selected: Pos: [0, 2, 3] ccc => cc
+    ... chccxhcxcchc ... 
+target: ^ ^^        
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [6, 8, 9] ccc => cc
+
+Selected: Pos: [6, 8, 9] ccc => cc
+    ... cxcchc ... 
+target: ^ ^^  
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [0, 2, 3] ccc => cc
+Pos: [6, 8, 9] ccc => cc
+
+Total Saving: 4
+
+
+--------End Timer [Generate Plans]:  0.0009953975677490234
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+Change: 2, Saving: 4
+
+Circuit before: chccxhcxcchc
+---------------
+Apply:  Pos: [0, 2, 3] ccc => cc
+Apply:  Pos: [6, 8, 9] ccc => cc
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.01150202751159668
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.0039899349212646484
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0009968280792236328
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: chcxhcxchc
+---------------
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.004986763000488281
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-cx-x-h-cx-x-cx-cx-h-cx 
+     => total size: [12] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [x,cx,h]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 19
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-x-h-cx-x-cx-h-cx 
+     => total size: [10] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [x,cx,h]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 15
+
+Reduced: 
+ - size: 2 (16.67%)
+ - cycle: 4 (21.05%)
+
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.017998933792114258
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+[0, 2, 3]
+[6, 8, 9]
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.010921716690063477
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 1
+
+Pos: [0, 2, 3] ccc => cc
+
+Selected: Pos: [0, 2, 3] ccc => cc
+    ... chccxhcxcchc ... 
+target: ^ ^^        
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [6, 8, 9] ccc => cc
+
+Selected: Pos: [6, 8, 9] ccc => cc
+    ... cxcchc ... 
+target: ^ ^^  
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [0, 2, 3] ccc => cc
+Pos: [6, 8, 9] ccc => cc
+
+Total Saving: 4
+
+
+--------End Timer [Generate Plans]:  0.0009961128234863281
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+Change: 2, Saving: 4
+
+Circuit before: chccxhcxcchc
+---------------
+Apply:  Pos: [0, 2, 3] ccc => cc
+Apply:  Pos: [6, 8, 9] ccc => cc
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.011917829513549805
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.005986690521240234
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: chcxhcxchc
+---------------
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.005986690521240234
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-cx-x-h-cx-x-cx-cx-h-cx 
+     => total size: [12] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [x,h,cx]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 19
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-x-h-cx-x-cx-h-cx 
+     => total size: [10] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [x,h,cx]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 15
+
+Reduced: 
+ - size: 2 (16.67%)
+ - cycle: 4 (21.05%)
+
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.022938966751098633
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+[0, 2, 3]
+[6, 8, 9]
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.007986068725585938
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 1
+
+Pos: [0, 2, 3] ccc => cc
+
+Selected: Pos: [0, 2, 3] ccc => cc
+    ... chccxhcxcchc ... 
+target: ^ ^^        
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [6, 8, 9] ccc => cc
+
+Selected: Pos: [6, 8, 9] ccc => cc
+    ... cxcchc ... 
+target: ^ ^^  
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [0, 2, 3] ccc => cc
+Pos: [6, 8, 9] ccc => cc
+
+Total Saving: 4
+
+
+--------End Timer [Generate Plans]:  0.000989675521850586
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+Change: 2, Saving: 4
+
+Circuit before: chccxhcxcchc
+---------------
+Apply:  Pos: [0, 2, 3] ccc => cc
+Apply:  Pos: [6, 8, 9] ccc => cc
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.008975744247436523
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.0029914379119873047
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: chcxhcxchc
+---------------
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.0029914379119873047
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-cx-x-h-cx-x-cx-cx-h-cx 
+     => total size: [12] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [cx,x,h]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 19
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-x-h-cx-x-cx-h-cx 
+     => total size: [10] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [cx,x,h]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 15
+
+Reduced: 
+ - size: 2 (16.67%)
+ - cycle: 4 (21.05%)
+
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.029920339584350586
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+[0, 2, 3]
+[6, 8, 9]
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.009972333908081055
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 1
+
+Pos: [0, 2, 3] ccc => cc
+
+Selected: Pos: [0, 2, 3] ccc => cc
+    ... chccxhcxcchc ... 
+target: ^ ^^        
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [6, 8, 9] ccc => cc
+
+Selected: Pos: [6, 8, 9] ccc => cc
+    ... cxcchc ... 
+target: ^ ^^  
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [0, 2, 3] ccc => cc
+Pos: [6, 8, 9] ccc => cc
+
+Total Saving: 4
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+Change: 2, Saving: 4
+
+Circuit before: chccxhcxcchc
+---------------
+Apply:  Pos: [0, 2, 3] ccc => cc
+Apply:  Pos: [6, 8, 9] ccc => cc
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0009970664978027344
+
+----End Timer [Execute Mapping]:  0.010969400405883789
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.003985881805419922
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: chcxhcxchc
+---------------
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.003985881805419922
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-cx-x-h-cx-x-cx-cx-h-cx 
+     => total size: [12] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [x,h,cx]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 19
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-x-h-cx-x-cx-h-cx 
+     => total size: [10] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [x,h,cx]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 15
+
+Reduced: 
+ - size: 2 (16.67%)
+ - cycle: 4 (21.05%)
+
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.015964746475219727
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+[0, 2, 3]
+[6, 8, 9]
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.008971452713012695
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 1
+
+Pos: [0, 2, 3] ccc => cc
+
+Selected: Pos: [0, 2, 3] ccc => cc
+    ... chccxhcxcchc ... 
+target: ^ ^^        
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [6, 8, 9] ccc => cc
+
+Selected: Pos: [6, 8, 9] ccc => cc
+    ... cxcchc ... 
+target: ^ ^^  
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [0, 2, 3] ccc => cc
+Pos: [6, 8, 9] ccc => cc
+
+Total Saving: 4
+
+
+--------End Timer [Generate Plans]:  0.000997781753540039
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+Change: 2, Saving: 4
+
+Circuit before: chccxhcxcchc
+---------------
+Apply:  Pos: [0, 2, 3] ccc => cc
+Apply:  Pos: [6, 8, 9] ccc => cc
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.009969234466552734
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.003989458084106445
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: chcxhcxchc
+---------------
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.004987478256225586
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-cx-x-h-cx-x-cx-cx-h-cx 
+     => total size: [12] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [h,x,cx]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 19
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-x-h-cx-x-cx-h-cx 
+     => total size: [10] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [h,x,cx]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 15
+
+Reduced: 
+ - size: 2 (16.67%)
+ - cycle: 4 (21.05%)
+
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.01595783233642578
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+[0, 2, 3]
+[6, 8, 9]
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.011555671691894531
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 1
+
+Pos: [0, 2, 3] ccc => cc
+
+Selected: Pos: [0, 2, 3] ccc => cc
+    ... chccxhcxcchc ... 
+target: ^ ^^        
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [6, 8, 9] ccc => cc
+
+Selected: Pos: [6, 8, 9] ccc => cc
+    ... cxcchc ... 
+target: ^ ^^  
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [0, 2, 3] ccc => cc
+Pos: [6, 8, 9] ccc => cc
+
+Total Saving: 2
+
+
+--------End Timer [Generate Plans]:  0.002503633499145508
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [0, 2, 3] ccc => cc, Pos: [6, 8, 9] ccc => cc]
+Change: 2, Saving: 2
+
+Circuit before: chccxhcxcchc
+---------------
+Apply:  Pos: [0, 2, 3] ccc => cc
+Apply:  Pos: [6, 8, 9] ccc => cc
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.014059305191040039
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.003984212875366211
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: chcxhcxchc
+---------------
+---------------
+Circuit after: chcxhcxchc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.003984212875366211
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-cx-x-h-cx-x-cx-cx-h-cx 
+     => total size: [12] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [h,x,cx]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 19
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: cx-h-cx-x-h-cx-x-cx-h-cx 
+     => total size: [10] (IBM)
+ --------------------
+ - qubits_num: 5, using gates: [h,x,cx]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 15
+
+Reduced: 
+ - size: 2 (16.67%)
+ - depth: 0 (0.00%)
+

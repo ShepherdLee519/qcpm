@@ -4,6 +4,8 @@ from contextlib import contextmanager
 
 from qcpm.pattern import Mapper
 from qcpm.circuit import Circuit
+from qcpm.common import Timer
+from qcpm.statistics import StatReporter
 
 
 stdout = sys.stdout
@@ -66,6 +68,7 @@ class QCPatternMapper:
         """
         self.log = kwargs.get('log', '') # log file path
         self.logs = kwargs.get('logs', './log/') # log files' output dir
+        self.reporter = None
 
         with logging(self.log, 'w'):
             self.mapper = Mapper()
@@ -99,40 +102,50 @@ class QCPatternMapper:
             # eg. system = 'Surface'
             system_input = system_output = system
         
+        timer = Timer()
+        timer.silence = True
+
         with logging(self.log):
-            # execute turns limit.
-            # in each turn: 
-            # ---------------
-            # 1. optimization: reduction -> commutation ...(×n)... -> reduction
-            # 2. pattern mapping: mapper.execute(circuit)
-            # 
-            LIMIT = 5
+            with timer:
+                # execute turns limit.
+                # in each turn: 
+                # ---------------
+                # 1. optimization: reduction -> commutation ...(×n)... -> reduction
+                # 2. pattern mapping: mapper.execute(circuit)
+                # 
+                LIMIT = 5
 
-            turn = 1
-            # first turn should initial circuit(default call optimization.)
-            circuit = Circuit(input_path, system=system_input, optimize=optimize)
+                turn = 1
+                # first turn should initial circuit(default call optimization.)
+                circuit = Circuit(input_path, system=system_input, optimize=optimize)
 
-            # after loading circuir, check the depth size
-            circuit_depth_size = circuit.origin.depth_size
-            if depth_size != 'all' and circuit_depth_size != depth_size:
-                raise DepthSizeError(circuit_depth_size)
-            
-            changed = self.mapper.execute(circuit, 
-                system=system_input, strategy=strategy, metric=metric)
-
-            while changed and turn < LIMIT:
-                optimize and circuit.optimize()
+                # after loading circuir, check the depth size
+                circuit_depth_size = circuit.origin.depth_size
+                if depth_size != 'all' and circuit_depth_size != depth_size:
+                    raise DepthSizeError(circuit_depth_size)
                 
-                changed = self.mapper.execute(circuit,
+                changed = self.mapper.execute(circuit, 
                     system=system_input, strategy=strategy, metric=metric)
 
-                turn += 1
+                while changed and turn < LIMIT:
+                    optimize and circuit.optimize()
+                    
+                    changed = self.mapper.execute(circuit,
+                        system=system_input, strategy=strategy, metric=metric)
 
-            if output_path != '':
-                # save qasm file (after mapping)
-                circuit.save(output_path, system=system_output)
-            
-            self.mapper.result()
+                    turn += 1
+
+                if output_path != '':
+                    # save qasm file (after mapping)
+                    circuit.save(output_path, system=system_output)
+                
+                self.mapper.result()
+            # end of timer
+        # end of logger
+        
+        if self.reporter != None:
+            # statistic reporter: (filename, circuitInfos, time)
+            self.reporter.add(input_path, [circuit.origin, circuit.info], timer.duration)
 
         print(circuit)
 
@@ -146,6 +159,10 @@ class QCPatternMapper:
             [! Other args should be corresponding to self.execute] => **kwargs
         
         """
+        metric = kwargs.get('metric', 'cycle')
+        stat_path = kwargs.get('stat', None)
+        self.reporter = StatReporter(stat_path, metric=metric)
+
         for i, file in enumerate(os.listdir(input_dir)):
             # eg. 'example.qasm'
             # filename => 'example'

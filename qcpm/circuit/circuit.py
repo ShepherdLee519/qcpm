@@ -2,6 +2,7 @@ import os
 
 from qcpm.circuit.info import CircuitInfo
 from qcpm.preprocess import preprocess
+from qcpm.expander import Expander
 from qcpm.optimization import optimizer, reduction
 from qcpm.operator import Operator
 from qcpm.migration import migrate
@@ -51,10 +52,13 @@ class Circuit:
         operators = []
         op_types = []
 
+        # Step 1. preprocess
         ops = preprocess(path) # iterator
-        # eg. ['OPENQASM 2.0;\n', 'include "qelib1.inc";\n', 'qreg q[4];\n', ...]
+        ## 1.1 Keep the header info of qasm
+        ## eg. ['OPENQASM 2.0;\n', 'include "qelib1.inc";\n', 'qreg q[4];\n', ...]
         self.header = next(ops)
 
+        ## 1.2 init origin circuitInfo object
         for operator in ops:
             operators.append(operator)
             # cx = convert_type() => c
@@ -63,6 +67,21 @@ class Circuit:
         # keep the origin ciruit's info object
         self.origin = CircuitInfo(operators, self.system)
 
+
+        # Step 2. expand gates
+        expanded_operators = []
+        op_types = []
+        expander = Expander(self.system)
+
+        for operator in expander(operators):
+            expanded_operators.append(operator)
+            # cx = convert_type() => c
+            op_types.append( Operator.convert_type(operator.type) )
+        
+        operators = expanded_operators
+
+
+        # Step 3. system migrate
         # if system type is not IBM => migrate right now
         if self.system != 'IBM':
             # maigration self.system to [IBM]
@@ -78,6 +97,7 @@ class Circuit:
 
             operators = migrated_operators
             self.system = 'IBM'
+
 
         if optimize:
             # optimize will save the self.operators and self.draft

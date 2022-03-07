@@ -149,11 +149,16 @@ def positioning(circuit_str, pattern_str):
     # 3. map(lambda arr: [int(a) for a in arr], ...)    
     #   => [[1, 4, 7], [2, 3, 8], ...]
     # 
+
     return map(
         lambda arr: [int(a) for a in arr], 
         filter(
             lambda r: len(r) == pattern_size, 
-            map(lambda a: a.split(','), res[pattern_size])
+            map(lambda a: a.split(','), 
+                filter(
+                    lambda p: p != '',
+                    res[pattern_size])
+            )
         )
     )
     

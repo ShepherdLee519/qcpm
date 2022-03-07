@@ -18,12 +18,14 @@ class Timer:
 
     def __init__(self, description=''):
         self.description = description
+        self.duration = 0
+        self.silence = False
     
     def start(self, description=''):
         if description != '':
             self.description = description
 
-        print('-' * (self.__class__.indent * 4) + \
+        self.silence or print('-' * (self.__class__.indent * 4) + \
             'Start Timer: [{}]'.format(self.description))
         
         self.start_time = time()
@@ -32,8 +34,9 @@ class Timer:
     def end(self):
         self.__class__.indent -= 1
 
-        print('-' * (self.__class__.indent * 4) + \
-            f'End Timer [{self.description}]:  {time() - self.start_time}\n')
+        self.duration = time() - self.start_time
+        self.silence or print('-' * (self.__class__.indent * 4) + \
+            f'End Timer [{self.description}]:  {self.duration}\n')
 
     # context management protocol
     ## __enter__ and __exit__ 

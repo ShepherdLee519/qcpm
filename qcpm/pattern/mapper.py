@@ -1,4 +1,3 @@
-from ast import operator
 import sys
 import json
 import pkgutil
@@ -100,6 +99,10 @@ class Mapper:
                 flags.append(0)
                 flags.append(1)
             elif qubits_num == 1:
+                flags.append(1)
+            elif qubits_num == 3:
+                flags.append(0)
+                flags.append(0)
                 flags.append(1)
 
         def validater(position):

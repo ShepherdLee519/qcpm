@@ -2,16 +2,23 @@ class operatorMixin:
 
     op_type_map = {
         'id': 'I',
-        # control gates
+        # two qubits gates
+        'swap': 'w',
+        ## control gates
         'cx': 'c',
         'cz': 'e',
 
+        # phase and rotation:
         'tdg': 'T',
         'sdg': 'S',
         # rotation gates
         'rx': 'X',
         'ry': 'Y',
         'rz': 'Z',
+
+        # three qubtis gates
+        'tof': 'F',
+        'ccz': 'C'
     }
     # {'I': 'id' ...}
     op_type_map_reversed = {v:k for (k,v) in op_type_map.items()}
@@ -21,6 +28,9 @@ class operatorMixin:
     multi_qubits_gate = {
         'cx': 2,
         'cz': 2,
+        'tof': 3,
+        'ccz': 3,
+        'swap': 2,
     }
 
     @classmethod
