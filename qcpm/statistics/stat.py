@@ -8,6 +8,7 @@ class StatReporter:
     def __init__(self, path, **kwargs):
         if path == None:
             self._state = False
+            return
         else:
             self._state = True
 

@@ -1228,3 +1228,783 @@ Reduced:
  - size: 7 (58.33%)
  - depth: 2 (28.57%)
 
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.009973526000976562
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.0009968280792236328
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: Scshy
+---------------
+---------------
+Circuit after: Scshy
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.0009968280792236328
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: id-h-s-cx-sdg-h-h-x-x-y-y-y 
+     => total size: [12] (IBM)
+ --------------------
+ - qubits_num: 2, using gates: [s,id,sdg,h,cx,y,x]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 13
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: sdg-cx-s-h-y 
+     => total size: [5] (IBM)
+ --------------------
+ - qubits_num: 2, using gates: [s,sdg,h,cx,y]
+ - circuit depth: 5 - (small)
+ - circuit cycle: 6
+
+Reduced: 
+ - size: 7 (58.33%)
+ - depth: 2 (28.57%)
+
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.013010263442993164
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.0
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0009970664978027344
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: Scshy
+---------------
+---------------
+Circuit after: Scshy
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.0009970664978027344
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: id-h-s-cx-sdg-h-h-x-x-y-y-y 
+     => total size: [12] (IBM)
+ --------------------
+ - qubits_num: 2, using gates: [h,s,y,cx,x,sdg,id]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 13
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: sdg-cx-s-h-y 
+     => total size: [5] (IBM)
+ --------------------
+ - qubits_num: 2, using gates: [h,y,s,cx,sdg]
+ - circuit depth: 5 - (small)
+ - circuit cycle: 6
+
+Reduced: 
+ - size: 7 (58.33%)
+ - depth: 2 (28.57%)
+
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.010023117065429688
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.0009987354278564453
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: Scshy
+---------------
+---------------
+Circuit after: Scshy
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.0009987354278564453
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: id-h-s-cx-sdg-h-h-x-x-y-y-y 
+     => total size: [12] (IBM)
+ --------------------
+ - qubits_num: 2, using gates: [x,y,id,h,cx,s,sdg]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 13
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: sdg-cx-s-h-y 
+     => total size: [5] (IBM)
+ --------------------
+ - qubits_num: 2, using gates: [y,h,cx,s,sdg]
+ - circuit depth: 5 - (small)
+ - circuit cycle: 6
+
+Reduced: 
+ - size: 7 (58.33%)
+ - depth: 2 (28.57%)
+
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.006980180740356445
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.0009996891021728516
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: Scshy
+---------------
+---------------
+Circuit after: Scshy
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  0.0009996891021728516
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: id-h-s-cx-sdg-h-h-x-x-y-y-y 
+     => total size: [12] (IBM)
+ --------------------
+ - qubits_num: 2, using gates: [sdg,y,x,cx,h,s,id]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 13
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: sdg-cx-s-h-y 
+     => total size: [5] (IBM)
+ --------------------
+ - qubits_num: 2, using gates: [sdg,y,cx,h,s]
+ - circuit depth: 5 - (small)
+ - circuit cycle: 6
+
+Reduced: 
+ - size: 7 (58.33%)
+ - depth: 2 (28.57%)
+
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.009972095489501953
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  0.0019931793212890625
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0009980201721191406
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: Scshy
+---------------
+---------------
+Circuit after: Scshy
+
+--------End Timer [apply mapping plan]:  0.000997304916381836
+
+----End Timer [Execute Mapping]:  0.003988504409790039
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: id-h-s-cx-sdg-h-h-x-x-y-y-y 
+     => total size: [12] (IBM)
+ --------------------
+ - qubits_num: 2, using gates: [y,cx,sdg,x,id,h,s]
+ - circuit depth: 7 - (small)
+ - circuit cycle: 13
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: sdg-cx-s-h-y 
+     => total size: [5] (IBM)
+ --------------------
+ - qubits_num: 2, using gates: [y,cx,sdg,h,s]
+ - circuit depth: 5 - (small)
+ - circuit cycle: 6
+
+Reduced: 
+ - size: 7 (58.33%)
+ - depth: 2 (28.57%)
+
