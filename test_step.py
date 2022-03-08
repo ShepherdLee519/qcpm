@@ -1,7 +1,7 @@
 from qcpm import Mapper, Circuit
 
 
-circuit_path = './data/example_toffoli.qasm'
+circuit_path = './data/mult_after_light.qasm'
 
 
 # Step 1. init mapper: eg. mapper = Mapper()

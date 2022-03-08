@@ -1,4 +1,6 @@
 from qcpm.operator import Operator
+from qcpm.preprocess import preprocess
+
 
 class CircuitInfo:
     """ represent Circuit's detail info
@@ -84,7 +86,7 @@ class CircuitInfo:
         Returns:
             max depth of each layers.
         """
-        MAX_QUBITS = 64
+        MAX_QUBITS = 1000
 
         last_layer = [0] * MAX_QUBITS
 
@@ -145,6 +147,23 @@ class CircuitInfo:
             return 'medium'
         else:
             return 'large'
+
+    @staticmethod
+    def fromQASM(path, system='IBM'):
+        """ get CircuitInfo object from an existing QASM file
+
+        Returns:
+            CircuitInfo object.
+        """
+        operators = []
+
+        ops = preprocess(path) # iterator
+        next(ops) # skip headers
+
+        for operator in ops:
+            operators.append(operator)
+
+        return CircuitInfo(operators, system)
 
     ##########################
     #                        #
