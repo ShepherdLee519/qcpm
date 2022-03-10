@@ -1,8 +1,7 @@
-from turtle import circle
-from qcpm import QCPatternMapper
+from qcpm import QCPatternMapper2
 
 
-QCPM = QCPatternMapper()
+QCPM = QCPatternMapper2()
 
 # solving single file:
 """
@@ -16,8 +15,8 @@ QCPM = QCPatternMapper()
         - stratrgy: strategy use to generate mapping plan, "MCM"/"random"
             default(None) greedy search.
 """
-# QCPM.execute(circuit_path, './circuit_after', 
-#     strategy='random', system='IBM', metric='depth')
+# QCPM.execute('./data/example_reduction', './circuit_after', 
+#     strategy='MCM', system='IBM', metric='depth')
 
 
 # solving files in batch mode(dir to dir):
@@ -30,4 +29,4 @@ config = {
     # 'depth_size': 'medium', # default all
     'metric': 'depth' # cycle or depth
 }
-# QCPM.execute('./data/stat-test/', './data/stat-output/', **config)
+QCPM.execute('./data/stat-test/', './data/stat-output/', **config)

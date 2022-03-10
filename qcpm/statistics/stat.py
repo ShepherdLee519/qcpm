@@ -26,12 +26,3 @@ class StatReporter:
             return
 
         addRow(self.path, filename, circuitInfos, self.metric, time)
-        
-
-        
-
-
-
-        
-
-        

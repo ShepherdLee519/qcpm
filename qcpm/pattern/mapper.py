@@ -40,16 +40,16 @@ class Mapper:
             which [circuit] is a Circuit object.
     """
     @timerDecorator(description='Init Mapper')
-    def __init__(self):
+    def __init__(self, pattern_type='pattern'):
         self.patterns = {} # contains Pattern object.
-        self._init_patterns()
+        self._init_patterns(pattern_type)
 
         # dynamically set when [execute()] call.
         self.circuit = None # should be Circuit object
         self._candidates = [] # contains temp Candidates (Candidate object)
         self.plans = [] # candidates mapping plan (Plan object)
         
-    def _init_patterns(self):
+    def _init_patterns(self, pattern_type):
         """ load pattern file and initiate
 
         load pattern json file and init self.patterns
@@ -60,7 +60,7 @@ class Mapper:
         self.patterns = {} # reset to empty
 
         for system in systems:
-            data = pkgutil.get_data(__package__, f'/rules/{system}/pattern.json')
+            data = pkgutil.get_data(__package__, f'/rules/{system}/{pattern_type}.json')
             patterns_data = json.loads(data.decode())
 
             self.patterns[system] = []
