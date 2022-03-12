@@ -2,12 +2,17 @@ from turtle import circle
 from qcpm import QCPatternMapper
 
 
+
+"""
+    params:
+        - log: eg 'log.txt', path of output log file. (for single file) default ''
+        - logs: log files' output dir default './log/'
+"""
 QCPM = QCPatternMapper()
 
 # solving single file:
 """
     params:
-        - log: eg 'log.txt', path of output log file.
         - optimize: Whether to optimize, default: True
         - system: 
                 - if in/out is the same system: "IBM" / "Surface"
@@ -28,6 +33,6 @@ config = {
     'strategy': 'MCM',
     'system': 'IBM', # ['IBM', 'Surface]
     # 'depth_size': 'medium', # default all
-    'metric': 'depth' # cycle or depth
+    'metric': 'cycle' # cycle or depth
 }
-# QCPM.execute('./data/stat-test/', './data/stat-output/', **config)
+QCPM.execute('./data/stat-test/', './data/stat-output/', **config)
