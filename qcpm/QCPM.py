@@ -169,7 +169,8 @@ class QCPatternMapper:
             [! Other args should be corresponding to self.execute] => **kwargs
         
         """
-        self.reporter = StatReporter(self.config.stat_path, metric=self.config.metric)
+        self.reporter = StatReporter(self.config.stat_path, 
+            metric=self.config.metric, folder=input_dir, config=self.config)
 
         for i, file in enumerate(os.listdir(input_dir)):
             # eg. 'example.qasm'

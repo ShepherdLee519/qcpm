@@ -24,9 +24,9 @@ QCPM = QCPatternMapper2()
 config = {
     # 'logs': './logs/', # for files
     'stat': './', # csv path
-    'strategy': 'MCM',
-    'system': 'IBM', # ['IBM', 'Surface]
+    'strategy': 'random',
+    'system': ['IBM', 'Surface'], # ['IBM', 'Surface]
     # 'depth_size': 'medium', # default all
-    'metric': 'depth' # cycle or depth
+    'metric': 'cycle' # cycle or depth
 }
 QCPM.execute('./data/stat-test/', './data/stat-output/', **config)

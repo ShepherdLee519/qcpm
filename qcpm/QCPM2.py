@@ -6,6 +6,7 @@ from qcpm.pattern import Mapper
 from qcpm.circuit import Circuit
 from qcpm.common import Timer
 from qcpm.statistics import StatReporter
+from qcpm.config import QCPMConfig
 
 
 stdout = sys.stdout
@@ -121,25 +122,37 @@ class QCPatternMapper2:
             input_path: qasm file's path or may be qasm files' dir path.
             output_path: default='' means no output.
         """
+        # init config object
+        self.config = QCPMConfig(kwargs)
+
+        self._execute(input_path, output_path)
+
+        # destroy config object
+        self.config = None
+
+    def _execute(self, input_path, output_path=''):
+        """ apply mapper on target circuit.
+
+        If input path is dir => call self._executeDir
+
+        Args:
+            input_path: qasm file's path or may be qasm files' dir path.
+            output_path: default='' means no output.
+        """
         # if input_path is a folder path => batch work model
         if os.path.isdir(input_path):
-            self._executeDir(input_path, output_path, **kwargs)
+            self._executeDir(input_path, output_path)
             return 
 
         # else execute mapping on target circuit
         # first => get needed parameters from kwargs
-        depth_size = kwargs.get('depth_size', 'all') # small/medium/large
-        optimize = kwargs.get('optimize', True)
-        system = kwargs.get('system', 'IBM')
-        strategy = kwargs.get('strategy', None)
-        metric = kwargs.get('metric', 'cycle')
-
-        if isinstance(system, list):
+        if isinstance(self.config.system, list):
             # eg. system = ["IBM", "Surface"]
-            system_input, system_output = system
+            system_input, system_output = self.config.system
         else:
             # eg. system = 'Surface'
-            system_input = system_output = system
+            system_input = system_output = self.config.system
+
         
         timer = Timer()
         timer.silence = True
@@ -157,23 +170,24 @@ class QCPatternMapper2:
                 turn = 1
                 # first turn should initial circuit(default call optimization.)
                 circuit = Circuit(input_path, system=system_input, optimize=False)
-                if optimize:
-                    self._optimize(circuit, system=system_input, strategy=strategy, metric=metric)
+                if self.config.optimize:
+                    self._optimize(circuit, system=system_input, 
+                        strategy=self.config.strategy, metric=self.config.metric)
 
                 # after loading circuit, check the depth size
                 circuit_depth_size = circuit.origin.depth_size
-                if depth_size != 'all' and circuit_depth_size != depth_size:
+                if self.config.depth_size != 'all' and circuit_depth_size != self.config.depth_size:
                     raise DepthSizeError(circuit_depth_size)
                 
                 changed = self.patternMapper.execute(circuit, 
-                    system=system_input, strategy=strategy, metric=metric)
+                    system=system_input, strategy=self.config.strategy, metric=self.config.metric)
 
                 while changed and turn < LIMIT:
-                    optimize and self._optimize(circuit, 
-                        system=system_input, strategy=strategy, metric=metric)
+                    self.config.optimize and self._optimize(circuit, 
+                        system=system_input, strategy=self.config.strategy, metric=self.config.metric)
                     
                     changed = self.patternMapper.execute(circuit,
-                        system=system_input, strategy=strategy, metric=metric)
+                        system=system_input, strategy=self.config.strategy, metric=self.config.metric)
 
                     turn += 1
 
@@ -191,7 +205,7 @@ class QCPatternMapper2:
 
         print(circuit)
 
-    def _executeDir(self, input_dir, output_dir, **kwargs):
+    def _executeDir(self, input_dir, output_dir):
         """ execute when call batch work form dir to dir.
 
         Iterately call [self.execute] to execute.
@@ -201,9 +215,9 @@ class QCPatternMapper2:
             [! Other args should be corresponding to self.execute] => **kwargs
         
         """
-        metric = kwargs.get('metric', 'cycle')
-        stat_path = kwargs.get('stat', None)
-        self.reporter = StatReporter(stat_path, metric=metric)
+        self.reporter = StatReporter(self.config.stat_path, 
+            metric=self.config.metric, folder=input_dir, config=self.config)
+
 
         for i, file in enumerate(os.listdir(input_dir)):
             # eg. 'example.qasm'
@@ -219,10 +233,9 @@ class QCPatternMapper2:
             
             try:
                 # call self.execute to solve single file.
-                self.execute(
+                self._execute(
                     os.path.join(input_dir, f'{filename}.qasm'),
                     os.path.join(output_dir, f'{output_name}.qasm'),
-                    **kwargs
                 )
 
                 print(f'-- finished! output: <{output_dir}{output_name}>.')
