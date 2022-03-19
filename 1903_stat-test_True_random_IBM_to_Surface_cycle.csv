@@ -1,7 +1,0 @@
-Filename,Size(number of gates),,,,Cycle,,,,SQGs,,,,MQGs,,,,Total Time
-,before,after,reduce,,before,after,reduce,,before,after,reduce,,before,after,reduce,,
-./data/stat-test/example_reduction.qasm,27,45,-18(-66.67%),,30,48,-18(-60.00%),,"24(sdg,z,x,h,s)","42(z,x,ry,rx,y)",-18(-75.00%),,3(cx),3(cz),0(-),,0.0678098201751709
-./data/stat-test/example_reduction_2.qasm,12,12,0(-),,13,13,0(-),,"11(s,sdg,x,y,h,id)","11(ry,rx,y,z)",0(-),,1(cx),1(cz),0(-),,0.026923179626464844
-./data/stat-test/example_reduction_3.qasm,16,18,-2(-12.50%),,19,21,-2(-10.53%),,"13(s,sdg,x,y,h,id)","15(ry,rx,y,z)",-2(-15.38%),,3(cx),3(cz),0(-),,0.05883598327636719
-./data/stat-test/example_reduction_4.qasm,24,37,-13(-54.17%),,31,42,-11(-35.48%),,"17(s,sdg,z,y,h,id)","32(z,x,ry,rx,y)",-15(-88.24%),,7(cx),5(cz),2(28.57%),,0.13065075874328613
-./data/stat-test/toffoli.qasm,45,85,-40(-88.89%),,57,97,-40(-70.18%),,"33(tdg,t,h)","73(ry,rx,z)",-40(-121.21%),,12(cz),12(cz),0(-),,0.10670804977416992
