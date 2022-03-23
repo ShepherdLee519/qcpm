@@ -1,0 +1,1748 @@
+----Start Timer: [Init Circuit]
+----End Timer [Init Circuit]:  0.267284631729126
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+[4, 9]
+[10, 23]
+[23, 27]
+[20, 29]
+[18, 30]
+[22, 31]
+[34, 45]
+[36, 47]
+[39, 48]
+[44, 49]
+[46, 54]
+[63, 71]
+[70, 75]
+[68, 77]
+[78, 85]
+[81, 87]
+[86, 100]
+[92, 102]
+[96, 106]
+[97, 107]
+[100, 108]
+[95, 111]
+[110, 117]
+[121, 127]
+[118, 132]
+[124, 134]
+[129, 138]
+[127, 139]
+[128, 140]
+[134, 142]
+[136, 145]
+[126, 156]
+[151, 164]
+[160, 169]
+[168, 178]
+[171, 179]
+[179, 185]
+[180, 186]
+[182, 191]
+[183, 192]
+[190, 193]
+[186, 195]
+[189, 196]
+[178, 198]
+[198, 200]
+[192, 204]
+[214, 222]
+[220, 224]
+[216, 226]
+[222, 227]
+[228, 235]
+[231, 239]
+[232, 243]
+[234, 244]
+[240, 252]
+[251, 256]
+[255, 262]
+[269, 272]
+[268, 274]
+[275, 286]
+[278, 287]
+[282, 291]
+[274, 295]
+[288, 300]
+[298, 306]
+[307, 316]
+[310, 321]
+[327, 335]
+[330, 338]
+[333, 340]
+[329, 342]
+[337, 344]
+[340, 345]
+[343, 348]
+[334, 349]
+[345, 353]
+[350, 355]
+[341, 357]
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+[12, 17, 25]
+[5, 13, 36]
+[174, 181, 188]
+[273, 281, 293]
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+[42, 55, 62]
+[54, 60, 64]
+[80, 88, 99]
+[109, 112, 119]
+[193, 203, 212]
+[205, 208, 221]
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  24.118104934692383
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [4, 9] cc => I, Pos: [5, 13, 36] ccc => cc, Pos: [10, 23] cc => I, Pos: [12, 17, 25] ccc => cc, Pos: [18, 30] cc => I, Pos: [20, 29] cc => I, Pos: [22, 31] cc => I, Pos: [23, 27] cc => I, Pos: [34, 45] cc => I, Pos: [36, 47] cc => I, Pos: [39, 48] cc => I, Pos: [42, 55, 62] ccc => cc, Pos: [44, 49] cc => I, Pos: [46, 54] cc => I, Pos: [54, 60, 64] ccc => cc, Pos: [63, 71] cc => I, Pos: [68, 77] cc => I, Pos: [70, 75] cc => I, Pos: [78, 85] cc => I, Pos: [80, 88, 99] ccc => cc, Pos: [81, 87] cc => I, Pos: [86, 100] cc => I, Pos: [92, 102] cc => I, Pos: [95, 111] cc => I, Pos: [96, 106] cc => I, Pos: [97, 107] cc => I, Pos: [100, 108] cc => I, Pos: [109, 112, 119] ccc => cc, Pos: [110, 117] cc => I, Pos: [118, 132] cc => I, Pos: [121, 127] cc => I, Pos: [124, 134] cc => I, Pos: [126, 156] cc => I, Pos: [127, 139] cc => I, Pos: [128, 140] cc => I, Pos: [129, 138] cc => I, Pos: [134, 142] cc => I, Pos: [136, 145] cc => I, Pos: [151, 164] cc => I, Pos: [160, 169] cc => I, Pos: [168, 178] cc => I, Pos: [171, 179] cc => I, Pos: [174, 181, 188] ccc => cc, Pos: [178, 198] cc => I, Pos: [179, 185] cc => I, Pos: [180, 186] cc => I, Pos: [182, 191] cc => I, Pos: [183, 192] cc => I, Pos: [186, 195] cc => I, Pos: [189, 196] cc => I, Pos: [190, 193] cc => I, Pos: [192, 204] cc => I, Pos: [193, 203, 212] ccc => cc, Pos: [198, 200] cc => I, Pos: [205, 208, 221] ccc => cc, Pos: [214, 222] cc => I, Pos: [216, 226] cc => I, Pos: [220, 224] cc => I, Pos: [222, 227] cc => I, Pos: [228, 235] cc => I, Pos: [231, 239] cc => I, Pos: [232, 243] cc => I, Pos: [234, 244] cc => I, Pos: [240, 252] cc => I, Pos: [251, 256] cc => I, Pos: [255, 262] cc => I, Pos: [268, 274] cc => I, Pos: [269, 272] cc => I, Pos: [273, 281, 293] ccc => cc, Pos: [274, 295] cc => I, Pos: [275, 286] cc => I, Pos: [278, 287] cc => I, Pos: [282, 291] cc => I, Pos: [288, 300] cc => I, Pos: [298, 306] cc => I, Pos: [307, 316] cc => I, Pos: [310, 321] cc => I, Pos: [327, 335] cc => I, Pos: [329, 342] cc => I, Pos: [330, 338] cc => I, Pos: [333, 340] cc => I, Pos: [334, 349] cc => I, Pos: [337, 344] cc => I, Pos: [340, 345] cc => I, Pos: [341, 357] cc => I, Pos: [343, 348] cc => I, Pos: [345, 353] cc => I, Pos: [350, 355] cc => I]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 1
+
+Pos: [4, 9] cc => I
+
+Selected: Pos: [4, 9] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^    ^              
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [5, 13, 36] ccc => cc
+
+Selected: Pos: [5, 13, 36] ccc => cc
+    ... cccccccccccccccccccc ... 
+target: ^       ^           
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [10, 23] cc => I
+
+Selected: Pos: [10, 23] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^            ^      
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [12, 17, 25] ccc => cc
+
+Selected: Pos: [12, 17, 25] ccc => cc
+    ... cccccccccccccccccccc ... 
+target: ^    ^       ^      
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [18, 30] cc => I
+
+Selected: Pos: [18, 30] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^           ^       
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [20, 29] cc => I
+
+Selected: Pos: [20, 29] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^        ^          
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [22, 31] cc => I
+
+Selected: Pos: [22, 31] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^        ^          
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [34, 45] cc => I
+
+Selected: Pos: [34, 45] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^          ^        
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [39, 48] cc => I
+
+Selected: Pos: [39, 48] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^        ^          
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [42, 55, 62] ccc => cc
+
+Selected: Pos: [42, 55, 62] ccc => cc
+    ... cccccccccccccccccccc ... 
+target: ^            ^      
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [44, 49] cc => I
+
+Selected: Pos: [44, 49] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^    ^              
+
+----------
+
+Expansion: Candidates size: 2
+
+Pos: [46, 54] cc => I
+Pos: [54, 60, 64] ccc => cc
+
+Selected: Pos: [46, 54] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^       ^           
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [63, 71] cc => I
+
+Selected: Pos: [63, 71] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^       ^           
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [68, 77] cc => I
+
+Selected: Pos: [68, 77] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^        ^          
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [70, 75] cc => I
+
+Selected: Pos: [70, 75] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^    ^              
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [78, 85] cc => I
+
+Selected: Pos: [78, 85] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^      ^            
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [80, 88, 99] ccc => cc
+
+Selected: Pos: [80, 88, 99] ccc => cc
+    ... cccccccccccccccccccc ... 
+target: ^       ^          ^
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [81, 87] cc => I
+
+Selected: Pos: [81, 87] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^     ^             
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [86, 100] cc => I
+
+Selected: Pos: [86, 100] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^             ^     
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [92, 102] cc => I
+
+Selected: Pos: [92, 102] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^         ^         
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [95, 111] cc => I
+
+Selected: Pos: [95, 111] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^               ^   
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [96, 106] cc => I
+
+Selected: Pos: [96, 106] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^         ^         
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [97, 107] cc => I
+
+Selected: Pos: [97, 107] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^         ^         
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [109, 112, 119] ccc => cc
+
+Selected: Pos: [109, 112, 119] ccc => cc
+    ... cccccccccccccccccccc ... 
+target: ^  ^      ^         
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [110, 117] cc => I
+
+Selected: Pos: [110, 117] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^      ^            
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [118, 132] cc => I
+
+Selected: Pos: [118, 132] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^             ^     
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [121, 127] cc => I
+
+Selected: Pos: [121, 127] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^     ^             
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [124, 134] cc => I
+
+Selected: Pos: [124, 134] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^         ^         
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [126, 156] cc => I
+
+Selected: Pos: [126, 156] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^                   
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [128, 140] cc => I
+
+Selected: Pos: [128, 140] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^           ^       
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [129, 138] cc => I
+
+Selected: Pos: [129, 138] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^        ^          
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [136, 145] cc => I
+
+Selected: Pos: [136, 145] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^        ^          
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [151, 164] cc => I
+
+Selected: Pos: [151, 164] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^            ^      
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [160, 169] cc => I
+
+Selected: Pos: [160, 169] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^        ^          
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [168, 178] cc => I
+
+Selected: Pos: [168, 178] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^         ^         
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [171, 179] cc => I
+
+Selected: Pos: [171, 179] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^       ^           
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [174, 181, 188] ccc => cc
+
+Selected: Pos: [174, 181, 188] ccc => cc
+    ... cccccccccccccccccccc ... 
+target: ^      ^      ^     
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [180, 186] cc => I
+
+Selected: Pos: [180, 186] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^     ^             
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [182, 191] cc => I
+
+Selected: Pos: [182, 191] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^        ^          
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [183, 192] cc => I
+
+Selected: Pos: [183, 192] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^        ^          
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [189, 196] cc => I
+
+Selected: Pos: [189, 196] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^      ^            
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [190, 193] cc => I
+
+Selected: Pos: [190, 193] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^  ^                
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [198, 200] cc => I
+
+Selected: Pos: [198, 200] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^ ^                 
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [205, 208, 221] ccc => cc
+
+Selected: Pos: [205, 208, 221] ccc => cc
+    ... cccccccccccccccccccc ... 
+target: ^  ^            ^   
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [214, 222] cc => I
+
+Selected: Pos: [214, 222] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^       ^           
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [216, 226] cc => I
+
+Selected: Pos: [216, 226] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^         ^         
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [220, 224] cc => I
+
+Selected: Pos: [220, 224] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^   ^               
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [228, 235] cc => I
+
+Selected: Pos: [228, 235] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^      ^            
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [231, 239] cc => I
+
+Selected: Pos: [231, 239] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^       ^           
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [232, 243] cc => I
+
+Selected: Pos: [232, 243] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^          ^        
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [234, 244] cc => I
+
+Selected: Pos: [234, 244] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^         ^         
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [240, 252] cc => I
+
+Selected: Pos: [240, 252] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^           ^       
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [251, 256] cc => I
+
+Selected: Pos: [251, 256] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^    ^              
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [255, 262] cc => I
+
+Selected: Pos: [255, 262] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^      ^            
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [268, 274] cc => I
+
+Selected: Pos: [268, 274] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^     ^             
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [269, 272] cc => I
+
+Selected: Pos: [269, 272] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^  ^                
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [273, 281, 293] ccc => cc
+
+Selected: Pos: [273, 281, 293] ccc => cc
+    ... cccccccccccccccccccc ... 
+target: ^       ^           
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [275, 286] cc => I
+
+Selected: Pos: [275, 286] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^          ^        
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [278, 287] cc => I
+
+Selected: Pos: [278, 287] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^        ^          
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [282, 291] cc => I
+
+Selected: Pos: [282, 291] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^        ^          
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [288, 300] cc => I
+
+Selected: Pos: [288, 300] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^           ^       
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [298, 306] cc => I
+
+Selected: Pos: [298, 306] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^       ^           
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [307, 316] cc => I
+
+Selected: Pos: [307, 316] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^        ^          
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [310, 321] cc => I
+
+Selected: Pos: [310, 321] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^          ^        
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [327, 335] cc => I
+
+Selected: Pos: [327, 335] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^       ^           
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [329, 342] cc => I
+
+Selected: Pos: [329, 342] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^            ^      
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [330, 338] cc => I
+
+Selected: Pos: [330, 338] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^       ^           
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [333, 340] cc => I
+
+Selected: Pos: [333, 340] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^      ^            
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [334, 349] cc => I
+
+Selected: Pos: [334, 349] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^              ^    
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [337, 344] cc => I
+
+Selected: Pos: [337, 344] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^      ^            
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [341, 357] cc => I
+
+Selected: Pos: [341, 357] cc => I
+    ... ccccccccccccccccccc ... 
+target: ^               ^  
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [343, 348] cc => I
+
+Selected: Pos: [343, 348] cc => I
+    ... ccccccccccccccccc ... 
+target: ^    ^           
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [345, 353] cc => I
+
+Selected: Pos: [345, 353] cc => I
+    ... ccccccccccccccc ... 
+target: ^       ^      
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [350, 355] cc => I
+
+Selected: Pos: [350, 355] cc => I
+    ... cccccccccc ... 
+target: ^    ^    
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [4, 9] cc => I
+Pos: [5, 13, 36] ccc => cc
+Pos: [10, 23] cc => I
+Pos: [12, 17, 25] ccc => cc
+Pos: [18, 30] cc => I
+Pos: [20, 29] cc => I
+Pos: [22, 31] cc => I
+Pos: [34, 45] cc => I
+Pos: [39, 48] cc => I
+Pos: [42, 55, 62] ccc => cc
+Pos: [44, 49] cc => I
+Pos: [46, 54] cc => I
+Pos: [63, 71] cc => I
+Pos: [68, 77] cc => I
+Pos: [70, 75] cc => I
+Pos: [78, 85] cc => I
+Pos: [80, 88, 99] ccc => cc
+Pos: [81, 87] cc => I
+Pos: [86, 100] cc => I
+Pos: [92, 102] cc => I
+Pos: [95, 111] cc => I
+Pos: [96, 106] cc => I
+Pos: [97, 107] cc => I
+Pos: [109, 112, 119] ccc => cc
+Pos: [110, 117] cc => I
+Pos: [118, 132] cc => I
+Pos: [121, 127] cc => I
+Pos: [124, 134] cc => I
+Pos: [126, 156] cc => I
+Pos: [128, 140] cc => I
+Pos: [129, 138] cc => I
+Pos: [136, 145] cc => I
+Pos: [151, 164] cc => I
+Pos: [160, 169] cc => I
+Pos: [168, 178] cc => I
+Pos: [171, 179] cc => I
+Pos: [174, 181, 188] ccc => cc
+Pos: [180, 186] cc => I
+Pos: [182, 191] cc => I
+Pos: [183, 192] cc => I
+Pos: [189, 196] cc => I
+Pos: [190, 193] cc => I
+Pos: [198, 200] cc => I
+Pos: [205, 208, 221] ccc => cc
+Pos: [214, 222] cc => I
+Pos: [216, 226] cc => I
+Pos: [220, 224] cc => I
+Pos: [228, 235] cc => I
+Pos: [231, 239] cc => I
+Pos: [232, 243] cc => I
+Pos: [234, 244] cc => I
+Pos: [240, 252] cc => I
+Pos: [251, 256] cc => I
+Pos: [255, 262] cc => I
+Pos: [268, 274] cc => I
+Pos: [269, 272] cc => I
+Pos: [273, 281, 293] ccc => cc
+Pos: [275, 286] cc => I
+Pos: [278, 287] cc => I
+Pos: [282, 291] cc => I
+Pos: [288, 300] cc => I
+Pos: [298, 306] cc => I
+Pos: [307, 316] cc => I
+Pos: [310, 321] cc => I
+Pos: [327, 335] cc => I
+Pos: [329, 342] cc => I
+Pos: [330, 338] cc => I
+Pos: [333, 340] cc => I
+Pos: [334, 349] cc => I
+Pos: [337, 344] cc => I
+Pos: [341, 357] cc => I
+Pos: [343, 348] cc => I
+Pos: [345, 353] cc => I
+Pos: [350, 355] cc => I
+
+Total Saving: 280
+
+
+--------End Timer [Generate Plans]:  0.16057324409484863
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [4, 9] cc => I,
+ Pos: [5, 13, 36] ccc => cc,
+ Pos: [10, 23] cc => I,
+ Pos: [12, 17, 25] ccc => cc,
+ Pos: [18, 30] cc => I,
+ Pos: [20, 29] cc => I,
+ Pos: [22, 31] cc => I,
+ Pos: [34, 45] cc => I,
+ Pos: [39, 48] cc => I,
+ Pos: [42, 55, 62] ccc => cc,
+ Pos: [44, 49] cc => I,
+ Pos: [46, 54] cc => I,
+ Pos: [63, 71] cc => I,
+ Pos: [68, 77] cc => I,
+ Pos: [70, 75] cc => I,
+ Pos: [78, 85] cc => I,
+ Pos: [80, 88, 99] ccc => cc,
+ Pos: [81, 87] cc => I,
+ Pos: [86, 100] cc => I,
+ Pos: [92, 102] cc => I,
+ Pos: [95, 111] cc => I,
+ Pos: [96, 106] cc => I,
+ Pos: [97, 107] cc => I,
+ Pos: [109, 112, 119] ccc => cc,
+ Pos: [110, 117] cc => I,
+ Pos: [118, 132] cc => I,
+ Pos: [121, 127] cc => I,
+ Pos: [124, 134] cc => I,
+ Pos: [126, 156] cc => I,
+ Pos: [128, 140] cc => I,
+ Pos: [129, 138] cc => I,
+ Pos: [136, 145] cc => I,
+ Pos: [151, 164] cc => I,
+ Pos: [160, 169] cc => I,
+ Pos: [168, 178] cc => I,
+ Pos: [171, 179] cc => I,
+ Pos: [174, 181, 188] ccc => cc,
+ Pos: [180, 186] cc => I,
+ Pos: [182, 191] cc => I,
+ Pos: [183, 192] cc => I,
+ Pos: [189, 196] cc => I,
+ Pos: [190, 193] cc => I,
+ Pos: [198, 200] cc => I,
+ Pos: [205, 208, 221] ccc => cc,
+ Pos: [214, 222] cc => I,
+ Pos: [216, 226] cc => I,
+ Pos: [220, 224] cc => I,
+ Pos: [228, 235] cc => I,
+ Pos: [231, 239] cc => I,
+ Pos: [232, 243] cc => I,
+ Pos: [234, 244] cc => I,
+ Pos: [240, 252] cc => I,
+ Pos: [251, 256] cc => I,
+ Pos: [255, 262] cc => I,
+ Pos: [268, 274] cc => I,
+ Pos: [269, 272] cc => I,
+ Pos: [273, 281, 293] ccc => cc,
+ Pos: [275, 286] cc => I,
+ Pos: [278, 287] cc => I,
+ Pos: [282, 291] cc => I,
+ Pos: [288, 300] cc => I,
+ Pos: [298, 306] cc => I,
+ Pos: [307, 316] cc => I,
+ Pos: [310, 321] cc => I,
+ Pos: [327, 335] cc => I,
+ Pos: [329, 342] cc => I,
+ Pos: [330, 338] cc => I,
+ Pos: [333, 340] cc => I,
+ Pos: [334, 349] cc => I,
+ Pos: [337, 344] cc => I,
+ Pos: [341, 357] cc => I,
+ Pos: [343, 348] cc => I,
+ Pos: [345, 353] cc => I,
+ Pos: [350, 355] cc => I]
+Change: 74, Saving: 280
+
+Circuit before: cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+---------------
+Apply:  Pos: [4, 9] cc => I
+Apply:  Pos: [5, 13, 36] ccc => cc
+Apply:  Pos: [10, 23] cc => I
+Apply:  Pos: [12, 17, 25] ccc => cc
+Apply:  Pos: [18, 30] cc => I
+Apply:  Pos: [20, 29] cc => I
+Apply:  Pos: [22, 31] cc => I
+Apply:  Pos: [34, 45] cc => I
+Apply:  Pos: [39, 48] cc => I
+Apply:  Pos: [42, 55, 62] ccc => cc
+Apply:  Pos: [44, 49] cc => I
+Apply:  Pos: [46, 54] cc => I
+Apply:  Pos: [63, 71] cc => I
+Apply:  Pos: [68, 77] cc => I
+Apply:  Pos: [70, 75] cc => I
+Apply:  Pos: [78, 85] cc => I
+Apply:  Pos: [80, 88, 99] ccc => cc
+Apply:  Pos: [81, 87] cc => I
+Apply:  Pos: [86, 100] cc => I
+Apply:  Pos: [92, 102] cc => I
+Apply:  Pos: [95, 111] cc => I
+Apply:  Pos: [96, 106] cc => I
+Apply:  Pos: [97, 107] cc => I
+Apply:  Pos: [109, 112, 119] ccc => cc
+Apply:  Pos: [110, 117] cc => I
+Apply:  Pos: [118, 132] cc => I
+Apply:  Pos: [121, 127] cc => I
+Apply:  Pos: [124, 134] cc => I
+Apply:  Pos: [126, 156] cc => I
+Apply:  Pos: [128, 140] cc => I
+Apply:  Pos: [129, 138] cc => I
+Apply:  Pos: [136, 145] cc => I
+Apply:  Pos: [151, 164] cc => I
+Apply:  Pos: [160, 169] cc => I
+Apply:  Pos: [168, 178] cc => I
+Apply:  Pos: [171, 179] cc => I
+Apply:  Pos: [174, 181, 188] ccc => cc
+Apply:  Pos: [180, 186] cc => I
+Apply:  Pos: [182, 191] cc => I
+Apply:  Pos: [183, 192] cc => I
+Apply:  Pos: [189, 196] cc => I
+Apply:  Pos: [190, 193] cc => I
+Apply:  Pos: [198, 200] cc => I
+Apply:  Pos: [205, 208, 221] ccc => cc
+Apply:  Pos: [214, 222] cc => I
+Apply:  Pos: [216, 226] cc => I
+Apply:  Pos: [220, 224] cc => I
+Apply:  Pos: [228, 235] cc => I
+Apply:  Pos: [231, 239] cc => I
+Apply:  Pos: [232, 243] cc => I
+Apply:  Pos: [234, 244] cc => I
+Apply:  Pos: [240, 252] cc => I
+Apply:  Pos: [251, 256] cc => I
+Apply:  Pos: [255, 262] cc => I
+Apply:  Pos: [268, 274] cc => I
+Apply:  Pos: [269, 272] cc => I
+Apply:  Pos: [273, 281, 293] ccc => cc
+Apply:  Pos: [275, 286] cc => I
+Apply:  Pos: [278, 287] cc => I
+Apply:  Pos: [282, 291] cc => I
+Apply:  Pos: [288, 300] cc => I
+Apply:  Pos: [298, 306] cc => I
+Apply:  Pos: [307, 316] cc => I
+Apply:  Pos: [310, 321] cc => I
+Apply:  Pos: [327, 335] cc => I
+Apply:  Pos: [329, 342] cc => I
+Apply:  Pos: [330, 338] cc => I
+Apply:  Pos: [333, 340] cc => I
+Apply:  Pos: [334, 349] cc => I
+Apply:  Pos: [337, 344] cc => I
+Apply:  Pos: [341, 357] cc => I
+Apply:  Pos: [343, 348] cc => I
+Apply:  Pos: [345, 353] cc => I
+Apply:  Pos: [350, 355] cc => I
+---------------
+Circuit after: cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+
+--------End Timer [apply mapping plan]:  0.007975578308105469
+
+----End Timer [Execute Mapping]:  24.28765106201172
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+[50, 52]
+[111, 120]
+[113, 123]
+[129, 144]
+[134, 154]
+[174, 189]
+[202, 213]
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+[39, 45, 53]
+[207, 209, 215]
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+[194, 200, 206]
+--------End Timer [Find Candidates]:  18.08771538734436
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [39, 45, 53] ccc => cc, Pos: [50, 52] cc => I, Pos: [111, 120] cc => I, Pos: [113, 123] cc => I, Pos: [129, 144] cc => I, Pos: [134, 154] cc => I, Pos: [174, 189] cc => I, Pos: [194, 200, 206] ccc => cc, Pos: [202, 213] cc => I, Pos: [207, 209, 215] ccc => cc]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 1
+
+Pos: [39, 45, 53] ccc => cc
+
+Selected: Pos: [39, 45, 53] ccc => cc
+    ... cccccccccccccccccccc ... 
+target: ^     ^       ^     
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [50, 52] cc => I
+
+Selected: Pos: [50, 52] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^ ^                 
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [111, 120] cc => I
+
+Selected: Pos: [111, 120] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^        ^          
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [113, 123] cc => I
+
+Selected: Pos: [113, 123] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^         ^         
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [129, 144] cc => I
+
+Selected: Pos: [129, 144] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^              ^    
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [134, 154] cc => I
+
+Selected: Pos: [134, 154] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^                   
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [174, 189] cc => I
+
+Selected: Pos: [174, 189] cc => I
+    ... cccccccccccccccccccc ... 
+target: ^              ^    
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [194, 200, 206] ccc => cc
+
+Selected: Pos: [194, 200, 206] ccc => cc
+    ... cccccccccccccccccccc ... 
+target: ^     ^     ^       
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [202, 213] cc => I
+
+Selected: Pos: [202, 213] cc => I
+    ... cccccccccccccccccc ... 
+target: ^          ^      
+
+----------
+
+Expansion: Candidates size: 1
+
+Pos: [207, 209, 215] ccc => cc
+
+Selected: Pos: [207, 209, 215] ccc => cc
+    ... ccccccccccccc ... 
+target: ^ ^     ^    
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [39, 45, 53] ccc => cc
+Pos: [50, 52] cc => I
+Pos: [111, 120] cc => I
+Pos: [113, 123] cc => I
+Pos: [129, 144] cc => I
+Pos: [134, 154] cc => I
+Pos: [174, 189] cc => I
+Pos: [194, 200, 206] ccc => cc
+Pos: [202, 213] cc => I
+Pos: [207, 209, 215] ccc => cc
+
+Total Saving: 34
+
+
+--------End Timer [Generate Plans]:  0.0029909610748291016
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [39, 45, 53] ccc => cc,
+ Pos: [50, 52] cc => I,
+ Pos: [111, 120] cc => I,
+ Pos: [113, 123] cc => I,
+ Pos: [129, 144] cc => I,
+ Pos: [134, 154] cc => I,
+ Pos: [174, 189] cc => I,
+ Pos: [194, 200, 206] ccc => cc,
+ Pos: [202, 213] cc => I,
+ Pos: [207, 209, 215] ccc => cc]
+Change: 10, Saving: 34
+
+Circuit before: cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+---------------
+Apply:  Pos: [39, 45, 53] ccc => cc
+Apply:  Pos: [50, 52] cc => I
+Apply:  Pos: [111, 120] cc => I
+Apply:  Pos: [113, 123] cc => I
+Apply:  Pos: [129, 144] cc => I
+Apply:  Pos: [134, 154] cc => I
+Apply:  Pos: [174, 189] cc => I
+Apply:  Pos: [194, 200, 206] ccc => cc
+Apply:  Pos: [202, 213] cc => I
+Apply:  Pos: [207, 209, 215] ccc => cc
+---------------
+Circuit after: ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+
+--------End Timer [apply mapping plan]:  0.0019948482513427734
+
+----End Timer [Execute Mapping]:  18.092701196670532
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+[184, 189, 192]
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  11.948087215423584
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[Pos: [184, 189, 192] ccc => cc]
+
+Monte Carlo-based plan searching
+
+------------
+
+Expansion: Candidates size: 1
+
+Pos: [184, 189, 192] ccc => cc
+
+Selected: Pos: [184, 189, 192] ccc => cc
+    ... ccccccccccccccccccc ... 
+target: ^    ^  ^          
+
+----------
+
+Expansion: Candidates size: 0
+
+Complete Plan: 
+
+Pos: [184, 189, 192] ccc => cc
+
+Total Saving: 2
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[Pos: [184, 189, 192] ccc => cc]
+Change: 1, Saving: 2
+
+Circuit before: ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+---------------
+Apply:  Pos: [184, 189, 192] ccc => cc
+---------------
+Circuit after: cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+
+--------End Timer [apply mapping plan]:  0.0
+
+----End Timer [Execute Mapping]:  11.949085235595703
+
+----Start Timer: [Execute Mapping]
+
+****************************
+*                          *
+*   Pattern & Candidates   *
+*                          *
+****************************
+--------Start Timer: [Find Candidates]
+
+------------ 1 ------------
+Pattern: 1
+    cx [0, 1]
+    cx [0, 1]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 2 ------------
+Pattern: 2
+    x [0]
+    x [0]
+    => 
+    I
+
+
+Candidates: 
+
+
+------------ 3 ------------
+Pattern: 3
+    cx [0, 1]
+    cx [1, 2]
+    cx [0, 1]
+    => 
+    cx [0, 2]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 4 ------------
+Pattern: 4
+    x [1]
+    cx [0, 1]
+    x [1]
+    => 
+    cx [0, 1]
+
+
+Candidates: 
+
+
+------------ 5 ------------
+Pattern: 5
+    cx [1, 2]
+    cx [0, 1]
+    cx [1, 2]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+
+------------ 6 ------------
+Pattern: 6
+    cx [1, 2]
+    cx [0, 2]
+    cx [0, 1]
+    => 
+    cx [0, 1]
+    cx [1, 2]
+
+
+Candidates: 
+
+--------End Timer [Find Candidates]:  11.402517318725586
+
+--------Start Timer: [Generate Plans]
+
+**********************
+*                    *
+*   Generate Plans   *
+*                    *
+**********************
+
+Sorted Candidates: 
+
+[]
+
+Monte Carlo-based plan searching
+
+------------
+
+Complete Plan: 
+
+
+
+Total Saving: 0
+
+
+--------End Timer [Generate Plans]:  0.0
+
+--------Start Timer: [apply mapping plan]
+
+**************************
+*                        *
+*   Apply Mapping Plan   *
+*                        *
+**************************
+
+Selected Best Plan: 
+[]
+Change: 0, Saving: 0
+
+Circuit before: cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+---------------
+---------------
+Circuit after: cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+
+--------End Timer [apply mapping plan]:  0.0009627342224121094
+
+----End Timer [Execute Mapping]:  11.403480052947998
+
+---------------
+>> Origin circuit: 
+Circuit Info: 
+ - circuit: cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx 
+     => total size: [360] (IBM)
+ --------------------
+ - qubits_num: 20, using gates: [cx]
+ - circuit depth: 45 - (small)
+ - circuit cycle: 720
+
+
+>> Solved circuit: 
+Circuit Info: 
+ - circuit: cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx-cx 
+     => total size: [202] (IBM)
+ --------------------
+ - qubits_num: 20, using gates: [cx]
+ - circuit depth: 44 - (small)
+ - circuit cycle: 404
+
+Reduced: 
+ - size: 158 (43.89%)
+ - cycle: 316 (43.89%)
+

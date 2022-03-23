@@ -35,4 +35,5 @@ config = {
     # 'depth_size': 'medium', # default all
     'metric': 'cycle' # cycle or depth
 }
-QCPM.execute('./data/stat-test/', './data/stat-output/', **config)
+# QCPM.execute('./data/stat-test/', './data/stat-output/', **config)
+QCPM.execute('./data/simulation-test/', './data/simulation-output/', **config)

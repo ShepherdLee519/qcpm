@@ -1,3 +1,4 @@
+from multiprocessing.sharedctypes import Value
 import numpy as np
 
 
@@ -99,11 +100,12 @@ class Simulation:
             while len(targets) != 0:
                 # Step 1. calculate probabilities acoording to saving of each candidate
                 probs = [ t.delta(self.searcher.metric, self.searcher.circuit) for t in targets ]
-                probs = np.array(probs) / sum(probs)
+                probs = [1] if len(probs) == 1 else np.array(probs) / sum(probs)
 
                 # Step 2. sample a candidate
                 selected = sample(targets, probs)
                 targets.remove(selected)
+                
 
                 # Step 3. decide to apply it => calculate delta value
                 applied.append(selected)

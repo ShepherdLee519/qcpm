@@ -127,7 +127,7 @@ class Candidate:
 
         # Step 5. calculate self delta_depth and memoize it.
         self._depth = depth_after - depth_before + 1
-        
+
         return self._depth
 
     def apply(self, circuit, silence=False):
