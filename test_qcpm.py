@@ -30,10 +30,12 @@ QCPM = QCPatternMapper()
 config = {
     # 'logs': './logs/', # for files
     'stat': './', # csv path
-    'strategy': 'MCM',
+    # 'strategy': 'MCM',
     'system': 'IBM', # ['IBM', 'Surface]
     # 'depth_size': 'medium', # default all
     'metric': 'cycle' # cycle or depth
 }
 # QCPM.execute('./data/stat-test/', './data/stat-output/', **config)
-QCPM.execute('./data/simulation-test/', './data/simulation-output/', **config)
+# QCPM.execute('./data/simulation-test/', './data/simulation-output/', **config)
+# QCPM.execute('./data/newtest', './surface_result', **config)
+QCPM.execute('./data/example', 'result', **config)

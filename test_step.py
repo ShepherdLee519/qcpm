@@ -2,7 +2,8 @@ from qcpm import Mapper, Circuit
 
 
 # circuit_path = './data/mult_after_light.qasm'
-circuit_path = './data/20QBT_45CYC_.0D1_.4D2_0.qasm'
+# circuit_path = './data/20QBT_45CYC_.0D1_.4D2_0.qasm'
+circuit_path = './data/example.qasm'
 
 
 # Step 1. init mapper: eg. mapper = Mapper()
@@ -27,7 +28,7 @@ circuit = Circuit(circuit_path)
         - metric: cycle / depth used to calculate value of candidate.
                 default [cycle]
 """
-mapper.execute(circuit, strategy='MCM', metric='depth')
+mapper.execute(circuit, strategy='random', metric='depth')
 
 
 # Step 4. save results to qasm file: cricuit.save(save_path)

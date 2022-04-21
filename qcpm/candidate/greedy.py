@@ -18,13 +18,13 @@ def GreedySearchPlan(circuit, candidates, metric):
     size = len(candidates)
     plans = []
 
-    for i in range(size):
-        target = candidates[i]
+    if size != 0:
+        target = candidates[0]
         temp = [target]
         s = set(target.pos) # eg. like {1, 4}
         delta_cost = target.delta(metric, circuit)
 
-        for j in range(i + 1, size):
+        for j in range(1, size):
             # if no conflict => add this candidate
             if not (candidates[j] & s):
                 temp.append(candidates[j])

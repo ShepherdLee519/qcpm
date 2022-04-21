@@ -83,20 +83,22 @@ class Circuit:
 
         # Step 3. system migrate
         # if system type is not IBM => migrate right now
+
         if self.system != 'IBM':
-            # maigration self.system to [IBM]
-            # eg. 'Surface' => 'IBM'
-            # 
-            op_types = []
-            migrated_operators = []
+            # # maigration self.system to [IBM]
+            # # eg. 'Surface' => 'IBM'
+            # # 
+            # op_types = []
+            # migrated_operators = []
 
-            for operator in migrate(operators, self.system, 'IBM'):
-                # cx = convert_type() => c
-                op_types.append( Operator.convert_type(operator.type) )
-                migrated_operators.append(operator)
+            # for operator in migrate(operators, self.system, 'IBM'):
+            #     # cx = convert_type() => c
+            #     op_types.append( Operator.convert_type(operator.type) )
+            #     migrated_operators.append(operator)
 
-            operators = migrated_operators
-            self.system = 'IBM'
+            # operators = migrated_operators
+            # self.system = 'IBM'
+            pass
 
 
         if optimize:
