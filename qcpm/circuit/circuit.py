@@ -23,7 +23,7 @@ class Circuit:
     """
     @timerDecorator(description='Init Circuit')
     def __init__(self, path, *, optimize=True, system='IBM'):
-        self.system = system # may be 'IBM' / 'Surface'
+        self.system = system # may be 'IBM' / 'Surface' / 'U'
 
         self.operators = []
         self.draft = '' # solved circuit's gates string

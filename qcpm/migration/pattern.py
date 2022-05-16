@@ -38,6 +38,7 @@ class MigrationPattern(ReductionPattern):
         for i in range(self.size):
             ops.pop()
 
+
         # Step 4. create and gather new(after mapping) operator and reutrn them.
         cur = 0
         results = []

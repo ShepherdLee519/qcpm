@@ -17,6 +17,8 @@ class Migrater:
         # 2. if we have 'IBM_to_Surface.json', we can also load 'Surface_to_IBM'
         #       by just swapping the src/dst in loaded self.rules
         # 
+        # print(f'Try to migration from {source_type} to {target_type}')
+
         swap = False
         try:
             path = f'/rules/{source_type}_to_{target_type}.json'
@@ -38,6 +40,7 @@ class Migrater:
                 for rule in self.rules]
 
         self.patterns = [ MigrationPattern(**rule) for rule in self.rules ]
+        
 
         # the max/min size of operator need to match in all patterns
         self.min_size = len(min(self.rules, key=lambda rule:len(rule['src']))['src'])
@@ -70,6 +73,7 @@ def migrate(operators, source_type, target_type):
         operators: list of Operator (or Circuit object).
         source_type: eg. 'IBM'
         target_type: eg. 'Surface'
+    
     """    
     buffer = deque()
     migrater = Migrater(source_type, target_type)

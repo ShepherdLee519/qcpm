@@ -8,7 +8,7 @@ class PatternMeta:
     # use Example:
     # operands: "abaa", targets: [1, 2, 1, 1]
     # => that means: books: {'a': 1, 'b': 2, 'c': -1, ...}
-    books = {k:-1 for k in string.ascii_lowercase}
+    books = { k:-1 for k in string.ascii_lowercase }
 
     def __init__(self, src, dst):
         """
@@ -61,6 +61,9 @@ class PatternMeta:
         # operation: ["rx", [1], "pi/2"] len = 3 => angle = operation[-1] = pi/2
         angles_pattern = [  '' if len(operation) == 2 else operation[-1] 
             for operation in target ]
+        for i in range(len(angles_pattern)):
+            if isinstance(angles_pattern[i], list):
+                angles_pattern[i] = ','.join(angles_pattern[i]).replace(' ', '')
 
         return {
             'operator': ''.join(operator_pattern),

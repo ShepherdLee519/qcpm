@@ -31,11 +31,13 @@ config = {
     # 'logs': './logs/', # for files
     'stat': './', # csv path
     # 'strategy': 'MCM',
-    'system': 'IBM', # ['IBM', 'Surface]
+    # 'system': ["IBM", "U"], # ['IBM', 'Surface', 'U']
+    'system': ["U", "Surface"],
     # 'depth_size': 'medium', # default all
     'metric': 'cycle' # cycle or depth
 }
 # QCPM.execute('./data/stat-test/', './data/stat-output/', **config)
 # QCPM.execute('./data/simulation-test/', './data/simulation-output/', **config)
-# QCPM.execute('./data/newtest', './surface_result', **config)
-QCPM.execute('./data/example', 'result', **config)
+# QCPM.execute('./data/simulation', './simulation_result', **config)
+QCPM.execute('./result', 'result_surface', **config)
+# QCPM.execute('./shor_result', './shor_result_surface', **config)

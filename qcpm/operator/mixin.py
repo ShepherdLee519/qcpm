@@ -16,6 +16,10 @@ class operatorMixin:
         'ry': 'Y',
         'rz': 'Z',
 
+        'u1': '1',
+        'u2': '2',
+        'u3': '3',
+
         # three qubtis gates
         'tof': 'F',
         'ccz': 'C'
@@ -23,7 +27,7 @@ class operatorMixin:
     # {'I': 'id' ...}
     op_type_map_reversed = {v:k for (k,v) in op_type_map.items()}
 
-    rotation_gates = ['rx', 'ry', 'rz']
+    rotation_gates = ['rx', 'ry', 'rz', 'u1', 'u2', 'u3']
 
     multi_qubits_gate = {
         'cx': 2,

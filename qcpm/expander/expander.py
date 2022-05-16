@@ -24,7 +24,7 @@ class Expander:
         will load all system's pattern info in advance.
 
         """
-        systems = ['IBM', 'Surface']
+        systems = ['IBM', 'Surface', 'U']
         self.patterns = {} # reset to empty
 
         for system in systems:

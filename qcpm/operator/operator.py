@@ -62,6 +62,14 @@ class Operator(operatorMixin):
 
             # op_type[:2] => 'rx'
             return op_type[:2]
+        elif op_type[0] == 'u':
+            # eg. u2(pi/2, pi/2);
+            #   => op_type = "u2(pi/2, pi/2)"
+            #   => op_type[3:][:-1] = "pi/2, pi/2"
+            #   => replace(" ", "") = "pi/2,pi/2"
+            self.angle = op_type[3:][:-1].replace(' ', '')
+
+            return op_type[:2]
         else:
             # and self.angel still None
             return op_type
@@ -110,9 +118,12 @@ class Operator(operatorMixin):
 
             self.operands = new_operands
 
-        if new_angle != None:
+        if new_angle != None and new_angle != "":
             self.angle = str(new_angle)
-        
+            
+            if self.angle[0] == '[':
+                self.angle = self.angle[1:-1].replace(' ', '')
+
         return self
 
     ######################
