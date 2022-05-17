@@ -22,6 +22,7 @@ class operatorMixin:
 
         # three qubtis gates
         'tof': 'F',
+        'ccx': 'F',
         'ccz': 'C'
     }
     # {'I': 'id' ...}
@@ -33,6 +34,7 @@ class operatorMixin:
         'cx': 2,
         'cz': 2,
         'tof': 3,
+        'ccx': 3,
         'ccz': 3,
         'swap': 2,
     }

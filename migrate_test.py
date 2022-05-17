@@ -18,7 +18,7 @@ paths = [
 ]
 
 
-target = 'U'
+target = 'Surface'
 
 for path in paths:
     pattern_path = path[0] + 'IBM' + path[1]
