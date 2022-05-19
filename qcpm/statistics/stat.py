@@ -23,8 +23,8 @@ class StatReporter:
         create(self.path, self.metric)
 
     def initCSVName(self, *, metric, folder, config):
-        # %d%m_dirname_[optimize]_[strategy]_[systems]_[metric]
-        timestamp = time.strftime('%d%m', time.localtime(time.time()))
+        # %m%d%H%M_dirname_[optimize]_[strategy]_[systems]_[metric]
+        timestamp = time.strftime('%m%d%H%M', time.localtime(time.time()))
 
         name = basename(dirname(folder))
 

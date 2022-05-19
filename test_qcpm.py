@@ -31,8 +31,8 @@ config = {
     # 'logs': './logs/', # for files
     'stat': './', # csv path
     # 'strategy': 'MCM',
-    # 'system': ["U", "IBM"],
-    'system': ["IBM", "U"], # ['IBM', 'Surface', 'U']
+    'system': ["Surface", "IBM"],
+    # 'system': ["IBM", "U"], # ['IBM', 'Surface', 'U']
     # 'system': ["U", "Surface"],
     # 'system': ["Surface", "U"],
     # 'depth_size': 'medium', # default all
@@ -44,11 +44,4 @@ config = {
 # QCPM.execute('./shor_result_U', './shor_result_IBM', **config)
 # QCPM.execute('./shor_result_U', './shor_result_surface', **config)
 # QCPM.execute('./shor_result_surface', './shor_result_U', **config)
-QCPM.execute('./data/ccx', './ccx_result', **config)
-
-# QCPM.execute('./data/example', 'example_U', **config)
-# QCPM.execute('example_U', 'example_U_to_IBM', **config)
-# QCPM.execute('example_U', 'example_U_to_Surface', **config)
-# QCPM.execute('example_U_to_Surface', 'example_Surface_to_IBM', **config)
-# QCPM.execute('example_U_to_Surface', 'example_Surface_to_U', **config)
-# QCPM.execute('example_Surface', 'example_Surface_to_IBM', **config)
+QCPM.execute('./data/single_cz', './cz_result', **config)
