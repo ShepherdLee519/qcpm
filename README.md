@@ -1,5 +1,7 @@
 # qcpm
 
+code implementation for [A Pattern Matching-Based Framework for Quantum Circuit Rewriting](https://arxiv.org/pdf/2206.06684.pdf)
+
 ## 调用：
 
 1. 逐步
